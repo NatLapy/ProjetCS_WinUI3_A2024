@@ -32,5 +32,10 @@ namespace projetSession
         {
             myButton.Content = "Clicked";
         }
+
+        private void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+
+        }
     }
 }

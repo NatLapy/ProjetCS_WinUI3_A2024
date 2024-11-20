@@ -7,7 +7,23 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+    <NavigationView x:Name="navView" PaneDisplayMode="Top" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" PaneTitle="Le Titre" ItemInvoked="navView_ItemInvoked">
+        <NavigationView.MenuItems>
+            <NavigationViewItem x:Name="iListe">
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <FontIcon Glyph="&#xE902;"/>
+                    <TextBlock>Liste des Commandes</TextBlock>
+                </StackPanel>
+            </NavigationViewItem>
+            <NavigationViewItemSeparator/>
+            <NavigationViewItem x:Name="iExemple">
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <FontIcon Glyph="&#xE77B;"/>
+                    <TextBlock>Exemple</TextBlock>
+                </StackPanel>
+            </NavigationViewItem>
+        </NavigationView.MenuItems>
+
+        <Frame x:Name="mainFrame" Grid.Row="1" />
+    </NavigationView>
 </Window>
