@@ -16,16 +16,14 @@ namespace projetSession
         MySqlConnection con;
         ObservableCollection<Activites> liste;
         ObservableCollection<Adherents> listeAdherents;
-        string role;
         static singletonBD instance = null;
 
-        
 
         public singletonBD()
         {
             liste = new ObservableCollection<Activites>();
             listeAdherents = new ObservableCollection<Adherents>();
-            string role;
+            string Role = "nonConnecter";
             //con est déclarer plus haut comme variable globale. et est initialiser ici dans le constructeur
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420335ri_eq3;Uid=6269818;Pwd=6269818;");
 
@@ -43,6 +41,7 @@ namespace projetSession
         public ObservableCollection<Activites> getListe()
         {
             getActivites();
+            
             return liste;
         }
 

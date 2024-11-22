@@ -26,11 +26,17 @@ namespace projetSession
     /// </summary>
     public sealed partial class PageAccueil : Page
     {
+        Visibility visibilityAdmin;
         public PageAccueil()
         {
             this.InitializeComponent();
+
             lv_Activites.ItemsSource = singletonBD.getInstance().getListe();
             //lv_Adherents.ItemsSource = singletonBD.getInstance().getListeAdherents();
+
+            
+
+
         }
 
         private void tbx_recherche_TextChanged(object sender, TextChangedEventArgs e)
@@ -116,13 +122,14 @@ namespace projetSession
         }
 
 
-        private void setPermission(int role)
+        public void setPermission(int role)
         {
+            stkpnl.Visibility = Visibility.Collapsed;
             switch (role)
             {
                 case 3:
-
-                    break;
+                    stkpnl.Visibility = Visibility.Collapsed;
+                break;
             }
         }
     }
