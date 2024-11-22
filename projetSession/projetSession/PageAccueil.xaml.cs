@@ -30,6 +30,7 @@ namespace projetSession
         {
             this.InitializeComponent();
             lv_Activites.ItemsSource = singletonBD.getInstance().getListe();
+            //lv_Adherents.ItemsSource = singletonBD.getInstance().getListeAdherents();
         }
 
         private void tbx_recherche_TextChanged(object sender, TextChangedEventArgs e)
@@ -112,6 +113,17 @@ namespace projetSession
         private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+
+        private void setPermission(int role)
+        {
+            switch (role)
+            {
+                case 3:
+
+                    break;
+            }
         }
     }
 }
