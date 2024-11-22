@@ -36,7 +36,7 @@ namespace projetSession
 
         public ObservableCollection<Activites> getListe()
         {
-            getProduits();
+            getActivites();
             return liste;
         }
 
@@ -46,7 +46,7 @@ namespace projetSession
 
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
-            commande.CommandText = "Select * from produits";
+            commande.CommandText = "Select * from activites";
             con.Open();
 
             //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
@@ -55,16 +55,25 @@ namespace projetSession
 
             while (r.Read())
             {
+                String s_idActivite = r["idActivite"].ToString();
+                int idActivite = Convert.ToInt16(s_idActivite);
 
                 String nom = r["nom"].ToString();
-                String categorie = r["categorie"].ToString();
-                String prix = r["prix"].ToString();
-                double iPrix = Convert.ToDouble(prix);
-                Produits produit = new Produits(nom, iPrix, categorie);
+
+                String s_coutOrganisation = r["coutOrganisation"].ToString();
+                int coutOrganisation = Convert.ToInt16(s_coutOrganisation);
+
+                String s_prixVente = r["prixVente"].ToString();
+                int prixVente = Convert.ToInt16(s_prixVente);
+
+                String s_idCategorie = r["idCategorie"].ToString();
+                int idCategorie = Convert.ToInt16(s_idCategorie);
+
+                Activites activite = new Activites(idActivite, nom, coutOrganisation , prixVente , idCategorie);
 
 
 
-                liste.Add(produit);
+                liste.Add(activite);
             }
 
             r.Close();
