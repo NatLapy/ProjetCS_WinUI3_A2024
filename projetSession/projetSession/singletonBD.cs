@@ -41,6 +41,8 @@ namespace projetSession
             return liste;
         }
 
+
+
         public void getActivites()
         {
             liste.Clear();
@@ -82,7 +84,74 @@ namespace projetSession
         }
 
 
+        public void recherche(string v)
+        {
+            liste.Clear();
 
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"Select * from activites where nom like  '%{v}%'";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+            MySqlDataReader r = commande.ExecuteReader();
+
+
+            while (r.Read())
+            {
+
+                String s_idActivite = r["idActivite"].ToString();
+                int idActivite = Convert.ToInt16(s_idActivite);
+
+                String nom = r["nom"].ToString();
+
+                String s_coutOrganisation = r["coutOrganisation"].ToString();
+                int coutOrganisation = Convert.ToInt16(s_coutOrganisation);
+
+                String s_prixVente = r["prixDeVente"].ToString();
+                int prixVente = Convert.ToInt16(s_prixVente);
+
+                String s_idCategorie = r["idCategorie"].ToString();
+                int idCategorie = Convert.ToInt16(s_idCategorie);
+
+                Activites activite = new Activites(idActivite, nom, coutOrganisation, prixVente, idCategorie);
+
+
+
+                liste.Add(activite);
+            }
+
+            r.Close();
+            con.Close();
+        }
+
+        public void supprimerActivites(String nom)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = $"delete from activites where nom = '{nom}'";
+
+                con.Open();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+
+                if (i == 1)
+                {
+                    getActivites();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
+
+
+        //----------------------------------------------------------------Parti Adherents------------------------------------------------------------------/
 
         public void getAdherents()
         {
@@ -127,6 +196,27 @@ namespace projetSession
 
             return listeAdherents;
         }
+
+
+        //public void modifierAdherents(String noIdentification, String nom , String prenom, String adresse , String dateNaissance , )
+        //{
+        //    try
+        //    {
+        //        MySqlCommand commande = new MySqlCommand();
+        //        commande.Connection = con;
+        //        commande.CommandText = $"update joueur set nomEquipe = '{nomEquipe}' where matricule = '{matricule}'";
+
+        //        con.Open();
+        //        int i = commande.ExecuteNonQuery();
+
+        //        con.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (con.State == System.Data.ConnectionState.Open)
+        //            con.Close();
+        //    }
+        //}
 
     }
 }

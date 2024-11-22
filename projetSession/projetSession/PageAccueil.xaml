@@ -56,13 +56,13 @@
                         <TextBlock Text="{x:Bind s_PrixVente }" Margin="5,5,5,10"/>
 
 
-                        <!--<StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal">
                             <Button 
                                 x:Name="btn_supprimer"
                                 Background="Black" 
                                 Foreground="White" 
                                 FontSize="25" 
-                               >
+                              Click="btn_supprimer_Click" >
 
 
                                 <StackPanel Orientation="Horizontal">
@@ -76,7 +76,7 @@
                                 Background="Black" 
                                 Foreground="White" 
                                 FontSize="25" 
-                                >
+                                Click="btn_Edit_Click">
 
 
                                 <StackPanel Orientation="Horizontal">
@@ -85,9 +85,22 @@
                                 </StackPanel>
 
                             </Button>
+                            <Button 
+                                x:Name="btn_Add"
+                                Background="Black" 
+                                Foreground="White" 
+                                FontSize="25" 
+                                Click="btn_Add_Click">
 
 
-                        </StackPanel>-->
+                                <StackPanel Orientation="Horizontal">
+                                    <SymbolIcon Symbol="Add" Foreground="White" />
+
+                                </StackPanel>
+
+                            </Button>    
+
+                        </StackPanel>
                     </StackPanel>
 
                 </DataTemplate>
