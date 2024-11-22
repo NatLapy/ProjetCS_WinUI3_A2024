@@ -1,4 +1,6 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Input;
+using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -23,14 +25,38 @@ namespace projetSession
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        
+
         public MainWindow()
         {
             this.InitializeComponent();
+            mainFrame.Navigate(typeof(PageAccueil));
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        
+
+        private void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            myButton.Content = "Clicked";
+            var item = (NavigationViewItem)args.InvokedItemContainer;
+            switch (item.Name)
+            {
+                case "iAccueil":
+                    mainFrame.Navigate(typeof(PageConnection));
+                    break;
+                case "iConnecter":
+                    mainFrame.Navigate(typeof(PageConnection));
+                    break;
+                case "iPageStatistique":
+                    mainFrame.Navigate(typeof(PageStatistique));
+                    break;
+                default:
+                    mainFrame.Navigate(typeof(PageAccueil));
+                    break;
+            }
         }
+
+
+
+        
     }
 }

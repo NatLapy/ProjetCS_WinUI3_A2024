@@ -1,0 +1,20 @@
+﻿<ContentDialog
+    x:Class="projetSession.DialogueAdmin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:projetSession"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    Closing="ContentDialog_Closing"
+    >
+
+    <StackPanel>
+        <TextBox Foreground="White" Header="Entrez votre nom d'utilisateur" x:Name="tbx_user" Margin="5"/>
+        <TextBlock x:Name="errNom" Foreground="Red"></TextBlock>
+        <PasswordBox Header="Entrez votre mot de passe" Foreground="White" x:Name="pwd_user" Margin="5" />
+        <TextBlock x:Name="errMdp" Foreground="Red"></TextBlock>
+    </StackPanel>
+    
+</ContentDialog>
