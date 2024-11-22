@@ -14,6 +14,8 @@ namespace projetSession
         String nom = "";
         int coutOrganisation = 0;
         int prixVente = 0;
+        int idAdmin = 0;
+        int idCategorie = 0;
 
         public Activites(int idActivite, string nom, int coutOrganisation, int prixVente)
         {
@@ -80,6 +82,21 @@ namespace projetSession
             set
             {
                 prixVente = value;
+
+
+            }
+        }
+
+        public int IdAdmin
+        {
+            get
+            {
+                return coutOrganisation;
+            }
+
+            set
+            {
+                coutOrganisation = value;
 
 
             }
