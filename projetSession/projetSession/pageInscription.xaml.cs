@@ -1,10 +1,7 @@
-﻿using Microsoft.UI;
-using Microsoft.UI.Input;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
@@ -24,17 +21,11 @@ namespace projetSession
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PageAccueil : Page
+    public sealed partial class pageInscription : Page
     {
-        public PageAccueil()
+        public pageInscription()
         {
             this.InitializeComponent();
-            lv_Activites.ItemsSource = singletonBD.getInstance().getListe();
-        }
-
-        private void tbx_recherche_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

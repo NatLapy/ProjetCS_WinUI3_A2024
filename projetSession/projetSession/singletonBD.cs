@@ -63,7 +63,7 @@ namespace projetSession
                 String s_coutOrganisation = r["coutOrganisation"].ToString();
                 int coutOrganisation = Convert.ToInt16(s_coutOrganisation);
 
-                String s_prixVente = r["prixVente"].ToString();
+                String s_prixVente = r["prixDeVente"].ToString();
                 int prixVente = Convert.ToInt16(s_prixVente);
 
                 String s_idCategorie = r["idCategorie"].ToString();

@@ -87,7 +87,15 @@ namespace projetSession
             }
         }
 
-      
+        public string s_PrixVente
+        {
+            get
+            {
+                return prixVente.ToString("0.00$");
+            }
+        }
+
+
 
         public int IdCategorie
         {

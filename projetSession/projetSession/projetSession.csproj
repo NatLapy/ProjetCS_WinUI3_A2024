@@ -15,6 +15,7 @@
     <None Remove="DialogueAdmin.xaml" />
     <None Remove="PageAccueil.xaml" />
     <None Remove="PageConnection.xaml" />
+    <None Remove="pageInscription.xaml" />
     <None Remove="PageStatistique.xaml" />
     <None Remove="PageUser.xaml" />
   </ItemGroup>
@@ -43,6 +44,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="pageInscription.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="PageConnection.xaml">
