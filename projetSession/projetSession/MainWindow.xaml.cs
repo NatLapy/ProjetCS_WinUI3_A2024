@@ -41,7 +41,7 @@ namespace projetSession
             switch (item.Name)
             {
                 case "iAccueil":
-                    mainFrame.Navigate(typeof(PageConnection));
+                    mainFrame.Navigate(typeof(PageAccueil));
                     break;
                 case "iConnecter":
                     mainFrame.Navigate(typeof(PageConnection));
