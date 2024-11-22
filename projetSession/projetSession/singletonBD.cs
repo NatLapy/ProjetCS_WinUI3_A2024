@@ -13,13 +13,14 @@ namespace projetSession
 
         MySqlConnection con;
         ObservableCollection<Activites> liste;
+        ObservableCollection<Adherents> listeAdherents;
         static singletonBD instance = null;
 
 
         public singletonBD()
         {
             liste = new ObservableCollection<Activites>();
-
+            listeAdherents = new ObservableCollection<Adherents>();
             //con est déclarer plus haut comme variable globale. et est initialiser ici dans le constructeur
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420335ri_eq3;Uid=6269818;Pwd=6269818;");
 
@@ -78,6 +79,53 @@ namespace projetSession
 
             r.Close();
             con.Close();
+        }
+
+
+
+
+        public void getAdherents()
+        {
+            listeAdherents.Clear();
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "SELECT* FROM adherents;";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+            MySqlDataReader r = commande.ExecuteReader();
+
+
+            while (r.Read())
+            {
+                String noIdentification = r["noIdentification"].ToString();
+
+                String nom = r["nom"].ToString();
+
+                String prenom = r["prenom"].ToString();
+
+
+                String adresse = r["adresse"].ToString();
+
+                String dateNaissance = r["dateNaissance"].ToString();
+
+                String s_age = r["idCategorie"].ToString();
+                int age = Convert.ToInt16(s_age);
+
+                Adherents adherents = new Adherents(noIdentification,nom,prenom,adresse,dateNaissance,age);
+
+
+
+                listeAdherents.Add(adherents);
+            }
+
+            r.Close();
+            con.Close();
+        }
+        public ObservableCollection<Adherents> getListeAdherents(){
+
+            return listeAdherents;
         }
 
     }
