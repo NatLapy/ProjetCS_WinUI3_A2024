@@ -70,6 +70,8 @@ namespace projetSession
             if (resultat == ContentDialogResult.Primary)
             {
                 singletonBD.getInstance().Role = "admin";
+
+                Frame.Navigate(typeof(PageAccueil));
             }
 
             else
