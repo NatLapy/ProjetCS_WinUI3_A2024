@@ -17,12 +17,14 @@ namespace projetSession
         int idAdmin = 0;
         int idCategorie = 0;
 
-        public Activites(int idActivite, string nom, int coutOrganisation, int prixVente)
+        public Activites(int idActivite, string nom, int coutOrganisation, int prixVente , int idAdmin, int idCategorie)
         {
             this.idActivite = idActivite;
             this.nom = nom;
             this.coutOrganisation = coutOrganisation;
             this.prixVente = prixVente;
+            this.idAdmin = idAdmin;
+            this.idCategorie = idCategorie;
         }
 
 
