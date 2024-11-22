@@ -119,6 +119,13 @@ namespace projetSession
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
         public override string ToString()
         {
             return idActivite + " " + nom + " " + coutOrganisation + " " + prixVente;
