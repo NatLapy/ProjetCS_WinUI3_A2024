@@ -68,10 +68,9 @@ namespace projetSession
 
             if (resultat == ContentDialogResult.Primary)
             {
-                Frame.Navigate(typeof(PageAdmin));
                 NavigationView navigation = Frame.Parent as NavigationView;
 
-                foreach (NavigationViewItem item in navigation.MenuItems)
+                foreach (NavigationViewItemBase item in navigation.MenuItems)
                 {
                     if(item.Name == "iAccueil")
                     {
