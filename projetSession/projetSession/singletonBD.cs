@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,13 +16,16 @@ namespace projetSession
         MySqlConnection con;
         ObservableCollection<Activites> liste;
         ObservableCollection<Adherents> listeAdherents;
+        string role;
         static singletonBD instance = null;
 
+        
 
         public singletonBD()
         {
             liste = new ObservableCollection<Activites>();
             listeAdherents = new ObservableCollection<Adherents>();
+            string role;
             //con est déclarer plus haut comme variable globale. et est initialiser ici dans le constructeur
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420335ri_eq3;Uid=6269818;Pwd=6269818;");
 
@@ -40,6 +45,13 @@ namespace projetSession
             getActivites();
             return liste;
         }
+
+        public ObservableCollection<Adherents> getListeAdherents()
+        {
+            getAdherents();
+            return listeAdherents;
+        }
+
 
         public void getActivites()
         {
@@ -110,7 +122,7 @@ namespace projetSession
 
                 String dateNaissance = r["dateNaissance"].ToString();
 
-                String s_age = r["idCategorie"].ToString();
+                String s_age = r["age"].ToString();
                 int age = Convert.ToInt16(s_age);
 
                 Adherents adherents = new Adherents(noIdentification,nom,prenom,adresse,dateNaissance,age);
@@ -123,10 +135,68 @@ namespace projetSession
             r.Close();
             con.Close();
         }
-        public ObservableCollection<Adherents> getListeAdherents(){
 
-            return listeAdherents;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // SECTION VERIFICATION ROLE
+        public string Role
+        {
+            get
+            {
+                return Role;
+            }
+
+            set
+            {
+                Role = value;
+            }
         }
+
+        public int getPermissions(string role)
+        {
+            switch (role)
+            {
+                case "nonConnecter":
+                    return 0;
+                case "adherent":
+                    return 1;
+                case "admin":
+                    return 3;
+                default: 
+                    return 0;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

@@ -15,6 +15,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using System.Data;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -68,24 +69,7 @@ namespace projetSession
 
             if (resultat == ContentDialogResult.Primary)
             {
-                NavigationView navigation = Frame.Parent as NavigationView;
-
-                foreach (NavigationViewItemBase item in navigation.MenuItems)
-                {
-                    if(item.Name == "iAccueil")
-                    {
-                        
-                    }
-                    if (item.Name == "iAdmin")
-                    {
-
-                    }
-                    if (item.Name == "iAdmin")
-                    {
-
-                    }
-                };
-                
+                singletonBD.getInstance().Role = "admin";
             }
 
             else
