@@ -91,12 +91,27 @@ namespace projetSession
         {
             get
             {
-                return coutOrganisation;
+                return idAdmin;
             }
 
             set
             {
-                coutOrganisation = value;
+                idAdmin = value;
+
+
+            }
+        }
+
+        public int IdCategorie
+        {
+            get
+            {
+                return idCategorie;
+            }
+
+            set
+            {
+                idCategorie = value;
 
 
             }
