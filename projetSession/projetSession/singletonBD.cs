@@ -245,25 +245,26 @@ namespace projetSession
 
 
 
-        //public void modifierAdherents(String noIdentification, String nom , String prenom, String adresse , String dateNaissance , )
-        //{
-        //    try
-        //    {
-        //        MySqlCommand commande = new MySqlCommand();
-        //        commande.Connection = con;
-        //        commande.CommandText = $"update joueur set nomEquipe = '{nomEquipe}' where matricule = '{matricule}'";
+        public void modifierAdherents(String noIdentification, String nom, String prenom, String adresse, String dateNaissance)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand(" p_modifierAdherent");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
 
-        //        con.Open();
-        //        int i = commande.ExecuteNonQuery();
+                con.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
 
-        //        con.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        if (con.State == System.Data.ConnectionState.Open)
-        //            con.Close();
-        //    }
-        //}
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
 
     }
 }

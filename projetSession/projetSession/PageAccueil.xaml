@@ -41,6 +41,17 @@
 
             <!--<AutoSuggestBox x:Name="autoSuggestBox" QueryIcon="Find"  Width="350" Height="35"  TextChanged="autoSuggestBox_TextChanged"/>-->
 
+            <Button  x:Name="btn_Add" Background="Black"  Foreground="White"  FontSize="25"  Click="btn_Add_Click">
+                               
+                         
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Ajouter</TextBlock>
+                    <SymbolIcon Symbol="Add" Foreground="White" />
+                    
+                </StackPanel>
+
+            </Button>
+
             <TextBox x:Name="tbx_recherche" TextChanged="tbx_recherche_TextChanged" HorizontalAlignment="Right"  PlaceholderText="entrez du texte" Width="250" Height="30"  />
 
 
@@ -85,20 +96,7 @@
                                 </StackPanel>
 
                             </Button>
-                            <Button 
-                                x:Name="btn_Add"
-                                Background="Black" 
-                                Foreground="White" 
-                                FontSize="25" 
-                                Click="btn_Add_Click">
-
-
-                                <StackPanel Orientation="Horizontal">
-                                    <SymbolIcon Symbol="Add" Foreground="White" />
-
-                                </StackPanel>
-
-                            </Button>    
+                           
 
                         </StackPanel>
                     </StackPanel>
