@@ -241,5 +241,29 @@ namespace projetSession
             }
         }
 
+
+
+
+
+        //public void modifierAdherents(String noIdentification, String nom , String prenom, String adresse , String dateNaissance , )
+        //{
+        //    try
+        //    {
+        //        MySqlCommand commande = new MySqlCommand();
+        //        commande.Connection = con;
+        //        commande.CommandText = $"update joueur set nomEquipe = '{nomEquipe}' where matricule = '{matricule}'";
+
+        //        con.Open();
+        //        int i = commande.ExecuteNonQuery();
+
+        //        con.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (con.State == System.Data.ConnectionState.Open)
+        //            con.Close();
+        //    }
+        //}
+
     }
 }
