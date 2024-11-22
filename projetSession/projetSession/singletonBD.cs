@@ -11,7 +11,7 @@ namespace projetSession
     {
 
         MySqlConnection con;
-        ObservableCollection<Produits> liste;
+        ObservableCollection<Activites> liste;
         static singletonBD instance = null;
     }
 }
