@@ -212,9 +212,15 @@ namespace projetSession
         {
             try
             {
-                MySqlCommand commande = new MySqlCommand(" p_modifierAdherent");
+                MySqlCommand commande = new MySqlCommand("p_modifierAdherent");
                 commande.Connection = con;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("noIdentification", noIdentification);
+                commande.Parameters.AddWithValue("nom", nom);
+                commande.Parameters.AddWithValue("prenom", prenom);
+                commande.Parameters.AddWithValue("adresse", adresse);
+                commande.Parameters.AddWithValue("dateNaissance", dateNaissance);
 
                 con.Open();
                 commande.Prepare();
@@ -229,5 +235,33 @@ namespace projetSession
             }
         }
 
+
+        public void modifierActivites(int _idActivite, String _nom, int _coutOrganisation, int _prixDeVente, int _idAdmin ,int  _idCategorie)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_modifierActivite");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("idActivite", _idActivite);
+                commande.Parameters.AddWithValue("nom", _nom);
+                commande.Parameters.AddWithValue("coutOrganisation", _coutOrganisation);
+                commande.Parameters.AddWithValue("prixDeVente", _prixDeVente);
+                commande.Parameters.AddWithValue("idAdmin", _idAdmin);
+                commande.Parameters.AddWithValue("idCategorie", _idCategorie);
+
+                con.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
     }
 }
