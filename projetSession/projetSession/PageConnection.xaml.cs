@@ -32,24 +32,6 @@ namespace projetSession
             this.InitializeComponent();
         }
 
-        private void BtnHover(object sender, PointerRoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            var cursor1 = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 0);
-            var cursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 0);
-            InputCursor inputCurs = InputCursor.CreateFromCoreCursor(cursor);
-            this.ProtectedCursor = inputCurs;
-
-        }
-
-        private void BtnSortie(object sender, PointerRoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            var cursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
-            InputCursor inputCurs = InputCursor.CreateFromCoreCursor(cursor);
-            this.ProtectedCursor = inputCurs;
-        }
-
         private async void lienAdmin_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
             Hyperlink btn = sender as Hyperlink;
@@ -69,8 +51,8 @@ namespace projetSession
 
             if (resultat == ContentDialogResult.Primary)
             {
-                SingletonSession.getInstance().Role = "admin";
 
+                SingletonUtilisateur.getInstance().User.Role = "Admin";
                 Frame.Navigate(typeof(PageAccueil));
             }
 
@@ -79,5 +61,26 @@ namespace projetSession
 
             }
         }
+
+
+
+        private void BtnHover(object sender, PointerRoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            var cursor1 = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 0);
+            var cursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 0);
+            InputCursor inputCurs = InputCursor.CreateFromCoreCursor(cursor);
+            this.ProtectedCursor = inputCurs;
+
+        }
+
+        private void BtnSortie(object sender, PointerRoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            var cursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
+            InputCursor inputCurs = InputCursor.CreateFromCoreCursor(cursor);
+            this.ProtectedCursor = inputCurs;
+        }
+
     }
 }

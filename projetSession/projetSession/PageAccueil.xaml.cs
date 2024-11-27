@@ -28,19 +28,16 @@ namespace projetSession
     {
         //Visibility visibilityAdmin;
 
-        public Visibility VisibilityAdmin { get {
-                return SingletonSession.getInstance().Role == "admin" ? Visibility.Visible : Visibility.Collapsed;
-            } }
+        public Visibility VisibilityAdmin { 
+            get {
+                return SingletonUtilisateur.getInstance().User.Role == "admin" ? Visibility.Visible : Visibility.Collapsed;
+            } 
+        }
         public PageAccueil()
         {
             this.InitializeComponent();
-
             lv_Activites.ItemsSource = singletonBD.getInstance().getListe();
             //lv_Adherents.ItemsSource = singletonBD.getInstance().getListeAdherents();
-
-            
-
-
         }
 
         private void tbx_recherche_TextChanged(object sender, TextChangedEventArgs e)
@@ -91,6 +88,7 @@ namespace projetSession
 
             var resultat = await dialogue.ShowAsync();
 
+<<<<<<< HEAD
             //Button btn = sender as Button;
             //Activites a = btn.DataContext as Activites;
 
@@ -109,6 +107,29 @@ namespace projetSession
             // //comboBox.Header = "Choisir l'équipe";
             // //comboBox.SelectedIndex = 0;
             // //dialog.Content = comboBox as ComboBox;
+=======
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Modification";
+            dialog.PrimaryButtonText = "Modifier";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            //dialog.Content = $"Voulez vous supprimer le joueur: '{a.Prenom}' '{a.Nom}'  ?";
+            
+            TextBox textBoxidActivite = new TextBox();
+            //textBoxidActivite.Header
+            //comboBox.Header = "Choisir l'équipe";
+            //comboBox.SelectedIndex = 0;
+            //dialog.Content = comboBox as ComboBox;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+                // singletonBD.getInstance().modifierActivites(a.Matricule, comboBox.SelectedValue as string);
+                // singletonBD.getInstance().modifierNomEquipeJoueur(a.Matricule, comboBox.SelectedValue as string);
+            }
+>>>>>>> fe0038da6c66912201ebda47be7550a3ce246f40
 
             // ContentDialogResult resultat = await dialog.ShowAsync();
 
@@ -140,6 +161,24 @@ namespace projetSession
                     stkpnl.Visibility = Visibility.Collapsed;
                 break;
             }
+        }
+
+        private void BtnHover(object sender, PointerRoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            var cursor1 = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 0);
+            var cursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 0);
+            InputCursor inputCurs = InputCursor.CreateFromCoreCursor(cursor);
+            this.ProtectedCursor = inputCurs;
+
+        }
+
+        private void BtnSortie(object sender, PointerRoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            var cursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
+            InputCursor inputCurs = InputCursor.CreateFromCoreCursor(cursor);
+            this.ProtectedCursor = inputCurs;
         }
     }
 }

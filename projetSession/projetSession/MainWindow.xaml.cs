@@ -30,8 +30,21 @@ namespace projetSession
         public MainWindow()
         {
             this.InitializeComponent();
-            //SingletonSession.getInstance().Role = "nonConnecter";
+            ServiceNavigation.getInstance().NavigationView = navView;
+            SingletonUtilisateur.getInstance();
             mainFrame.Navigate(typeof(PageAccueil));
+/*
+            foreach (var item in navView.MenuItems)
+            {
+                NavigationViewItem navItem = item as NavigationViewItem;
+
+                if (navItem.Name == "iConnecter")
+                {
+                    navItem.Content = "test";
+                    
+                    break;
+                }
+            }*/
         }
 
         
