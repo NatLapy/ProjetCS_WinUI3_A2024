@@ -30,6 +30,7 @@ namespace projetSession
         public MainWindow()
         {
             this.InitializeComponent();
+            //SingletonSession.getInstance().Role = "nonConnecter";
             mainFrame.Navigate(typeof(PageAccueil));
         }
 

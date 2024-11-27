@@ -26,6 +26,13 @@ namespace projetSession
             this.idCategorie = idCategorie;
         }
 
+        public Visibility VisibilityAdmin
+        {
+            get
+            {
+                return SingletonSession.getInstance().Role == "admin" ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
 
         public int IdActivite
         {

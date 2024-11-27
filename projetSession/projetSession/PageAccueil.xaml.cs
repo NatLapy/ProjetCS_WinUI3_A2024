@@ -26,7 +26,11 @@ namespace projetSession
     /// </summary>
     public sealed partial class PageAccueil : Page
     {
-        Visibility visibilityAdmin;
+        //Visibility visibilityAdmin;
+
+        public Visibility VisibilityAdmin { get {
+                return SingletonSession.getInstance().Role == "admin" ? Visibility.Visible : Visibility.Collapsed;
+            } }
         public PageAccueil()
         {
             this.InitializeComponent();
