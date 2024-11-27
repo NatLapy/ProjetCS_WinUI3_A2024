@@ -129,7 +129,6 @@ namespace projetSession
                 // singletonBD.getInstance().modifierActivites(a.Matricule, comboBox.SelectedValue as string);
                 // singletonBD.getInstance().modifierNomEquipeJoueur(a.Matricule, comboBox.SelectedValue as string);
             }
->>>>>>> fe0038da6c66912201ebda47be7550a3ce246f40
 
             // ContentDialogResult resultat = await dialog.ShowAsync();
 
