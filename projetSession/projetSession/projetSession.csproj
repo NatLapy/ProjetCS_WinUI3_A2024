@@ -12,7 +12,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="dialogActivites.xaml" />
+    <None Remove="DialogueActivites.xaml" />
     <None Remove="DialogueAdmin.xaml" />
     <None Remove="PageAccueil.xaml" />
     <None Remove="PageConnection.xaml" />
@@ -47,7 +47,7 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="dialogActivites.xaml">
+    <Page Update="DialogueActivites.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
