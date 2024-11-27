@@ -23,7 +23,7 @@ namespace projetSession
         {
             liste = new ObservableCollection<Activites>();
             listeAdherents = new ObservableCollection<Adherents>();
-            string Role = "nonConnecter";
+            //Role = "nonConnecter";
             //con est déclarer plus haut comme variable globale. et est initialiser ici dans le constructeur
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420335ri_eq3;Uid=6269818;Pwd=6269818;");
 
@@ -201,44 +201,8 @@ namespace projetSession
 
 
 
-
-
-
-
-
-
-
-
-
-
-        // SECTION VERIFICATION ROLE
-        public string Role
-        {
-            get
-            {
-                return Role;
-            }
-
-            set
-            {
-                Role = value;
-            }
-        }
-
-        public int getPermissions(string role)
-        {
-            switch (role)
-            {
-                case "nonConnecter":
-                    return 0;
-                case "adherent":
-                    return 1;
-                case "admin":
-                    return 3;
-                default: 
-                    return 0;
-            }
-        }
+        
+        
 
 
 

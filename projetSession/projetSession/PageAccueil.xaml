@@ -67,7 +67,7 @@
                         <TextBlock Text="{x:Bind s_PrixVente }" Margin="5,5,5,10"/>
 
 
-                        <StackPanel x:Name="stkBAdmin"  Orientation="Horizontal">
+                        <StackPanel x:Name="stkBAdmin" Visibility="{x:Bind VisibilityAdmin}"  Orientation="Horizontal">
                             <Button 
                                 x:Name="btn_supprimer"
                                 Background="Black" 
