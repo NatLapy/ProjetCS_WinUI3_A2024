@@ -78,42 +78,38 @@ namespace projetSession
 
         private async void btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-            //Button btn = sender as Button;
-            //Activites a = btn.DataContext as Activites;
+            Button btn = sender as Button;
+            Activites a = btn.DataContext as Activites;
 
-            //lv_Activites.SelectedItem = a;
+            lv_Activites.SelectedItem = a;
 
-            //ContentDialog dialog = new ContentDialog();
-            //dialog.XamlRoot = this.XamlRoot;
-            //dialog.Title = "Modification";
-            //dialog.PrimaryButtonText = "Modifier";
-            //dialog.CloseButtonText = "Annuler";
-            //dialog.DefaultButton = ContentDialogButton.Primary;
-            ////dialog.Content = $"Voulez vous supprimer le joueur: '{a.Prenom}' '{a.Nom}'  ?";
-            //ComboBox comboBox = new ComboBox();
-            //comboBox.Items.Add("River Lions de Niagara");
-            //comboBox.Items.Add("Chicago bulls");
-            //comboBox.Items.Add("Memphis Grizzlies");
-            //comboBox.Items.Add("Lakers");
-            //comboBox.Items.Add("Brooklyn Nets");
-            //comboBox.Items.Add("Atlanta Hawks");
-            //comboBox.Header = "Choisir l'équipe";
-            //comboBox.SelectedIndex = 0;
-            //dialog.Content = comboBox as ComboBox;
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Modification";
+            dialog.PrimaryButtonText = "Modifier";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            //dialog.Content = $"Voulez vous supprimer le joueur: '{a.Prenom}' '{a.Nom}'  ?";
+            
+            TextBox textBoxidActivite = new TextBox();
+            //textBoxidActivite.Header
+             //comboBox.Header = "Choisir l'équipe";
+             //comboBox.SelectedIndex = 0;
+             //dialog.Content = comboBox as ComboBox;
 
-            //ContentDialogResult resultat = await dialog.ShowAsync();
+             ContentDialogResult resultat = await dialog.ShowAsync();
 
-            //if (resultat == ContentDialogResult.Primary)
-            //{
-            //    singletonBD.getInstance().modifierNomEquipeJoueur(a.Matricule, comboBox.SelectedValue as string);
-            //    // singletonBD.getInstance().modifierNomEquipeJoueur(a.Matricule, comboBox.SelectedValue as string);
+            if (resultat == ContentDialogResult.Primary)
+            {
+               // singletonBD.getInstance().modifierActivites(a.Matricule, comboBox.SelectedValue as string);
+                // singletonBD.getInstance().modifierNomEquipeJoueur(a.Matricule, comboBox.SelectedValue as string);
 
-            //}
+            }
 
-            //else
-            //{
-            //    lvJoueur.SelectedItem = null;
-            //}
+            else
+            {
+                lv_Activites.SelectedItem = null;
+            }
         }
 
         private void btn_Add_Click(object sender, RoutedEventArgs e)
