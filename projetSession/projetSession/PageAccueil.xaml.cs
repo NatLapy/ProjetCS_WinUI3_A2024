@@ -34,7 +34,6 @@ namespace projetSession
         public PageAccueil()
         {
             this.InitializeComponent();
-
             lv_Activites.ItemsSource = singletonBD.getInstance().getListe();
             //lv_Adherents.ItemsSource = singletonBD.getInstance().getListeAdherents();
 
