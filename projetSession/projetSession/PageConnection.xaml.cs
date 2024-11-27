@@ -53,7 +53,7 @@ namespace projetSession
             {
                 SingletonUtilisateur.getInstance();
 
-                SingletonUtilisateur.getInstance().User.Role = "Admin";
+                SingletonUtilisateur.getInstance().Role = "Admin";
                 Frame.Navigate(typeof(PageAccueil));
             }
 
