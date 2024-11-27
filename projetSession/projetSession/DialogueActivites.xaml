@@ -1,5 +1,6 @@
-﻿<ContentDialog
-    x:Class="projetSession.dialogActivites"
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="projetSession.DialogueActivites"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:projetSession"
@@ -7,8 +8,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
-    Closing="ContentDialog_Closing">
-    
+    Closing="ContentDialog_Closing"
+    >
+
     <Grid>
 
         <StackPanel>
@@ -24,11 +26,6 @@
         <StackPanel>
             <TextBox x:Name="tbx_cout" Margin="5" Header="Cout d'organisation :"/>
             <TextBlock x:Name="tbl_error_cout" Text="" Foreground="Red"></TextBlock>
-        </StackPanel>
-
-        <StackPanel>
-            <TextBox x:Name="tbx_PrixVente" Margin="5" Header="Prix de vente :"/>
-            <TextBlock x:Name="tbl_error_prixDeVente" Text="" Foreground="Red"></TextBlock>
         </StackPanel>
 
         <StackPanel>

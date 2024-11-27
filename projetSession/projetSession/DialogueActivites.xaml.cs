@@ -1,4 +1,3 @@
-﻿using Google.Protobuf.WellKnownTypes;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -8,7 +7,6 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -20,16 +18,15 @@ using Windows.Foundation.Collections;
 
 namespace projetSession
 {
-    public sealed partial class dialogActivites : UserControl
+    public sealed partial class DialogueActivites : ContentDialog
     {
 
-        Boolean validation = true;
-        public dialogActivites()
+        Boolean validation;
+
+        public DialogueActivites()
         {
             this.InitializeComponent();
         }
-
-      
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
@@ -43,17 +40,13 @@ namespace projetSession
                 tbl_error_id.Text = "";
                 validation = true;
             }
-
-
         }
 
         private void ContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
         {
-            //si on a cliquer sur le bouton primaire, on vérifie si la validation est OK
-            //si ce n'est pas le cas, on ne ferme pas la boite de dialogue
             if (args.Result == ContentDialogResult.Primary)
             {
-                if (valide == false)
+                if (validation == false)
                     args.Cancel = true;
             }
         }
