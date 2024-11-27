@@ -30,7 +30,7 @@ namespace projetSession
 
         public Visibility VisibilityAdmin { 
             get {
-                return SingletonUtilisateur.getInstance().User.Role == "admin" ? Visibility.Visible : Visibility.Collapsed;
+                return SingletonUtilisateur.getInstance().Role == "admin" ? Visibility.Visible : Visibility.Collapsed;
             } 
         }
         public PageAccueil()
