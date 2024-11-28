@@ -51,9 +51,8 @@ namespace projetSession
 
             if (resultat == ContentDialogResult.Primary)
             {
-                SingletonUtilisateur.getInstance();
-
                 SingletonUtilisateur.getInstance().Role = "Admin";
+
                 Frame.Navigate(typeof(PageAccueil));
             }
 

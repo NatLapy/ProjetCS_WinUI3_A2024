@@ -10,20 +10,22 @@ namespace projetSession
     internal class SingletonUtilisateur
     {
         MySqlConnection con;
-        static SingletonUtilisateur instance = null;
-        string role;
+        static SingletonUtilisateur instance;
 
         public SingletonUtilisateur()
         {
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420335ri_eq3;Uid=6269818;Pwd=6269818;");
-            Utilisateur user = new Utilisateur();
-            Role = "nonConnecter";
+            //Utilisateur user = new Utilisateur();
         }
 
         public static SingletonUtilisateur getInstance()
         {
             if (instance == null)
+            {
                 instance = new SingletonUtilisateur();
+                instance.Role = "nonConnecter";
+            }
+                
 
             return instance;
         }
@@ -36,6 +38,6 @@ namespace projetSession
 
             set;
         }
-        public string Role { get => role; set => role = value; }
+        public string Role { get; set; }
     }
 }

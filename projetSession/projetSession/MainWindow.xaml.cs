@@ -30,7 +30,7 @@ namespace projetSession
         public MainWindow()
         {
             this.InitializeComponent();
-            ServiceNavigation.getInstance().NavigationView = navView;
+            //ServiceNavigation.getInstance().NavigationView = navView;
             SingletonUtilisateur.getInstance();
             mainFrame.Navigate(typeof(PageAccueil));
 /*
@@ -41,7 +41,6 @@ namespace projetSession
                 if (navItem.Name == "iConnecter")
                 {
                     navItem.Content = "test";
-                    
                     break;
                 }
             }*/

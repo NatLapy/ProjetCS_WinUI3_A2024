@@ -30,7 +30,7 @@ namespace projetSession
         {
             get
             {
-                return SingletonSession.getInstance().Role == "admin" ? Visibility.Visible : Visibility.Collapsed;
+                return SingletonSession.getInstance().Role == "Admin" ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
