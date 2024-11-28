@@ -23,7 +23,7 @@ namespace projetSession
             if (instance == null)
             {
                 instance = new SingletonUtilisateur();
-                instance.Role = "nonConnecter";
+                instance.User = new Utilisateur();
             }
                 
 

@@ -11,7 +11,7 @@
     Closing="ContentDialog_Closing"
     >
 
-    <Grid>
+    <StackPanel>
 
         <StackPanel>
             <TextBox x:Name="tbx_id" Margin="5" Header="id Acivités :"/>
@@ -40,5 +40,5 @@
 
 
 
-    </Grid>
+    </StackPanel>
 </ContentDialog>
