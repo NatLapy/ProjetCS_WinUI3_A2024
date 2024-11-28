@@ -16,6 +16,7 @@ namespace projetSession
         MySqlConnection con;
         ObservableCollection<Activites> liste;
         ObservableCollection<Adherents> listeAdherents;
+        ObservableCollection<Categories> listeCategories;
         static singletonBD instance = null;
 
 
@@ -23,6 +24,7 @@ namespace projetSession
         {
             liste = new ObservableCollection<Activites>();
             listeAdherents = new ObservableCollection<Adherents>();
+            listeCategories = new ObservableCollection<Categories>();
             //Role = "nonConnecter";
             //con est déclarer plus haut comme variable globale. et est initialiser ici dans le constructeur
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420335ri_eq3;Uid=6269818;Pwd=6269818;");
@@ -263,5 +265,54 @@ namespace projetSession
                     con.Close();
             }
         }
+
+
+
+
+
+        //----------------------------------------------------------------Parti Categories------------------------------------------------------------------/
+
+
+        public void getCategories()
+        {
+            liste.Clear();
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select * from activites";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+            MySqlDataReader r = commande.ExecuteReader();
+
+
+            while (r.Read())
+            {
+                String s_idActivite = r["idCategorie"].ToString();
+                int idCategorie = Convert.ToInt16(s_idActivite);
+
+                String nom = r["nom"].ToString();
+
+                Categories categorie = new Categories(idCategorie,nom);
+
+
+
+                listeCategories.Add(categorie);
+            }
+
+            r.Close();
+            con.Close();
+        }
+
+        public ObservableCollection<Categories> getCategoriesListe()
+        {
+            getCategories();
+
+            return listeCategories;
+        }
+
+
+
+
     }
 }

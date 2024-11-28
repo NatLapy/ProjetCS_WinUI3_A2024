@@ -34,9 +34,11 @@
         </StackPanel>
 
         <StackPanel>
-            <TextBox x:Name="tbx_idCategorie" Margin="5" Header="Id Categorie :"/>
-            <TextBlock x:Name="tbl_error_idCategorie" Text="" Foreground="Red"></TextBlock>
+            <ComboBox x:Name="cbx_idCategorie" ItemsSource="{x:Bind listeCategories, Mode=OneWay}" DisplayMemberPath="Nom" SelectedValuePath="IdCategorie" Header="Categorie" Width="200" />
+            <TextBlock x:Name="tbl_error_Categorie" Text="" Foreground="Red"></TextBlock>
         </StackPanel>
+        
+        
 
 
 
