@@ -17,13 +17,17 @@ namespace projetSession
         public SingletonSession()
         {
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420335ri_eq3;Uid=6269818;Pwd=6269818;");
-            Role = "nonConnecter";
+            
         }
 
         public static SingletonSession getInstance()
         {
             if (instance == null)
+            {
                 instance = new SingletonSession();
+                instance.Role = "nonConnecter";
+            }
+                
 
             return instance;
         }

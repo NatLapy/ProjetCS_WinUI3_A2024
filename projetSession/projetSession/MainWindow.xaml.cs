@@ -42,7 +42,6 @@ namespace projetSession
                 if (navItem.Name == "iConnecter")
                 {
                     navItem.Content = "test";
-                    
                     break;
                 }
             }*/

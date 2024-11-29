@@ -36,7 +36,7 @@ namespace projetSession
             this.idAdmin = idAdmin;
             this.nomUtilisateur = nomUtilisateur;
             this.motDePasse = motDePasse;
-            Role = "admin";
+            this.role = "Admin";
         }
 
         public Utilisateur(string noIdentification, string nom, string prenom, string adresse, string dateNaissances, int age)
@@ -47,7 +47,7 @@ namespace projetSession
             this.adresse = adresse;
             this.dateNaissances = dateNaissances;
             this.age = age;
-            Role = "adherent";
+            this.role = "adherent";
         }
 
 
