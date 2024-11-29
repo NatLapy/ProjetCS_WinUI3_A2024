@@ -29,7 +29,6 @@ namespace projetSession
         String prenom = "";
         String adresse = "";
         String dateDeNaissance = "";
-        String placeholder = "asasd";
         Boolean validation = true;
         
 
@@ -110,7 +109,7 @@ namespace projetSession
                 dateDeNaissance = calendrier.SelectedDates[0].Date.ToString("d");
                 //j'appele ma fonction pour mon matricule 
                 
-                singletonBD.getInstance().addAdherents(placeholder, nom , prenom , adresse, dateDeNaissance);
+                singletonBD.getInstance().addAdherents( nom , prenom , adresse, dateDeNaissance);
                 //Frame.Navigate(typeof(pageAffichageJoueur));
             }
         }
@@ -155,7 +154,7 @@ namespace projetSession
                     _prenom = v[2];
                     _adresse = v[3];
                     _dateDeNaissance = v[4];
-                    singletonBD.getInstance().addAdherents(_noIdentification, _nom, _prenom, _adresse, _dateDeNaissance);
+                    singletonBD.getInstance().addAdherents( _nom, _prenom, _adresse, _dateDeNaissance);
                     // Joueur joueur = new Joueur(_matricule , _nom , _prenom , _dateNaissance , _nomEquipe);
                 }
             }

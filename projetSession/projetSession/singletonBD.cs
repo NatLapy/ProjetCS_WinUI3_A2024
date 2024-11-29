@@ -302,15 +302,14 @@ namespace projetSession
 
         /*ajouter un adhérent*/
 
-        public void addAdherents(String _noIdentification, String _nom, String _prenom, String _adresse, String _dateNaissance)
+        public void addAdherents( String _nom, String _prenom, String _adresse, String _dateNaissance)
         {
 
             try
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "insert into adherents values( @noIdentification , @nom, @prenom , @adresse ,@dateNaissance ) ";
-                commande.Parameters.AddWithValue("@noIdentification", _noIdentification);
+                commande.CommandText = "insert into adherents values( @nom, @prenom , @adresse ,@dateNaissance ) ";
                 commande.Parameters.AddWithValue("@nom", _nom);
                 commande.Parameters.AddWithValue("@prenom", _prenom);
                 commande.Parameters.AddWithValue("@adresse", _adresse);
