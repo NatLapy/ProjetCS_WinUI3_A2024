@@ -92,19 +92,30 @@ namespace projetSession
 
         }
 
-       
 
-
-        public void setPermission(int role)
+        public Visibility VisibilityAdmin
         {
-            stkpnl.Visibility = Visibility.Collapsed;
-            switch (role)
+            get
             {
-                case 3:
-                    stkpnl.Visibility = Visibility.Collapsed;
-                break;
+                return SingletonUtilisateur.getInstance().User.Role == "Admin" ? Visibility.Visible : Visibility.Collapsed;
             }
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            NavigationViewItem tempType = new NavigationViewItem();
+            foreach (Control item in ServiceNavigation.getInstance().NavigationView.MenuItems)
+            {
+                if (item.GetType() == tempType.GetType())
+                {
+                    if (item.Name == "iInscription")
+                    {
+                        item.Visibility = VisibilityAdmin;
+                    }
+                }
+            }
+        }
+
 
         private void BtnHover(object sender, PointerRoutedEventArgs e)
         {

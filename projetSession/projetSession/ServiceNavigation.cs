@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,14 @@ namespace projetSession
         {
             get { return navigationView; }
             set { navigationView = value; }
+        }
+
+        public Visibility VisibilityAdmin
+        {
+            get
+            {
+                return SingletonUtilisateur.getInstance().User.Role == "Admin" ? Visibility.Visible : Visibility.Collapsed;
+            }
         }
     }
 }

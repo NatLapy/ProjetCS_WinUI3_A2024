@@ -34,20 +34,19 @@ namespace projetSession
             SingletonUtilisateur.getInstance();
             SingletonHelper.getInstance().Window = this;
             mainFrame.Navigate(typeof(PageAccueil));
-/*
-            foreach (var item in navView.MenuItems)
-            {
-                NavigationViewItem navItem = item as NavigationViewItem;
 
-                if (navItem.Name == "iConnecter")
-                {
-                    navItem.Content = "test";
-                    break;
-                }
-            }*/
+            
         }
 
-        
+        public Visibility VisibilityAdmin
+        {
+            get
+            {
+                return SingletonUtilisateur.getInstance().User.Role == "Admin" ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+
 
         private void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
@@ -56,6 +55,9 @@ namespace projetSession
             {
                 case "iAccueil":
                     mainFrame.Navigate(typeof(PageAccueil));
+                    break;
+                case "iInscription":
+                    mainFrame.Navigate(typeof(pageInscription));
                     break;
                 case "iConnecter":
                     mainFrame.Navigate(typeof(PageConnection));

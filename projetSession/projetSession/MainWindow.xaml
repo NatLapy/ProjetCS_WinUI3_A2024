@@ -9,21 +9,22 @@
 
     <NavigationView x:Name="navView" PaneDisplayMode="Top" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" PaneTitle="Le Titre" ItemInvoked="navView_ItemInvoked">
         <NavigationView.MenuItems>
+
             <NavigationViewItem x:Name="iAccueil">
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <FontIcon Glyph="&#xE902;"/>
                     <TextBlock>Accueil</TextBlock>
                 </StackPanel>
             </NavigationViewItem>
+            
             <NavigationViewItemSeparator/>
 
-            <NavigationViewItem x:Name="iAdmin" Visibility="Collapsed">
+            <NavigationViewItem x:Name="iInscription">
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <FontIcon Glyph="&#xE902;"/>
-                    <TextBlock>Liste des Commandes</TextBlock>
+                    <TextBlock>Inscription</TextBlock>
                 </StackPanel>
             </NavigationViewItem>
-            <NavigationViewItemSeparator x:Name="separateurAdmin" Visibility="Collapsed"/>
             <NavigationViewItem x:Name="iStatistique" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <FontIcon Glyph="&#xE902;"/>
