@@ -30,7 +30,7 @@ namespace projetSession
 
         public MainWindow()
         {
-            ApplicationData.Current.LocalSettings.Values["themeSetting"] = 0;
+            ApplicationData.Current.LocalSettings.Values["themeSetting"] = 2;
             //App.Current.RequestedTheme = ApplicationTheme.Light;
 
 
@@ -48,7 +48,7 @@ namespace projetSession
 
         private void Themes_Light(object sender, SelectionChangedEventArgs e)
         {
-            string stTheme = "Light";
+            string stTheme = "Dark";
             if (Enum.TryParse(stTheme, out ElementTheme theme) is true)
             {
 

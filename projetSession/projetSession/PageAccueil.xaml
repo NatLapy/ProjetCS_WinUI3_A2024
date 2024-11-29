@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="#2C2C54">
 
 
         <Grid.RowDefinitions>
@@ -54,31 +54,36 @@
 
         </Grid>
 
-        <StackPanel Grid.Row="1" Margin="20 0 20 0" Orientation="Vertical" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1"  Orientation="Vertical" HorizontalAlignment="Center">
             <GridView x:Name="lv_Activites" Grid.Row="1" >
                 
                 <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
+                    <ItemsPanelTemplate >
                         <ItemsWrapGrid x:Name="MaxItemsWrapGrid"
-                            MaximumRowsOrColumns="6"
-                            Orientation="Horizontal"/>
+                                MaximumRowsOrColumns="4"
+                                Orientation="Horizontal"/>
+
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
                 
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="local:Activites">
-                        <StackPanel 
+                        <StackPanel
+                            Background="DeepSkyBlue"
+                            CornerRadius="10"
+                            BorderBrush="Black"
+                            BorderThickness="4"
                             Orientation="Vertical"
                             Margin="10"
                             HorizontalAlignment="Center"
-                            Padding="20"
+                            Padding="40"
                             >
-                        
-                            <TextBlock HorizontalAlignment="Center" Padding="20"  Text="{x:Bind Nom }" />
+                            <Image Source="Assets\Square44x44Logo.scale-200.png" Width="200"></Image>
+                            <TextBlock HorizontalAlignment="Center" Padding="40 40 40 0"  Text="{x:Bind Nom }" />
                             <TextBlock HorizontalAlignment="Center" Padding="20" Text="{x:Bind s_PrixVente }" />
 
 
-                            <StackPanel x:Name="stkBAdmin" Visibility="{x:Bind VisibilityAdmin}"  Orientation="Horizontal">
+                            <StackPanel x:Name="stkBAdmin" HorizontalAlignment="Center" Visibility="{x:Bind VisibilityAdmin}"  Orientation="Horizontal">
                                 <Button 
                                     x:Name="btn_supprimer"
                                     Background="Black" 
