@@ -15,16 +15,20 @@ namespace projetSession
         String nom = "";
         int coutOrganisation = 0;
         int prixVente = 0;
+        int idAdmin = 0;
         int idCategorie = 0;
 
-        public Activites(int idActivite, string nom, int coutOrganisation, int prixVente , int idCategorie)
+        public Activites(int idActivite, string nom, int coutOrganisation, int prixVente , int idAdmin , int idCategorie)
         {
             this.idActivite = idActivite;
             this.nom = nom;
             this.coutOrganisation = coutOrganisation;
             this.prixVente = prixVente;
+            this.idAdmin = idAdmin;
             this.idCategorie = idCategorie;
         }
+
+
 
         public Visibility VisibilityAdmin
         {
@@ -103,6 +107,20 @@ namespace projetSession
             }
         }
 
+        public int IdAdmin
+        {
+            get
+            {
+                return idAdmin;
+            }
+
+            set
+            {
+                idAdmin = value;
+
+
+            }
+        }
 
 
         public int IdCategorie

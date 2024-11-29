@@ -96,10 +96,7 @@ namespace projetSession
 
         }
 
-        private void btn_Add_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
 
 
         public void setPermission(int role)
@@ -129,6 +126,72 @@ namespace projetSession
             var cursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
             InputCursor inputCurs = InputCursor.CreateFromCoreCursor(cursor);
             this.ProtectedCursor = inputCurs;
+        }
+
+        private async void btn_ajouter_liste_Click(object sender, RoutedEventArgs e)
+        {
+            int _idActivite = 0;
+            String s_idActivite = "";
+
+            String _nom = "";
+
+            int _coutOrganisation =0;
+            String s_coutOrganisation = "";
+
+            int _prixDeVente = 0;
+            String s_prixDeVente = "";
+
+            int _idAdmin = 0;
+            String S_idAdmin = "";
+
+            int _idCategorie = 0;
+            String s_idCategorie = "";
+
+            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            picker.FileTypeFilter.Add(".csv");
+
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(SingletonHelper.getInstance().Window);
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+
+
+            //sélectionne le fichier à lire
+            Windows.Storage.StorageFile monFichier = await picker.PickSingleFileAsync();
+
+            //ouvre le fichier et lit le contenu
+
+            if (monFichier != null)
+            {
+                var lignes = await Windows.Storage.FileIO.ReadLinesAsync(monFichier);
+
+
+                foreach (var ligne in lignes)
+                {
+                    var v = ligne.Split(";");
+
+                    s_idActivite = v[0];
+                    _idActivite = Convert.ToInt32(s_idActivite);
+
+                    _nom = v[1];
+
+                    s_coutOrganisation = v[2];
+                    _coutOrganisation = Convert.ToInt32(s_coutOrganisation);
+
+                    s_prixDeVente = v[3];
+                    _prixDeVente = Convert.ToInt32(s_prixDeVente);
+
+                    S_idAdmin = v[4];
+                    _idAdmin = Convert.ToInt32(S_idAdmin);
+
+                    s_idCategorie = v[5];
+                    _idCategorie = Convert.ToInt32(s_idCategorie);
+
+                    singletonBD.getInstance().addActivites(_idActivite, _nom, _coutOrganisation, _prixDeVente, _idAdmin , _idCategorie);
+                    // Joueur joueur = new Joueur(_matricule , _nom , _prenom , _dateNaissance , _nomEquipe);
+
+                }
+
+            }
         }
     }
 }

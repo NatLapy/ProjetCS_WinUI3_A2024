@@ -10,5 +10,61 @@
 
     <Grid>
 
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="*" />
+            <RowDefinition Height="200" />
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel    Grid.Row="0" Grid.Column="0" >
+
+            <TextBox x:Name="tbx_nom" Header="Entrez un nom." Margin="20" MaxLength="50"></TextBox>
+            <TextBlock x:Name="nomError" Foreground="red" Text="" Padding="20 0"></TextBlock>
+
+            <TextBox x:Name="tbx_prenom" Header="Entrez une prenom. " Margin="20" MaxLength="50"></TextBox>
+            <TextBlock x:Name="prenomErrror" Foreground="red" Text="" Padding="20 0"></TextBlock>
+
+
+
+            <ComboBox x:Name="listeEquipe" Width="300" SelectedIndex="0" Header="Équipe"   Margin="20">
+                <x:String>River Lions de Niagara</x:String>
+                <x:String>Chicago bulls</x:String>
+                <x:String>Memphis Grizzlies</x:String>
+                <x:String>Lakers</x:String>
+                <x:String>Brooklyn Nets</x:String>
+                <x:String>Atlanta Hawks</x:String>
+
+            </ComboBox>
+
+
+
+            <Button x:Name="button" Margin="20" Click="button_Click">Ajouter</Button>
+            <Button x:Name="buttonAjouterListe" Margin="20" Click="buttonAjouterListe_Click" >Ajouter selon une liste</Button>
+
+
+
+
+        </StackPanel>
+
+
+
+        <StackPanel  Grid.Row="0" Grid.Column="1" >
+
+            <TextBlock FontSize="20" Padding="20 20" > Veuillez sélectionner une date de naissance :</TextBlock>
+
+            <CalendarView SelectionMode="Single" x:Name="calendrier" Margin="20" ></CalendarView>
+
+            <TextBlock x:Name="errorDate" Text="" Foreground="Red"></TextBlock>
+
+        </StackPanel>
+
     </Grid>
 </Page>

@@ -71,10 +71,17 @@ namespace projetSession
                 String s_prixVente = r["prixDeVente"].ToString();
                 int prixVente = Convert.ToInt16(s_prixVente);
 
+                String s_idAdmin = r["idAdmin"].ToString();
+                int _idAdmin = Convert.ToInt16(s_idAdmin);
+
                 String s_idCategorie = r["idCategorie"].ToString();
                 int idCategorie = Convert.ToInt16(s_idCategorie);
 
-                Activites activite = new Activites(idActivite, nom, coutOrganisation , prixVente , idCategorie);
+               
+
+                
+
+                Activites activite = new Activites(idActivite, nom, coutOrganisation , prixVente , _idAdmin , idCategorie);
 
 
 
@@ -85,6 +92,7 @@ namespace projetSession
             con.Close();
         }
 
+        /*rechercher un activité*/
 
         public void recherche(string v)
         {
@@ -113,10 +121,13 @@ namespace projetSession
                 String s_prixVente = r["prixDeVente"].ToString();
                 int prixVente = Convert.ToInt16(s_prixVente);
 
+                String s_idAmin = r["idAdmin"].ToString();
+                int _idAmin = Convert.ToInt16(s_idAmin);
+
                 String s_idCategorie = r["idCategorie"].ToString();
                 int idCategorie = Convert.ToInt16(s_idCategorie);
 
-                Activites activite = new Activites(idActivite, nom, coutOrganisation, prixVente, idCategorie);
+                Activites activite = new Activites(idActivite, nom, coutOrganisation, prixVente, _idAmin , idCategorie);
 
 
 
@@ -126,6 +137,8 @@ namespace projetSession
             r.Close();
             con.Close();
         }
+
+        /*supprimer un activité*/
 
         public void supprimerActivites(String nom)
         {
@@ -147,6 +160,67 @@ namespace projetSession
             }
             catch (Exception ex)
             {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
+
+        /*modifier un activité*/
+
+        public void modifierActivites(int _idActivite, String _nom, int _coutOrganisation, int _prixDeVente, int _idAdmin, int _idCategorie)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_modifierActivite");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("idActivite", _idActivite);
+                commande.Parameters.AddWithValue("nom", _nom);
+                commande.Parameters.AddWithValue("coutOrganisation", _coutOrganisation);
+                commande.Parameters.AddWithValue("prixDeVente", _prixDeVente);
+                commande.Parameters.AddWithValue("idAdmin", _idAdmin);
+                commande.Parameters.AddWithValue("idCategorie", _idCategorie);
+
+                con.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
+
+        /*ajouter un activité*/
+
+        public void addActivites(int _idActivite, String _nom, int _coutOrganisation, int _prixDeVente, int idAdmin , int _idCategorie)
+        {
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "insert into activites values( @idActivite , @nom, @coutOrganisation , @prixDeVente , @idAdmin , @idCategorie ) ";
+                commande.Parameters.AddWithValue("@idActivite", _idActivite);
+                commande.Parameters.AddWithValue("@nom", _nom);
+                commande.Parameters.AddWithValue("@coutOrganisation", _coutOrganisation);
+                commande.Parameters.AddWithValue("@prixDeVente", _prixDeVente);
+                commande.Parameters.AddWithValue("@idAdmin", idAdmin);
+                commande.Parameters.AddWithValue("@idCategorie", _idCategorie);
+
+
+                con.Open();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                //Le if vérifie si la connection est bien ouverte avant d'essayer de la fermer
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
             }
@@ -195,20 +269,9 @@ namespace projetSession
             con.Close();
         }
 
+        /*Modifier un adhérent*/
 
-
-
-
-
-
-        
-        
-
-
-
-
-
-        public void modifierAdherents(String noIdentification, String nom, String prenom, String adresse, String dateNaissance)
+        public void modifierAdherents(String _noIdentification, String _nom, String _prenom, String _adresse, String _dateNaissance)
         {
             try
             {
@@ -216,11 +279,11 @@ namespace projetSession
                 commande.Connection = con;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
 
-                commande.Parameters.AddWithValue("noIdentification", noIdentification);
-                commande.Parameters.AddWithValue("nom", nom);
-                commande.Parameters.AddWithValue("prenom", prenom);
-                commande.Parameters.AddWithValue("adresse", adresse);
-                commande.Parameters.AddWithValue("dateNaissance", dateNaissance);
+                commande.Parameters.AddWithValue("noIdentification", _noIdentification);
+                commande.Parameters.AddWithValue("nom", _nom);
+                commande.Parameters.AddWithValue("prenom", _prenom);
+                commande.Parameters.AddWithValue("adresse", _adresse);
+                commande.Parameters.AddWithValue("dateNaissance", _dateNaissance);
 
                 con.Open();
                 commande.Prepare();
@@ -236,20 +299,113 @@ namespace projetSession
         }
 
 
-        public void modifierActivites(int _idActivite, String _nom, int _coutOrganisation, int _prixDeVente, int _idAdmin ,int  _idCategorie)
+        /*ajouter un adhérent*/
+
+        public void addAdherents(String _noIdentification, String _nom, String _prenom, String _adresse, String _dateNaissance)
+        {
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "insert into adherents values( @idActivite , @nom, @coutOrganisation , @prixDeVente , @idAdmin , @idCategorie ) ";
+                commande.Parameters.AddWithValue("@noIdentification", _noIdentification);
+                commande.Parameters.AddWithValue("@nom", _nom);
+                commande.Parameters.AddWithValue("@prenom", _prenom);
+                commande.Parameters.AddWithValue("@adresse", _adresse);
+                commande.Parameters.AddWithValue("@dateNaissance", _dateNaissance);
+                
+
+
+                con.Open();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                //Le if vérifie si la connection est bien ouverte avant d'essayer de la fermer
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
+
+        /*Supprimer un adhérent*/
+
+        public void supprimerAdherents(String nom)
         {
             try
             {
-                MySqlCommand commande = new MySqlCommand("p_modifierActivite");
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = $"delete from adherents where nom = '{nom}'";
+
+                con.Open();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+
+                if (i == 1)
+                {
+                    getActivites();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
+
+
+        /*----------------------------------------------------------------Partie Seances------------------------------------------------------------*/
+
+
+        /*Ajouter une séances*/
+
+        public void addSeances(int _idSceances, String _dateOrganisation, int _nbPlaceDispo, int _idActivite)
+        {
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "insert into seances values( @idSeances ,@dateOrganisation, @nbPlaceDispo , @idActivite ) ";
+                commande.Parameters.AddWithValue("@idSeances", _idSceances);
+                commande.Parameters.AddWithValue("@dateOrganisation", _dateOrganisation);
+                commande.Parameters.AddWithValue("@nbPlaceDispo", _nbPlaceDispo);
+                commande.Parameters.AddWithValue("@idActivite", _idActivite);
+                
+
+
+
+                con.Open();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                //Le if vérifie si la connection est bien ouverte avant d'essayer de la fermer
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
+
+        /*Modifier une séances*/
+        public void modifierSeances(int _idSceances, String _dateOrganisation, int _nbPlaceDispo, int _idActivite)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_modifierSeance");
                 commande.Connection = con;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
 
+                commande.Parameters.AddWithValue("idSeances", _idSceances);
+                commande.Parameters.AddWithValue("dateOrganisation", _dateOrganisation);
+                commande.Parameters.AddWithValue("nbPlaceDispo", _nbPlaceDispo);
                 commande.Parameters.AddWithValue("idActivite", _idActivite);
-                commande.Parameters.AddWithValue("nom", _nom);
-                commande.Parameters.AddWithValue("coutOrganisation", _coutOrganisation);
-                commande.Parameters.AddWithValue("prixDeVente", _prixDeVente);
-                commande.Parameters.AddWithValue("idAdmin", _idAdmin);
-                commande.Parameters.AddWithValue("idCategorie", _idCategorie);
+               
 
                 con.Open();
                 commande.Prepare();
@@ -263,5 +419,37 @@ namespace projetSession
                     con.Close();
             }
         }
+
+
+
+        /*Supprimer une séances*/
+
+        public void supprimerSeance(String nom)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = $"delete from seances where nom = '{nom}'";
+
+                con.Open();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+
+                if (i == 1)
+                {
+                    getActivites();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
+
+
+        /*--------------------------------------------------------------Parti Statistique----------------------------------------------------*/
     }
 }

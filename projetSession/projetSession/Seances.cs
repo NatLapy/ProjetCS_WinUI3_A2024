@@ -10,15 +10,15 @@ namespace projetSession
     {
         int idSceances = 0;
         String dateOrganisation = "";
-        String heureOrganisation = "";
         int nbPlaceDispo = 0;
+        int idActivite = 0;
 
-        public Seances(int idSceances, string dateOrganisation, string heureOrganisation, int nbPlaceDispo)
+        public Seances(int idSceances, string dateOrganisation , int nbPlaceDispo , int idActivite)
         {
             this.idSceances = idSceances;
             this.dateOrganisation = dateOrganisation;
-            this.heureOrganisation = heureOrganisation;
             this.nbPlaceDispo = nbPlaceDispo;
+            this.idActivite = idActivite;
         }
 
         public int IdSceances
@@ -51,21 +51,7 @@ namespace projetSession
             }
         }
 
-        public String HeureOrganisation
-        {
-            get
-            {
-                return heureOrganisation;
-            }
-
-            set
-            {
-                heureOrganisation = value;
-
-
-            }
-        }
-
+       
         public int NbPlaceDispo
         {
             get
@@ -81,9 +67,24 @@ namespace projetSession
             }
         }
 
+        public int IdActivite
+        {
+            get
+            {
+                return idActivite;
+            }
+
+            set
+            {
+                idActivite = value;
+
+
+            }
+        }
+
         public override string ToString()
         {
-            return idSceances + " " + dateOrganisation + " " + heureOrganisation + " " + nbPlaceDispo;
+            return idSceances + " " + dateOrganisation + " " + nbPlaceDispo;
         }
     }
 }

@@ -32,6 +32,7 @@ namespace projetSession
             this.InitializeComponent();
             ServiceNavigation.getInstance().NavigationView = navView;
             SingletonUtilisateur.getInstance();
+            SingletonHelper.getInstance().Window = this;
             mainFrame.Navigate(typeof(PageAccueil));
 /*
             foreach (var item in navView.MenuItems)
