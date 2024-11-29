@@ -73,8 +73,8 @@ namespace projetSession
                 String s_prixVente = r["prixDeVente"].ToString();
                 int prixVente = Convert.ToInt16(s_prixVente);
 
-                String s_idAdmin = r["idAdmin"].ToString();
-                int _idAdmin = Convert.ToInt16(s_idAdmin);
+              
+               
 
                 String s_idCategorie = r["idCategorie"].ToString();
                 int idCategorie = Convert.ToInt16(s_idCategorie);
@@ -83,7 +83,7 @@ namespace projetSession
 
                 
 
-                Activites activite = new Activites(idActivite, nom, coutOrganisation , prixVente , _idAdmin , idCategorie);
+                Activites activite = new Activites(idActivite, nom, coutOrganisation , prixVente  , idCategorie);
 
 
 
@@ -128,7 +128,7 @@ namespace projetSession
                 String s_idCategorie = r["idCategorie"].ToString();
                 int idCategorie = Convert.ToInt16(s_idCategorie);
 
-                Activites activite = new Activites(idActivite, nom, coutOrganisation, prixVente, _idAmin , idCategorie);
+                Activites activite = new Activites(idActivite, nom, coutOrganisation, prixVente, idCategorie);
 
 
 

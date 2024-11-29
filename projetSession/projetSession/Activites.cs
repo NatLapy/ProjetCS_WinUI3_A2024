@@ -15,16 +15,16 @@ namespace projetSession
         String nom = "";
         double coutOrganisation = 0;
         double prixVente = 0;
-        int idAdmin = 0;
+        
         int idCategorie = 0;
 
-        public Activites(int idActivite, string nom, double coutOrganisation, double prixVente , int idAdmin , int idCategorie)
+        public Activites(int idActivite, string nom, double coutOrganisation, double prixVente  , int idCategorie)
         {
             this.idActivite = idActivite;
             this.nom = nom;
             this.coutOrganisation = coutOrganisation;
             this.prixVente = prixVente;
-            this.idAdmin = idAdmin;
+            
             this.idCategorie = idCategorie;
         }
 
@@ -107,20 +107,7 @@ namespace projetSession
             }
         }
 
-        public int IdAdmin
-        {
-            get
-            {
-                return idAdmin;
-            }
-
-            set
-            {
-                idAdmin = value;
-
-
-            }
-        }
+       
 
 
         public int IdCategorie
