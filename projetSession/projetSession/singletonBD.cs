@@ -464,7 +464,7 @@ namespace projetSession
 
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
-            commande.CommandText = "Select * from activites";
+            commande.CommandText = "Select * from categories";
             con.Open();
 
             //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 

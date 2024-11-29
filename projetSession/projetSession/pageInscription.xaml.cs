@@ -27,5 +27,15 @@ namespace projetSession
         {
             this.InitializeComponent();
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonAjouterListe_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
