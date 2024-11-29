@@ -122,6 +122,10 @@ namespace projetSession
                     {
                         item.Visibility = VisibilityAdmin;
                     }
+                    if (item.Name == "iActivite")
+                    {
+                        item.Visibility = VisibilityAdmin;
+                    }
                     if (item.Name == "iConnecter")
                     {
                         navViewItem.Visibility = VisibilityAdmin;

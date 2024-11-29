@@ -25,6 +25,16 @@
                     <TextBlock>Inscription</TextBlock>
                 </StackPanel>
             </NavigationViewItem>
+
+            <NavigationViewItem x:Name="iActivite">
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <FontIcon Glyph="&#xE902;"/>
+                    <TextBlock>Ajouter une activité</TextBlock>
+                </StackPanel>
+            </NavigationViewItem>
+
+
+
             <NavigationViewItem x:Name="iStatistique" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <FontIcon Glyph="&#xE902;"/>

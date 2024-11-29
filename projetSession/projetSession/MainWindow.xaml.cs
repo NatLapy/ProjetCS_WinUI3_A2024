@@ -77,6 +77,9 @@ namespace projetSession
                 case "iInscription":
                     mainFrame.Navigate(typeof(pageInscription));
                     break;
+                case "iActivite":
+                    mainFrame.Navigate(typeof(AjouterActivite));
+                    break;
                 case "iPageStatistique":
                     mainFrame.Navigate(typeof(PageStatistique));
                     break;
