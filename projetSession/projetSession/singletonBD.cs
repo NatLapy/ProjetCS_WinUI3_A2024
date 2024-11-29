@@ -198,19 +198,18 @@ namespace projetSession
 
         /*ajouter un activité*/
 
-        public void addActivites(int _idActivite, String _nom, double _coutOrganisation, double _prixDeVente, int idAdmin , int _idCategorie)
+        public void addActivites( String _nom, double _coutOrganisation, double _prixDeVente, int _idCategorie)
         {
 
             try
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "insert into activites values( @idActivite , @nom, @coutOrganisation , @prixDeVente , @idAdmin , @idCategorie ) ";
-                commande.Parameters.AddWithValue("@idActivite", _idActivite);
+                commande.CommandText = "insert into activites values( @nom, @coutOrganisation , @prixDeVente , @idCategorie ) ";
+          
                 commande.Parameters.AddWithValue("@nom", _nom);
                 commande.Parameters.AddWithValue("@coutOrganisation", _coutOrganisation);
-                commande.Parameters.AddWithValue("@prixDeVente", _prixDeVente);
-                commande.Parameters.AddWithValue("@idAdmin", idAdmin);
+                commande.Parameters.AddWithValue("@prixDeVente", _prixDeVente);   
                 commande.Parameters.AddWithValue("@idCategorie", _idCategorie);
 
 

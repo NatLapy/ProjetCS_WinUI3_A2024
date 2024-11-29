@@ -233,7 +233,7 @@ namespace projetSession
                     s_idCategorie = v[5];
                     _idCategorie = Convert.ToInt32(s_idCategorie);
 
-                    singletonBD.getInstance().addActivites(_idActivite, _nom, _coutOrganisation, _prixDeVente, _idAdmin , _idCategorie);
+                    singletonBD.getInstance().addActivites(_nom, _coutOrganisation, _prixDeVente, _idCategorie);
                     // Joueur joueur = new Joueur(_matricule , _nom , _prenom , _dateNaissance , _nomEquipe);
 
                 }
