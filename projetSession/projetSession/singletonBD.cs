@@ -108,7 +108,6 @@ namespace projetSession
             //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
             MySqlDataReader r = commande.ExecuteReader();
 
-
             while (r.Read())
             {
 
@@ -498,49 +497,6 @@ namespace projetSession
         }
 
 
-
-
-
-        //----------------------------------------------------------------Parti Categories------------------------------------------------------------------/
-
-
-        public void getCategories()
-        {
-            liste.Clear();
-
-            MySqlCommand commande = new MySqlCommand();
-            commande.Connection = con;
-            commande.CommandText = "Select * from activites";
-            con.Open();
-
-            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
-            MySqlDataReader r = commande.ExecuteReader();
-
-
-            while (r.Read())
-            {
-                String s_idActivite = r["idCategorie"].ToString();
-                int idCategorie = Convert.ToInt16(s_idActivite);
-
-                String nom = r["nom"].ToString();
-
-                Categories categorie = new Categories(idCategorie,nom);
-
-
-
-                listeCategories.Add(categorie);
-            }
-
-            r.Close();
-            con.Close();
-        }
-
-        public ObservableCollection<Categories> getCategoriesListe()
-        {
-            getCategories();
-
-            return listeCategories;
-        }
 
 
 
