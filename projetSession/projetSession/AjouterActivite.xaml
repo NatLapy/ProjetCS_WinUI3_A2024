@@ -15,7 +15,6 @@
         <Grid.RowDefinitions>
 
             <RowDefinition Height="*" />
-            <RowDefinition Height="200" />
 
         </Grid.RowDefinitions>
 
@@ -28,8 +27,6 @@
 
         <StackPanel   Grid.Row="0" Grid.Column="0" >
 
-            <TextBox x:Name="tbx_idActivite" Header="Entrez un id." Margin="20"></TextBox>
-            <TextBlock x:Name="idActiviteError" Foreground="red" Text="" Padding="20 0"></TextBlock>
 
             <TextBox x:Name="tbx_nom" Header="Entrez un nom." Margin="20"></TextBox>
             <TextBlock x:Name="nomError" Foreground="red" Text="" Padding="20 0"></TextBlock>
@@ -40,15 +37,15 @@
             <TextBox x:Name="tbx_prixDeVente" Header="Entrez un prix de vente. " Margin="20"></TextBox>
             <TextBlock x:Name="prixDeVenteErrror" Foreground="red" Text="" Padding="20 0"></TextBlock>
 
-            <TextBox x:Name="tbx_idAdmin" Header="Entrez un id d'administrateur. " Margin="20"></TextBox>
-            <TextBlock x:Name="idAdminErrror" Foreground="red" Text="" Padding="20 0"></TextBlock>
+            <TextBox x:Name="tbx_idCategorie" Header="Entrez un id de catégorie. " Margin="20 20 20 0"></TextBox>
+            <TextBlock x:Name="idCategorieErrror" Foreground="red" Text="" Padding="20 0 0 0"></TextBlock>
 
-            <TextBox x:Name="tbx_idCategorie" Header="Entrez un id de catégorie. " Margin="20"></TextBox>
-            <TextBlock x:Name="idCategorieErrror" Foreground="red" Text="" Padding="20 0"></TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="button" Margin="10" Click="button_Click">Ajouter</Button>
 
-            <Button x:Name="button" Margin="20" Click="button_Click">Ajouter</Button>
-
-            <Button x:Name="buttonAjouterListe" Margin="10" Click="buttonAjouterListe_Click" >Ajouter selon une liste</Button>
+                <Button x:Name="buttonAjouterListe" Margin="10" Click="buttonAjouterListe_Click" >Ajouter selon une liste</Button>
+            </StackPanel>
+            
 
 
         </StackPanel>

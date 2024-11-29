@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -33,9 +34,7 @@ namespace projetSession
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            String s_idActivite = "";
-
-            int idActivite = 0;
+           
 
             String nom = "";
 
@@ -45,25 +44,16 @@ namespace projetSession
             String s_prixVente = "";
             double prixVente = 0;
 
-            String s_idAmin = "";
-            int idAmin = 0;
-
+          
             String s_idCategorie = "";
             int idCategorie = 0;
 
 
-            //----------------------------------------------------------------------//
+            double d_coutOrganisation = 0;
+            double d_prixDeVente = 0;
 
-            if (string.IsNullOrWhiteSpace(tbx_idActivite.Text))
-            {
-                idActiviteError.Text = "Vous devez Entrer un id d'activité.";
-                validation = false;
-            }
-            else
-            {
-                idActiviteError.Text = "";
-                s_idActivite = tbx_idActivite.Text;
-            }
+
+
 
 
             //----------------------------------------------------------------------//
@@ -88,39 +78,49 @@ namespace projetSession
             }
             else
             {
-                Cout_organisationErrror.Text = "";
-                s_coutOrganisation = tbx_Cout_organisation.Text;
+
+               
+
+                if (double.TryParse(tbx_Cout_organisation.Text, out d_coutOrganisation))
+                {
+                    Cout_organisationErrror.Text = "";
+                }
+                else
+                    Cout_organisationErrror.Text = "Vous devez Entrer une valeur numérique.";
+
+
+
             }
+
 
             //------------------------------------------------------------------------//
 
 
             if (string.IsNullOrWhiteSpace(tbx_prixDeVente.Text))
             {
-                prixDeVenteErrror.Text = "Vous devez Entrer prix de vente.";
+                prixDeVenteErrror.Text = "Vous devez Entrer un prix de vente.";
                 validation = false;
             }
             else
             {
-                prixDeVenteErrror.Text = "";
-                s_prixVente = tbx_prixDeVente.Text;
+
+
+
+                if (double.TryParse(tbx_prixDeVente.Text, out d_prixDeVente))
+                {
+                    prixDeVenteErrror.Text = "";
+                }
+                else
+                    prixDeVenteErrror.Text = "Vous devez Entrer une valeur numérique.";
+
+
+
             }
 
             //------------------------------------------------------------------------//
 
 
-            if (string.IsNullOrWhiteSpace(tbx_idAdmin.Text))
-            {
-                idAdminErrror.Text = "Vous devez Entrer un id d'Administrateur.";
-                validation = false;
-            }
-            else
-            {
-                idAdminErrror.Text = "";
-                s_idAmin = tbx_idAdmin.Text;
-            }
 
-            //------------------------------------------------------------------------//
 
             if (string.IsNullOrWhiteSpace(tbx_idCategorie.Text))
             {
@@ -138,23 +138,15 @@ namespace projetSession
             if (validation)
             {
 
-                idActivite = Convert.ToInt16(s_idActivite);
-
-                
-
-                
-                coutOrganisation = Convert.ToDouble(s_coutOrganisation);
+              
 
                
                 prixVente = Convert.ToDouble(s_prixVente);
 
-               
-                idAmin = Convert.ToInt16(s_idAmin);
-
-                  
+             
                 idCategorie = Convert.ToInt16(s_idCategorie);
 
-                singletonBD.getInstance().addActivites(idActivite , nom , coutOrganisation , prixVente , idAmin , idCategorie);
+                singletonBD.getInstance().addActivites( nom , d_coutOrganisation, d_prixDeVente,  idCategorie);
                // Frame.Navigate(typeof(page1));
             }
         }
@@ -201,7 +193,7 @@ namespace projetSession
                     _idAmin = Convert.ToInt16(v[4]) ;
                     _idCategorie = Convert.ToInt16(v[5]) ;
 
-                    singletonBD.getInstance().addActivites(_idActivite, _nom, _coutOrganisation, _prixVente, _idAmin , _idCategorie);
+                    singletonBD.getInstance().addActivites( _nom, _coutOrganisation, _prixVente , _idCategorie);
                     // Joueur joueur = new Joueur(_matricule , _nom , _prenom , _dateNaissance , _nomEquipe);
                 }
             }
