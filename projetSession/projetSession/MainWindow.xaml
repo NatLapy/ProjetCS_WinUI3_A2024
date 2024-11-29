@@ -34,13 +34,24 @@
         </NavigationView.MenuItems>
         
         
+        
+        
+        
         <NavigationView.FooterMenuItems>
             <NavigationViewItem x:Name="iConnecter">
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <FontIcon Glyph="&#xEA8C;"/>
-                    <TextBlock>Se connecter</TextBlock>
+                    <TextBlock>Se Connecter</TextBlock>
                 </StackPanel>
             </NavigationViewItem>
+            
+            <NavigationViewItem x:Name="iDeconnection">
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <FontIcon Glyph="&#xEA8C;"/>
+                    <TextBlock>Déconnection</TextBlock>
+                </StackPanel>
+            </NavigationViewItem>
+            
         </NavigationView.FooterMenuItems>
 
 

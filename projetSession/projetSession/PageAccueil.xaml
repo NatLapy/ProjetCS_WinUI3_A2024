@@ -41,7 +41,7 @@
 
             <!--<AutoSuggestBox x:Name="autoSuggestBox" QueryIcon="Find"  Width="350" Height="35"  TextChanged="autoSuggestBox_TextChanged"/>-->
 
-            <Button  x:Name="btn_ajouter_liste" PointerEntered="BtnHover" PointerExited="BtnSortie" Background="Black"  Foreground="White"  FontSize="25" Click="btn_ajouter_liste_Click">
+            <Button  x:Name="btn_ajouter_liste" Visibility="{x:Bind VisibilityAdmin}" PointerEntered="BtnHover" PointerExited="BtnSortie" Background="Black"  Foreground="White"  FontSize="25" Click="btn_ajouter_liste_Click">
                 <StackPanel Orientation="Horizontal" Spacing="3">
                     <TextBlock>Ajouter</TextBlock>
                     <SymbolIcon VerticalAlignment="Center"  Symbol="Add" Foreground="White" />
@@ -54,53 +54,69 @@
 
         </Grid>
 
-        <GridView x:Name="lv_Activites" Grid.Row="1">
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="local:Activites">
-                    <StackPanel Orientation="Vertical"
-                                     Margin="5" HorizontalAlignment="Stretch">
+        <StackPanel Grid.Row="1" Margin="20 0 20 0" Orientation="Vertical" HorizontalAlignment="Center">
+            <GridView x:Name="lv_Activites" Grid.Row="1" >
+                
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid x:Name="MaxItemsWrapGrid"
+                            MaximumRowsOrColumns="6"
+                            Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+                
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Activites">
+                        <StackPanel 
+                            Orientation="Vertical"
+                            Margin="10"
+                            HorizontalAlignment="Center"
+                            Padding="20"
+                            >
                         
-                        <TextBlock Text="{x:Bind Nom }" Margin="5,5,5,10"/>
-                        <TextBlock Text="{x:Bind s_PrixVente }" Margin="5,5,5,10"/>
+                            <TextBlock HorizontalAlignment="Center" Padding="20"  Text="{x:Bind Nom }" />
+                            <TextBlock HorizontalAlignment="Center" Padding="20" Text="{x:Bind s_PrixVente }" />
 
 
-                        <StackPanel x:Name="stkBAdmin" Visibility="{x:Bind VisibilityAdmin}"  Orientation="Horizontal">
-                            <Button 
-                                x:Name="btn_supprimer"
-                                Background="Black" 
-                                Foreground="White" 
-                                FontSize="25" 
-                              Click="btn_supprimer_Click" >
+                            <StackPanel x:Name="stkBAdmin" Visibility="{x:Bind VisibilityAdmin}"  Orientation="Horizontal">
+                                <Button 
+                                    x:Name="btn_supprimer"
+                                    Background="Black" 
+                                    Foreground="White" 
+                                    FontSize="25" 
+                                  Click="btn_supprimer_Click" >
 
 
-                                <StackPanel Orientation="Horizontal">
-                                    <SymbolIcon Symbol="Delete" Foreground="Red" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <SymbolIcon Symbol="Delete" Foreground="Red" />
 
-                                </StackPanel>
+                                    </StackPanel>
 
-                            </Button>
-                            <Button 
-                                x:Name="btn_Edit"
-                                Background="Black" 
-                                Foreground="White" 
-                                FontSize="25" 
-                                Click="btn_Edit_Click">
+                                </Button>
+                                <Button 
+                                    x:Name="btn_Edit"
+                                    Background="Black" 
+                                    Foreground="White" 
+                                    FontSize="25" 
+                                    Click="btn_Edit_Click">
 
 
-                                <StackPanel Orientation="Horizontal">
-                                    <SymbolIcon Symbol="Edit" Foreground="Blue" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <SymbolIcon Symbol="Edit" Foreground="Blue" />
 
-                                </StackPanel>
+                                    </StackPanel>
 
-                            </Button>
+                                </Button>
                            
 
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
 
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>    
+        </StackPanel>
+        
 
         
         

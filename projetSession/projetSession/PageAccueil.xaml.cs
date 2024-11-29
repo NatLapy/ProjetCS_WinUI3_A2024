@@ -26,8 +26,7 @@ namespace projetSession
     /// </summary>
     public sealed partial class PageAccueil : Page
     {
-        //Visibility visibilityAdmin;
-
+        
         
         public PageAccueil()
         {
@@ -35,6 +34,9 @@ namespace projetSession
             lv_Activites.ItemsSource = singletonBD.getInstance().getListe();
             //lv_Adherents.ItemsSource = singletonBD.getInstance().getListeAdherents();
         }
+
+        
+
 
         private void tbx_recherche_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -103,16 +105,50 @@ namespace projetSession
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (e.Parameter is not null)
+            {
+                SingletonUtilisateur.getInstance().User.Role = "nonConnecter";
+            }
+
+
+
             NavigationViewItem tempType = new NavigationViewItem();
             foreach (Control item in ServiceNavigation.getInstance().NavigationView.MenuItems)
             {
                 if (item.GetType() == tempType.GetType())
                 {
+                    NavigationViewItem navViewItem = (NavigationViewItem)item;
                     if (item.Name == "iInscription")
                     {
                         item.Visibility = VisibilityAdmin;
                     }
+                    if (item.Name == "iConnecter")
+                    {
+                        navViewItem.Visibility = VisibilityAdmin;
+                        item.Visibility = navViewItem.Visibility;
+                    }
+                    if (item.Name == "iDeconnection")
+                    {
+                        navViewItem.Visibility = VisibilityAdmin;
+                        item.Visibility = navViewItem.Visibility;
+                    }
                 }
+
+            }foreach (Control item in ServiceNavigation.getInstance().NavigationView.FooterMenuItems)
+            {
+                if (item.GetType() == tempType.GetType())
+                {
+                    NavigationViewItem navViewItem = (NavigationViewItem)item;
+                    if (item.Name == "iConnecter")
+                    {
+                        item.Visibility = SingletonUtilisateur.getInstance().User.Role == "Admin" ? Visibility.Collapsed : Visibility.Visible;
+                    }
+                    if (item.Name == "iDeconnection")
+                    {
+                        item.Visibility = VisibilityAdmin;
+                    }
+                }
+
             }
         }
 
