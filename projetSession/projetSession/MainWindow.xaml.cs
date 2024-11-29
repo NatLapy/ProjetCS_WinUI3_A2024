@@ -14,6 +14,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -29,13 +30,30 @@ namespace projetSession
 
         public MainWindow()
         {
+            ApplicationData.Current.LocalSettings.Values["themeSetting"] = 0;
+            //App.Current.RequestedTheme = ApplicationTheme.Light;
+
+
+
+
             this.InitializeComponent();
             ServiceNavigation.getInstance().NavigationView = navView;
             SingletonUtilisateur.getInstance();
             SingletonHelper.getInstance().Window = this;
             mainFrame.Navigate(typeof(PageAccueil));
+            
 
             
+        }
+
+        private void Themes_Light(object sender, SelectionChangedEventArgs e)
+        {
+            string stTheme = "Light";
+            if (Enum.TryParse(stTheme, out ElementTheme theme) is true)
+            {
+
+
+            }
         }
 
         public Visibility VisibilityAdmin
@@ -59,12 +77,19 @@ namespace projetSession
                 case "iInscription":
                     mainFrame.Navigate(typeof(pageInscription));
                     break;
-                case "iConnecter":
-                    mainFrame.Navigate(typeof(PageConnection));
-                    break;
                 case "iPageStatistique":
                     mainFrame.Navigate(typeof(PageStatistique));
                     break;
+
+                case "iConnecter":
+                    mainFrame.Navigate(typeof(PageConnection));
+                    break;
+                case "iDeconnection":
+                    bool deconnection = true;
+                    mainFrame.Navigate(typeof(PageAccueil),deconnection);
+                    break;
+
+
                 default:
                     mainFrame.Navigate(typeof(PageAccueil));
                     break;

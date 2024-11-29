@@ -12,8 +12,8 @@
 
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="*" />
-            <RowDefinition Height="200" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
 
         </Grid.RowDefinitions>
 
@@ -26,13 +26,13 @@
 
         <StackPanel    Grid.Row="0" Grid.Column="0" >
 
-            <TextBox x:Name="tbx_nom" Header="Entrez un nom." Margin="20" MaxLength="50"></TextBox>
+            <TextBox x:Name="tbx_nom" Header="Entrez un nom." Margin="20 20 20 5" MaxLength="50"></TextBox>
             <TextBlock x:Name="nomError" Foreground="red" Text="" Padding="20 0"></TextBlock>
 
-            <TextBox x:Name="tbx_prenom" Header="Entrez une prenom. " Margin="20" MaxLength="50"></TextBox>
+            <TextBox x:Name="tbx_prenom" Header="Entrez une prenom. " Margin="20 20 20 5" MaxLength="50"></TextBox>
             <TextBlock x:Name="prenomErrror" Foreground="red" Text="" Padding="20 0"></TextBlock>
 
-            <TextBox x:Name="tbx_adresse" Header="Entrez une adresse. " Margin="20" MaxLength="100"></TextBox>
+            <TextBox x:Name="tbx_adresse" Header="Entrez une adresse. " Margin="20 20 20 5" MaxLength="100"></TextBox>
             <TextBlock x:Name="adresseErrror" Foreground="red" Text="" Padding="20 0"></TextBlock>
 
 
