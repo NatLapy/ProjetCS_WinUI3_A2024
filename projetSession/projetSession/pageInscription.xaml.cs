@@ -38,8 +38,10 @@ namespace projetSession
         {
             this.InitializeComponent();
 
-            calendrier.MaxDate = new DateTimeOffset(new DateTime(2014, 12, 31));
+            calendrier.MaxDate = new DateTimeOffset(new DateTime(2006, 12, 31));
             calendrier.SelectedDates.Add(new DateTimeOffset(new DateTime(2014, 12, 31)));
+
+           
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -76,7 +78,7 @@ namespace projetSession
 
             if (string.IsNullOrWhiteSpace(tbx_adresse.Text))
             {
-                prenomErrror.Text = "Vous devez Entrer une adresse.";
+                adresseErrror.Text = "Vous devez Entrer une adresse.";
                 validation = false;
             }
             else

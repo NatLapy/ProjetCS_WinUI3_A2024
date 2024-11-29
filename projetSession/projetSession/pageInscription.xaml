@@ -38,8 +38,8 @@
 
 
 
-            <Button x:Name="button" Margin="20" Click="button_Click">Ajouter</Button>
-            <Button x:Name="buttonAjouterListe" Margin="20" Click="buttonAjouterListe_Click" >Ajouter selon une liste</Button>
+            <Button x:Name="button" Margin="10 " Click="button_Click">Ajouter</Button>
+            <Button x:Name="buttonAjouterListe" Margin="10" Click="buttonAjouterListe_Click" >Ajouter selon une liste</Button>
 
 
 

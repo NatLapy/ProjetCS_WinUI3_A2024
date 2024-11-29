@@ -198,7 +198,7 @@ namespace projetSession
 
         /*ajouter un activité*/
 
-        public void addActivites(int _idActivite, String _nom, int _coutOrganisation, int _prixDeVente, int idAdmin , int _idCategorie)
+        public void addActivites(int _idActivite, String _nom, double _coutOrganisation, double _prixDeVente, int idAdmin , int _idCategorie)
         {
 
             try
@@ -309,7 +309,7 @@ namespace projetSession
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "insert into adherents values( @idActivite , @nom, @coutOrganisation , @prixDeVente , @idAdmin , @idCategorie ) ";
+                commande.CommandText = "insert into adherents values( @noIdentification , @nom, @prenom , @adresse ,@dateNaissance ) ";
                 commande.Parameters.AddWithValue("@noIdentification", _noIdentification);
                 commande.Parameters.AddWithValue("@nom", _nom);
                 commande.Parameters.AddWithValue("@prenom", _prenom);

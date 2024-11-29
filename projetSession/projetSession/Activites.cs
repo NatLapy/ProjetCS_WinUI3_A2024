@@ -13,12 +13,12 @@ namespace projetSession
     {
         int idActivite = 0;
         String nom = "";
-        int coutOrganisation = 0;
-        int prixVente = 0;
+        double coutOrganisation = 0;
+        double prixVente = 0;
         int idAdmin = 0;
         int idCategorie = 0;
 
-        public Activites(int idActivite, string nom, int coutOrganisation, int prixVente , int idAdmin , int idCategorie)
+        public Activites(int idActivite, string nom, double coutOrganisation, double prixVente , int idAdmin , int idCategorie)
         {
             this.idActivite = idActivite;
             this.nom = nom;
@@ -68,7 +68,7 @@ namespace projetSession
             }
         }
 
-        public int CoutOrganisation
+        public double CoutOrganisation
         {
             get
             {
@@ -84,7 +84,7 @@ namespace projetSession
         }
 
 
-        public int PrixVente
+        public double PrixVente
         {
             get
             {
