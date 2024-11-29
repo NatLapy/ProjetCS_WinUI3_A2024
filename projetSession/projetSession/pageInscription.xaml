@@ -32,17 +32,9 @@
             <TextBox x:Name="tbx_prenom" Header="Entrez une prenom. " Margin="20" MaxLength="50"></TextBox>
             <TextBlock x:Name="prenomErrror" Foreground="red" Text="" Padding="20 0"></TextBlock>
 
+            <TextBox x:Name="tbx_adresse" Header="Entrez une adresse. " Margin="20" MaxLength="100"></TextBox>
+            <TextBlock x:Name="adresseErrror" Foreground="red" Text="" Padding="20 0"></TextBlock>
 
-
-            <ComboBox x:Name="listeEquipe" Width="300" SelectedIndex="0" Header="Équipe"   Margin="20">
-                <x:String>River Lions de Niagara</x:String>
-                <x:String>Chicago bulls</x:String>
-                <x:String>Memphis Grizzlies</x:String>
-                <x:String>Lakers</x:String>
-                <x:String>Brooklyn Nets</x:String>
-                <x:String>Atlanta Hawks</x:String>
-
-            </ComboBox>
 
 
 

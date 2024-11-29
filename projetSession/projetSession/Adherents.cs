@@ -27,6 +27,16 @@ namespace projetSession
             this.age = age;
         }
 
+        public Adherents( string nom, string prenom, string adresse, string dateNaissances, int age)
+        {
+            
+            this.nom = nom;
+            this.prenom = prenom;
+            this.adresse = adresse;
+            this.dateNaissances = dateNaissances;
+            this.age = age;
+        }
+
 
         public String NoIdentification
         {

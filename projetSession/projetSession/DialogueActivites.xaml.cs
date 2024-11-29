@@ -36,7 +36,7 @@ namespace projetSession
         }
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            //tbl_error_Categorie.Text = cbx_idCategorie.SelectedValue.ToString();
+            tbl_error_Categorie.Text = cbx_idCategorie.SelectedValue.ToString();
             if (string.IsNullOrWhiteSpace(tbx_id.Text))
             {
                 /*< StackPanel >
