@@ -198,20 +198,30 @@ namespace projetSession
 
         /*ajouter un activité*/
 
-        public void addActivites( String _nom, double _coutOrganisation, double _prixDeVente, int _idCategorie)
+        public void addActivites( String _nom, double _coutOrganisation, double _prixDeVente, int _idCategorie, string _urlImage)
         {
 
             try
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "insert into activites values( @nom, @coutOrganisation , @prixDeVente , @idCategorie ) ";
-          
+
+
+                commande.CommandText = "insert into activites(nom, coutOrganisation, prixDeVente, idCategorie,urlImage) values( @nom, @coutOrganisation , @prixDeVente , @idCategorie, @urlImage ) ";
+
                 commande.Parameters.AddWithValue("@nom", _nom);
                 commande.Parameters.AddWithValue("@coutOrganisation", _coutOrganisation);
-                commande.Parameters.AddWithValue("@prixDeVente", _prixDeVente);   
+                commande.Parameters.AddWithValue("@prixDeVente", _prixDeVente);
                 commande.Parameters.AddWithValue("@idCategorie", _idCategorie);
 
+                if (!string.IsNullOrWhiteSpace(_urlImage))
+                {
+                    commande.Parameters.AddWithValue("@urlImage", _urlImage);
+                }
+                else
+                {
+                    commande.Parameters.AddWithValue("@idCategorie", "Assets\\Square44x44Logo.scale-200.png");
+                }
 
                 con.Open();
                 commande.ExecuteNonQuery();
