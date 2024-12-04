@@ -308,7 +308,7 @@ namespace projetSession
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "insert into adherents values( @nom, @prenom , @adresse ,@dateNaissance ) ";
+                commande.CommandText = "insert into adherents(nom, prenom, adresse, dateNaissance) values( @nom, @prenom , @adresse, @dateNaissance ) ";
                 commande.Parameters.AddWithValue("@nom", _nom);
                 commande.Parameters.AddWithValue("@prenom", _prenom);
                 commande.Parameters.AddWithValue("@adresse", _adresse);

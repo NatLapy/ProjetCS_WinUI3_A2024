@@ -110,7 +110,7 @@ namespace projetSession
                 //j'appele ma fonction pour mon matricule 
                 
                 singletonBD.getInstance().addAdherents( nom , prenom , adresse, dateDeNaissance);
-                //Frame.Navigate(typeof(pageAffichageJoueur));
+                Frame.Navigate(typeof(PageAccueil));
             }
         }
 
@@ -149,13 +149,13 @@ namespace projetSession
                 {
                     var v = ligne.Split(";");
 
-                    _noIdentification = v[0];
-                    _nom = v[1];
-                    _prenom = v[2];
-                    _adresse = v[3];
-                    _dateDeNaissance = v[4];
+                    
+                    _nom = v[0];
+                    _prenom = v[1];
+                    _adresse = v[2];
+                    _dateDeNaissance = v[3];
                     singletonBD.getInstance().addAdherents( _nom, _prenom, _adresse, _dateDeNaissance);
-                    // Joueur joueur = new Joueur(_matricule , _nom , _prenom , _dateNaissance , _nomEquipe);
+                    Frame.Navigate(typeof(PageAccueil));
                 }
             }
 
