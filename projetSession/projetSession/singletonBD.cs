@@ -47,6 +47,8 @@ namespace projetSession
             return liste;
         }
 
+        
+
         public void getActivites()
         {
             liste.Clear();
@@ -239,13 +241,21 @@ namespace projetSession
 
         //----------------------------------------------------------------Parti Adherents------------------------------------------------------------------/
 
+
+        public ObservableCollection<Adherents> getListeAdherent()
+        {
+            getAdherents();
+
+            return listeAdherents;
+        }
+
         public void getAdherents()
         {
             listeAdherents.Clear();
 
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
-            commande.CommandText = "SELECT* FROM adherents;";
+            commande.CommandText = "SELECT * FROM adherents";
             con.Open();
 
             //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
@@ -254,7 +264,7 @@ namespace projetSession
 
             while (r.Read())
             {
-                String noIdentification = r["noIdentification"].ToString();
+               
 
                 String nom = r["nom"].ToString();
 
@@ -265,10 +275,9 @@ namespace projetSession
 
                 String dateNaissance = r["dateNaissance"].ToString();
 
-                String s_age = r["age"].ToString();
-                int age = Convert.ToInt16(s_age);
+               
 
-                Adherents adherents = new Adherents(noIdentification,nom,prenom,adresse,dateNaissance,age);
+                Adherents adherents = new Adherents(nom,prenom,adresse,dateNaissance);
 
 
 
@@ -343,6 +352,9 @@ namespace projetSession
 
         public void supprimerAdherents(String nom)
         {
+
+            
+
             try
             {
                 MySqlCommand commande = new MySqlCommand();
