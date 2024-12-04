@@ -65,7 +65,7 @@
                                 HorizontalAlignment="Center"
                                 Padding="40"
                                 >
-                                <Image Source="Assets\Square44x44Logo.scale-200.png" Width="200"></Image>
+                                <Image Source="{ x:Bind UrlImage }" Width="200"></Image>
                                 <TextBlock HorizontalAlignment="Center" Padding="40 40 40 0"  Text="{x:Bind Nom }" />
                                 <TextBlock HorizontalAlignment="Center" Padding="20" Text="{x:Bind s_PrixVente }" />
 

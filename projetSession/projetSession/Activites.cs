@@ -18,13 +18,16 @@ namespace projetSession
         
         int idCategorie = 0;
 
-        public Activites(int idActivite, string nom, double coutOrganisation, double prixVente  , int idCategorie)
+        string urlImage = "";
+
+        public Activites(int idActivite, string nom, double coutOrganisation, double prixVente  , int idCategorie, string urlImage)
         {
             this.idActivite = idActivite;
             this.nom = nom;
             this.coutOrganisation = coutOrganisation;
             this.prixVente = prixVente;
             this.idCategorie = idCategorie;
+            this.UrlImage = urlImage;
         }
 
 
@@ -123,6 +126,8 @@ namespace projetSession
 
             }
         }
+
+        public string UrlImage { get => urlImage; set => urlImage = value; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

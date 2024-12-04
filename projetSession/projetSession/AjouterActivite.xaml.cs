@@ -16,6 +16,7 @@ using Windows.Devices.Enumeration;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml.Media.Imaging;
+using MySql.Data.MySqlClient;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -37,8 +38,8 @@ namespace projetSession
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-           
 
+            validation = true;
             String nom = "";
 
             double coutOrganisation = 0;
@@ -97,7 +98,7 @@ namespace projetSession
             
             //------------------------------------------------------------------------//
 
-            if(validation && prixVente < coutOrganisation ){
+            if(prixVente < coutOrganisation ){
                 prixDeVenteErrror.Text = "Le prix de vente doit être supérieur au cout d'organisation.";
                 Cout_organisationErrror.Text = "Le cout d'organisation doit être inférieur au prix de vente.";
                 validation = false;
@@ -117,10 +118,19 @@ namespace projetSession
              
                 idCategorie = (int)cbx_idCategorie.SelectedValue;
 
-                urlImage = tbx_urlImage.Text;
+                if (string.IsNullOrEmpty(tbx_urlImage.Text))
+                {
+                    urlImage = "Assets\\Square44x44Logo.scale-200.png";
+                }
+                else
+                {
+                    urlImage = tbx_urlImage.Text;
+                }
+                
 
-
-                singletonBD.getInstance().addActivites( nom , d_coutOrganisation, d_prixDeVente,  idCategorie, urlImage);
+                    singletonBD.getInstance().addActivites( nom , d_coutOrganisation, d_prixDeVente,  idCategorie, urlImage);
+                
+                
                 Frame.Navigate(typeof(PageAccueil));
             }
         }

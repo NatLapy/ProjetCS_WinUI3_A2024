@@ -79,11 +79,13 @@ namespace projetSession
                 String s_idCategorie = r["idCategorie"].ToString();
                 int idCategorie = Convert.ToInt16(s_idCategorie);
 
+                string s_urlImage = r["urlImage"].ToString();
+
                
 
                 
 
-                Activites activite = new Activites(idActivite, nom, coutOrganisation , prixVente  , idCategorie);
+                Activites activite = new Activites(idActivite, nom, coutOrganisation , prixVente  , idCategorie, s_urlImage);
 
 
 
@@ -122,13 +124,13 @@ namespace projetSession
                 String s_prixVente = r["prixDeVente"].ToString();
                 int prixVente = Convert.ToInt16(s_prixVente);
 
-                String s_idAmin = r["idAdmin"].ToString();
-                int _idAmin = Convert.ToInt16(s_idAmin);
 
                 String s_idCategorie = r["idCategorie"].ToString();
                 int idCategorie = Convert.ToInt16(s_idCategorie);
 
-                Activites activite = new Activites(idActivite, nom, coutOrganisation, prixVente, idCategorie);
+                string s_urlImage = r["urlImage"].ToString();
+
+                Activites activite = new Activites(idActivite, nom, coutOrganisation, prixVente, idCategorie,s_urlImage);
 
 
 
@@ -228,7 +230,7 @@ namespace projetSession
 
                 con.Close();
             }
-            catch (Exception ex)
+            catch (MySqlException ex)
             {
                 //Le if vérifie si la connection est bien ouverte avant d'essayer de la fermer
                 if (con.State == System.Data.ConnectionState.Open)
