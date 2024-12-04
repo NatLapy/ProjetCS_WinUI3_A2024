@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Enumeration;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -26,6 +28,7 @@ namespace projetSession
     public sealed partial class AjouterActivite : Page
     {
         Boolean validation = true;
+        ObservableCollection<Categories> listeCategories = singletonBD.getInstance().getCategoriesListe();
 
         public AjouterActivite()
         {
@@ -45,14 +48,13 @@ namespace projetSession
             double prixVente = 0;
 
           
-            String s_idCategorie = "";
             int idCategorie = 0;
 
 
             double d_coutOrganisation = 0;
             double d_prixDeVente = 0;
 
-
+            string urlImage = "";
 
 
 
@@ -122,17 +124,6 @@ namespace projetSession
 
 
 
-            if (string.IsNullOrWhiteSpace(tbx_idCategorie.Text))
-            {
-                idCategorieErrror.Text = "Vous devez Entrer un id de catégorie.";
-                validation = false;
-            }
-            else
-            {
-                idCategorieErrror.Text = "";
-                s_idCategorie = tbx_idCategorie.Text;
-            }
-
             //------------------------------------------------------------------------//
 
             if (validation)
@@ -141,13 +132,16 @@ namespace projetSession
               
 
                
-                prixVente = Convert.ToDouble(s_prixVente);
+                prixVente = d_prixDeVente;
 
              
-                idCategorie = Convert.ToInt16(s_idCategorie);
+                idCategorie = (int)cbx_idCategorie.SelectedValue;
 
-                singletonBD.getInstance().addActivites( nom , d_coutOrganisation, d_prixDeVente,  idCategorie);
-               // Frame.Navigate(typeof(page1));
+                urlImage = tbx_urlImage.Text;
+
+
+                singletonBD.getInstance().addActivites( nom , d_coutOrganisation, d_prixDeVente,  idCategorie, urlImage);
+                Frame.Navigate(typeof(PageAccueil));
             }
         }
 
@@ -159,6 +153,7 @@ namespace projetSession
             double _prixVente = 0;
             int _idAmin = 0;
             int _idCategorie = 0;
+            string _urlImage = "";
 
 
             var picker = new Windows.Storage.Pickers.FileOpenPicker();
@@ -178,10 +173,6 @@ namespace projetSession
             {
                 var lignes = await Windows.Storage.FileIO.ReadLinesAsync(monFichier);
 
-
-
-
-
                 foreach (var ligne in lignes)
                 {
                     var v = ligne.Split(";");
@@ -192,11 +183,21 @@ namespace projetSession
                     _prixVente = Convert.ToInt16(v[3]) ;
                     _idAmin = Convert.ToInt16(v[4]) ;
                     _idCategorie = Convert.ToInt16(v[5]) ;
+                    _urlImage = v[6];
 
-                    singletonBD.getInstance().addActivites( _nom, _coutOrganisation, _prixVente , _idCategorie);
+                    singletonBD.getInstance().addActivites( _nom, _coutOrganisation, _prixVente , _idCategorie, _urlImage);
                     // Joueur joueur = new Joueur(_matricule , _nom , _prenom , _dateNaissance , _nomEquipe);
                 }
             }
+        }
+
+        private void tbx_urlImage_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(tbx_urlImage.Text) && new Uri(tbx_urlImage.Text) is not null)
+            {
+                imageActivite.Source = new BitmapImage(new Uri(tbx_urlImage.Text));
+            }
+            
         }
     }
 }

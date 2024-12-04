@@ -24,7 +24,6 @@ namespace projetSession
             this.nom = nom;
             this.coutOrganisation = coutOrganisation;
             this.prixVente = prixVente;
-            
             this.idCategorie = idCategorie;
         }
 

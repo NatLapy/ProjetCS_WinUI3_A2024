@@ -12,26 +12,13 @@
 
 
         <Grid.RowDefinitions>
-
             <RowDefinition Height="50" />
-
             <RowDefinition Height="*" />
-
-
-
-
         </Grid.RowDefinitions>
 
 
         <Grid.ColumnDefinitions >
-
-
-
             <ColumnDefinition Width="*"></ColumnDefinition>
-
-
-
-
         </Grid.ColumnDefinitions>
 
 
@@ -53,74 +40,76 @@
 
 
         </Grid>
+        <ScrollViewer Grid.Row="1"  >
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <GridView x:Name="lv_Activites" Grid.Row="1" >
 
-        <StackPanel Grid.Row="1"  Orientation="Vertical" HorizontalAlignment="Center">
-            <GridView x:Name="lv_Activites" Grid.Row="1" >
-                
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate >
-                        <ItemsWrapGrid x:Name="MaxItemsWrapGrid"
-                                MaximumRowsOrColumns="4"
-                                Orientation="Horizontal"/>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate >
+                            <ItemsWrapGrid x:Name="MaxItemsWrapGrid"
+                                    MaximumRowsOrColumns="4"
+                                    Orientation="Horizontal"/>
 
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-                
-                <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="local:Activites">
-                        <StackPanel
-                            Background="DeepSkyBlue"
-                            CornerRadius="10"
-                            BorderBrush="Black"
-                            BorderThickness="4"
-                            Orientation="Vertical"
-                            Margin="10"
-                            HorizontalAlignment="Center"
-                            Padding="40"
-                            >
-                            <Image Source="Assets\Square44x44Logo.scale-200.png" Width="200"></Image>
-                            <TextBlock HorizontalAlignment="Center" Padding="40 40 40 0"  Text="{x:Bind Nom }" />
-                            <TextBlock HorizontalAlignment="Center" Padding="20" Text="{x:Bind s_PrixVente }" />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
 
-
-                            <StackPanel x:Name="stkBAdmin" HorizontalAlignment="Center" Visibility="{x:Bind VisibilityAdmin}"  Orientation="Horizontal">
-                                <Button 
-                                    x:Name="btn_supprimer"
-                                    Background="Black" 
-                                    Foreground="White" 
-                                    FontSize="25" 
-                                  Click="btn_supprimer_Click" >
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="local:Activites">
+                            <StackPanel
+                                Background="DeepSkyBlue"
+                                CornerRadius="10"
+                                BorderBrush="Black"
+                                BorderThickness="4"
+                                Orientation="Vertical"
+                                Margin="10"
+                                HorizontalAlignment="Center"
+                                Padding="40"
+                                >
+                                <Image Source="Assets\Square44x44Logo.scale-200.png" Width="200"></Image>
+                                <TextBlock HorizontalAlignment="Center" Padding="40 40 40 0"  Text="{x:Bind Nom }" />
+                                <TextBlock HorizontalAlignment="Center" Padding="20" Text="{x:Bind s_PrixVente }" />
 
 
-                                    <StackPanel Orientation="Horizontal">
-                                        <SymbolIcon Symbol="Delete" Foreground="Red" />
-
-                                    </StackPanel>
-
-                                </Button>
-                                <Button 
-                                    x:Name="btn_Edit"
-                                    Background="Black" 
-                                    Foreground="White" 
-                                    FontSize="25" 
-                                    Click="btn_Edit_Click">
+                                <StackPanel x:Name="stkBAdmin" HorizontalAlignment="Center" Visibility="{x:Bind VisibilityAdmin}"  Orientation="Horizontal">
+                                    <Button 
+                                        x:Name="btn_supprimer"
+                                        Background="Black" 
+                                        Foreground="White" 
+                                        FontSize="25" 
+                                      Click="btn_supprimer_Click" >
 
 
-                                    <StackPanel Orientation="Horizontal">
-                                        <SymbolIcon Symbol="Edit" Foreground="Blue" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <SymbolIcon Symbol="Delete" Foreground="Red" />
 
-                                    </StackPanel>
+                                        </StackPanel>
 
-                                </Button>
-                           
+                                    </Button>
+                                    <Button 
+                                        x:Name="btn_Edit"
+                                        Background="Black" 
+                                        Foreground="White" 
+                                        FontSize="25" 
+                                        Click="btn_Edit_Click">
 
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <SymbolIcon Symbol="Edit" Foreground="Blue" />
+
+                                        </StackPanel>
+
+                                    </Button>
+
+
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
 
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>    
-        </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </StackPanel>
+        </ScrollViewer>
+        
         
 
         

@@ -194,6 +194,8 @@ namespace projetSession
             int _idCategorie = 0;
             String s_idCategorie = "";
 
+            string s_urlImage = "";
+
             var picker = new Windows.Storage.Pickers.FileOpenPicker();
             picker.FileTypeFilter.Add(".csv");
 
@@ -233,7 +235,9 @@ namespace projetSession
                     s_idCategorie = v[5];
                     _idCategorie = Convert.ToInt32(s_idCategorie);
 
-                    singletonBD.getInstance().addActivites(_nom, _coutOrganisation, _prixDeVente, _idCategorie);
+                    s_urlImage = v[6];
+
+                    singletonBD.getInstance().addActivites(_nom, _coutOrganisation, _prixDeVente, _idCategorie, s_urlImage);
                     // Joueur joueur = new Joueur(_matricule , _nom , _prenom , _dateNaissance , _nomEquipe);
 
                 }
