@@ -124,17 +124,6 @@ namespace projetSession
 
 
 
-            if (string.IsNullOrWhiteSpace(tbx_idCategorie.Text))
-            {
-                idCategorieErrror.Text = "Vous devez Entrer un id de catégorie.";
-                validation = false;
-            }
-            else
-            {
-                idCategorieErrror.Text = "";
-                s_idCategorie = tbx_idCategorie.Text;
-            }
-
             //------------------------------------------------------------------------//
 
             if (validation)
