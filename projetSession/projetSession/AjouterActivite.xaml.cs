@@ -41,10 +41,8 @@ namespace projetSession
 
             String nom = "";
 
-            String s_coutOrganisation = "";
             double coutOrganisation = 0;
 
-            String s_prixVente = "";
             double prixVente = 0;
 
           
@@ -62,7 +60,7 @@ namespace projetSession
 
             if (string.IsNullOrWhiteSpace(tbx_nom.Text))
             {
-                nomError.Text = "Vous devez Entrer un nom .";
+                nomError.Text = "Vous devez entrer un nom.";
                 validation = false;
             }
             else
@@ -80,18 +78,7 @@ namespace projetSession
             }
             else
             {
-
-               
-
-                if (double.TryParse(tbx_Cout_organisation.Text, out d_coutOrganisation))
-                {
-                    Cout_organisationErrror.Text = "";
-                }
-                else
-                    Cout_organisationErrror.Text = "Vous devez Entrer une valeur numérique.";
-
-
-
+                coutOrganisation = tbx_Cout_organisation.Value;
             }
 
 
@@ -105,23 +92,16 @@ namespace projetSession
             }
             else
             {
-
-
-
-                if (double.TryParse(tbx_prixDeVente.Text, out d_prixDeVente))
-                {
-                    prixDeVenteErrror.Text = "";
-                }
-                else
-                    prixDeVenteErrror.Text = "Vous devez Entrer une valeur numérique.";
-
-
-
+                prixVente = tbx_prixDeVente.Value;
             }
-
+            
             //------------------------------------------------------------------------//
 
-
+            if(validation && prixVente < coutOrganisation ){
+                prixDeVenteErrror.Text = "Le prix de vente doit être supérieur au cout d'organisation.";
+                Cout_organisationErrror.Text = "Le cout d'organisation doit être inférieur au prix de vente.";
+                validation = false;
+            }
 
 
             //------------------------------------------------------------------------//

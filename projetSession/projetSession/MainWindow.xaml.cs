@@ -80,6 +80,9 @@ namespace projetSession
                 case "iActivite":
                     mainFrame.Navigate(typeof(AjouterActivite));
                     break;
+                case "iPageAdherents":
+                    mainFrame.Navigate(typeof(PageAffichageAdherents));
+                    break;
                 case "iPageStatistique":
                     mainFrame.Navigate(typeof(PageStatistique));
                     break;

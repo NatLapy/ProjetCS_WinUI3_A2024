@@ -31,10 +31,10 @@
             <TextBox x:Name="tbx_nom" Header="Entrez un nom." Margin="20"></TextBox>
             <TextBlock x:Name="nomError" Foreground="red" Text="" Padding="20 0"></TextBlock>
 
-            <TextBox x:Name="tbx_Cout_organisation" Header="Entrez un cout d'organisation. " Margin="20"></TextBox>
+            <NumberBox Minimum="0" x:Name="tbx_Cout_organisation" Header="Entrez un cout d'organisation. " Margin="20"></NumberBox>
             <TextBlock x:Name="Cout_organisationErrror" Foreground="red" Text="" Padding="20 0"></TextBlock>
 
-            <TextBox x:Name="tbx_prixDeVente" Header="Entrez un prix de vente. " Margin="20"></TextBox>
+            <NumberBox Minimum="0" x:Name="tbx_prixDeVente" Header="Entrez un prix de vente. " Margin="20"></NumberBox>
             <TextBlock x:Name="prixDeVenteErrror" Foreground="red" Text="" Padding="20 0"></TextBlock>
 
             <ComboBox x:Name="cbx_idCategorie" SelectedIndex="0" ItemsSource="{x:Bind listeCategories, Mode=OneWay}" Width="700" Margin="20 10 20 0" DisplayMemberPath="Nom" SelectedValuePath="IdCategorie" Header="Entrez la catégorie"  />

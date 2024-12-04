@@ -32,6 +32,13 @@
                     <TextBlock>Ajouter une activité</TextBlock>
                 </StackPanel>
             </NavigationViewItem>
+            
+            <NavigationViewItem x:Name="iPageAdherents">
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <FontIcon Glyph="&#xE902;"/>
+                    <TextBlock>Affichez les adherents</TextBlock>
+                </StackPanel>
+            </NavigationViewItem>
 
 
 
