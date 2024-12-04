@@ -37,9 +37,10 @@
             <TextBox x:Name="tbx_prixDeVente" Header="Entrez un prix de vente. " Margin="20"></TextBox>
             <TextBlock x:Name="prixDeVenteErrror" Foreground="red" Text="" Padding="20 0"></TextBlock>
 
-            <TextBox x:Name="tbx_idCategorie" Header="Entrez un id de catégorie. " Margin="20 20 20 0"></TextBox>
-            <TextBlock x:Name="idCategorieErrror" Foreground="red" Text="" Padding="20 0 0 0"></TextBlock>
-
+            <ComboBox x:Name="cbx_idCategorie" SelectedIndex="0" ItemsSource="{x:Bind listeCategories, Mode=OneWay}" Width="700" Margin="20 10 20 0" DisplayMemberPath="Nom" SelectedValuePath="IdCategorie" Header="Entrez la catégorie"  />
+            <TextBlock x:Name="idCategorieErrror" Text="" Foreground="Red"></TextBlock>
+           
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="button" Margin="10" Click="button_Click">Ajouter</Button>
 

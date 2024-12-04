@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace projetSession
     public sealed partial class AjouterActivite : Page
     {
         Boolean validation = true;
+        ObservableCollection<Categories> listeCategories = singletonBD.getInstance().getCategoriesListe();
 
         public AjouterActivite()
         {
