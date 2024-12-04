@@ -110,7 +110,7 @@ namespace projetSession
                 //j'appele ma fonction pour mon matricule 
                 
                 singletonBD.getInstance().addAdherents( nom , prenom , adresse, dateDeNaissance);
-                Frame.Navigate(typeof(PageAccueil));
+                Frame.Navigate(typeof(PageAffichageAdherents));
             }
         }
 
@@ -155,7 +155,7 @@ namespace projetSession
                     _adresse = v[2];
                     _dateDeNaissance = v[3];
                     singletonBD.getInstance().addAdherents( _nom, _prenom, _adresse, _dateDeNaissance);
-                    Frame.Navigate(typeof(PageAccueil));
+                    Frame.Navigate(typeof(PageAffichageAdherents));
                 }
             }
 

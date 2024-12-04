@@ -27,14 +27,14 @@ namespace projetSession
             this.age = age;
         }
 
-        public Adherents( string nom, string prenom, string adresse, string dateNaissances, int age)
+        public Adherents( string nom, string prenom, string adresse, string dateNaissances)
         {
             
             this.nom = nom;
             this.prenom = prenom;
             this.adresse = adresse;
             this.dateNaissances = dateNaissances;
-            this.age = age;
+            
         }
 
 
@@ -114,20 +114,7 @@ namespace projetSession
             }
         }
 
-        public int Age
-        {
-            get
-            {
-                return age;
-            }
-
-            set
-            {
-                age = value;
-
-
-            }
-        }
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
 

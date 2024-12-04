@@ -26,6 +26,7 @@ namespace projetSession
         public PageAffichageAdherents()
         {
             this.InitializeComponent();
+            lvAdherent.ItemsSource = singletonBD.getInstance().getListeAdherent();
         }
 
         private async void btn_supprimer_Click(object sender, RoutedEventArgs e)
