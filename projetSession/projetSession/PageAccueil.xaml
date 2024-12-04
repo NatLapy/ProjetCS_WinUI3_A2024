@@ -64,23 +64,32 @@
                                 Margin="10"
                                 HorizontalAlignment="Center"
                                 Padding="40"
+                                Width="350"
                                 >
-                                <Image Source="{ x:Bind UrlImage }" Width="200"></Image>
-                                <TextBlock HorizontalAlignment="Center" Padding="40 40 40 0"  Text="{x:Bind Nom }" />
+                                <Image Height="200" Width="200" Source="{ x:Bind UrlImage }"></Image>
+                                <TextBlock HorizontalAlignment="Center" Padding="80 30 80 0"  Text="{x:Bind Nom }" />
                                 <TextBlock HorizontalAlignment="Center" Padding="20" Text="{x:Bind s_PrixVente }" />
 
 
-                                <StackPanel x:Name="stkBAdmin" HorizontalAlignment="Center" Visibility="{x:Bind VisibilityAdmin}"  Orientation="Horizontal">
+                                <StackPanel Spacing="20" x:Name="stkBAdmin" HorizontalAlignment="Center" Visibility="{x:Bind VisibilityAdmin}"  Orientation="Horizontal">
                                     <Button 
                                         x:Name="btn_supprimer"
                                         Background="Black" 
                                         Foreground="White" 
                                         FontSize="25" 
-                                      Click="btn_supprimer_Click" >
+                                        Click="btn_supprimer_Click"
+                                        Width="60"
+                                        Height="50"
+                                        PointerEntered="BtnHover"
+                                        PointerExited="BtnSortie"
+                                        >
 
-
+                                        <Button.Resources>
+                                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="DarkRed" />
+                                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Red"/>
+                                        </Button.Resources>
                                         <StackPanel Orientation="Horizontal">
-                                            <SymbolIcon Symbol="Delete" Foreground="Red" />
+                                            <SymbolIcon Symbol="Delete" Foreground="Red"/>
 
                                         </StackPanel>
 
@@ -90,8 +99,17 @@
                                         Background="Black" 
                                         Foreground="White" 
                                         FontSize="25" 
-                                        Click="btn_Edit_Click">
-
+                                        Click="btn_Edit_Click"
+                                        Width="60"
+                                        Height="50"
+                                        PointerEntered="BtnHover"
+                                        PointerExited="BtnSortie"
+                                        
+                                        >
+                                        <Button.Resources>
+                                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="DarkBlue" />
+                                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Blue"/>
+                                        </Button.Resources>
 
                                         <StackPanel Orientation="Horizontal">
                                             <SymbolIcon Symbol="Edit" Foreground="Blue" />

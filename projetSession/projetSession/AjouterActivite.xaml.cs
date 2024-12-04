@@ -50,9 +50,6 @@ namespace projetSession
             int idCategorie = 0;
 
 
-            double d_coutOrganisation = 0;
-            double d_prixDeVente = 0;
-
             string urlImage = "";
 
 
@@ -113,7 +110,6 @@ namespace projetSession
               
 
                
-                prixVente = d_prixDeVente;
 
              
                 idCategorie = (int)cbx_idCategorie.SelectedValue;
@@ -128,7 +124,7 @@ namespace projetSession
                 }
                 
 
-                    singletonBD.getInstance().addActivites( nom , d_coutOrganisation, d_prixDeVente,  idCategorie, urlImage);
+                    singletonBD.getInstance().addActivites( nom , coutOrganisation, prixVente,  idCategorie, urlImage);
                 
                 
                 Frame.Navigate(typeof(PageAccueil));
