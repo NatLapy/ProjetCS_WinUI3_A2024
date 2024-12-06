@@ -42,7 +42,7 @@
 
 
 
-            <NavigationViewItem x:Name="iStatistique" Visibility="Collapsed">
+            <NavigationViewItem x:Name="iPageStatistique" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <FontIcon Glyph="&#xE902;"/>
                     <TextBlock>Statistiques</TextBlock>
