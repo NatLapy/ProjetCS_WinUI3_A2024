@@ -18,6 +18,7 @@ namespace projetSession.Singletons
         ObservableCollection<Activites> liste;
         ObservableCollection<Adherents> listeAdherents;
         ObservableCollection<Categories> listeCategories;
+        ObservableCollection<Seances> listeSeances;
         static singletonBD instance = null;
 
 
@@ -26,6 +27,7 @@ namespace projetSession.Singletons
             liste = new ObservableCollection<Activites>();
             listeAdherents = new ObservableCollection<Adherents>();
             listeCategories = new ObservableCollection<Categories>();
+            listeSeances = new ObservableCollection<Seances>();
             //Role = "nonConnecter";
             //con est déclarer plus haut comme variable globale. et est initialiser ici dans le constructeur
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq2;Uid=6269818;Pwd=6269818;");
@@ -448,6 +450,13 @@ namespace projetSession.Singletons
 
         /*----------------------------------------------------------------Partie Seances------------------------------------------------------------*/
 
+
+        public ObservableCollection<Activites> getListeSeance()
+        {
+            getActivites();
+
+            return liste;
+        }
 
         /*Ajouter une séances*/
 
