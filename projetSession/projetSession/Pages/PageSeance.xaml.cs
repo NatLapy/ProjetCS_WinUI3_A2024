@@ -4,10 +4,13 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
+using projetSession.Classes;
 using projetSession.Singletons;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,8 +27,10 @@ namespace projetSession.Pages
     /// </summary>
     public sealed partial class PageSeance : Page
     {
+        ObservableCollection<Seances> listeSeances;
         public PageSeance()
         {
+
             this.InitializeComponent();
             lvSeances.ItemsSource = singletonBD.getInstance().getListeAdherent();
         }
@@ -43,6 +48,22 @@ namespace projetSession.Pages
         private void tbx_recherche_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            //parametre contient mon index , on l'attribut a e 
+            if (e.Parameter != null)
+            {
+                //on cast en int le parametre qui est de type objet a la base 
+                int index = (int)e.Parameter;
+
+                listeSeances = singletonBD.getInstance().getListeSeance(index);
+                lvSeances.ItemsSource = listeSeances;
+
+
+            }
         }
     }
 }

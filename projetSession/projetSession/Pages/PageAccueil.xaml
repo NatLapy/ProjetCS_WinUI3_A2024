@@ -65,6 +65,7 @@
                                 HorizontalAlignment="Center"
                                 Padding="40"
                                 Width="350"
+                                
                                 >
                                 <Image Height="200" Width="200" Source="{ x:Bind UrlImage }"></Image>
                                 <TextBlock HorizontalAlignment="Center" Padding="80 30 80 0"  Text="{x:Bind Nom }" />
@@ -86,6 +87,7 @@
                                             BorderThickness="2"
                                             Margin="0 0 0 10"
                                             Click="btn_seances_admin_Click"
+                                            
                                             >
 
                                     <Button.Resources>

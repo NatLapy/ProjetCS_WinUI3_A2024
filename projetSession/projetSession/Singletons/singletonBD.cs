@@ -510,22 +510,22 @@ namespace projetSession.Singletons
         /*----------------------------------------------------------------Partie Seances------------------------------------------------------------*/
 
 
-        public ObservableCollection<Seances> getListeSeance()
+        public ObservableCollection<Seances> getListeSeance(int v)
         {
-            getSeance();
+            getSeance(v);
 
             return listeSeances;
         }
 
         /*Afficher les Séances*/
 
-        public void getSeance()
+        public void getSeance(int v)
         {
             listeSeances.Clear();
 
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
-            commande.CommandText = "SELECT * FROM Seances";
+            commande.CommandText = $"SELECT * FROM Seances WHERE idActivite = {v}";
             con.Open();
 
             //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 

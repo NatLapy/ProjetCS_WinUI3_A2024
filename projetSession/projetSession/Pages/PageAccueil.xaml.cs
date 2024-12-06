@@ -257,7 +257,12 @@ namespace projetSession.Pages
 
         private void btn_seances_admin_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(PageSeance));
+            Button btn = sender as Button;
+            Activites activite = btn.DataContext as Activites;
+
+            lv_Activites.SelectedItem = activite;
+
+            Frame.Navigate(typeof(PageSeance), activite.IdActivite);
         }
     }
 }
