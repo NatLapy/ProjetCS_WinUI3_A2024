@@ -621,13 +621,13 @@ namespace projetSession.Singletons
 
         /*Supprimer une séances*/
 
-        public void supprimerSeance(string nom)
+        public void supprimerSeance(int _id)
         {
             try
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = $"delete from seances where nom = '{nom}'";
+                commande.CommandText = $"delete from seances where idSeances = '{_id}'";
 
                 con.Open();
                 int i = commande.ExecuteNonQuery();

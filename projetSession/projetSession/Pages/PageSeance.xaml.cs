@@ -35,9 +35,32 @@ namespace projetSession.Pages
             lvSeances.ItemsSource = singletonBD.getInstance().getListeAdherent();
         }
 
-        private void btn_supprimer_Click(object sender, RoutedEventArgs e)
+        private async void btn_supprimer_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = sender as Button;
+            Seances a = btn.DataContext as Seances;
 
+            lvSeances.SelectedItem = a;
+
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Suppression de séances";
+            dialog.PrimaryButtonText = "Supprimer";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = $"Voulez vous supprimer le joueur: '{a.IdSceances}'  ?";
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+                singletonBD.getInstance().supprimerSeance(a.IdSceances);
+            }
+
+            else
+            {
+                lvSeances.SelectedItem = null;
+            }
         }
 
         private void btn_Edit_Click(object sender, RoutedEventArgs e)
