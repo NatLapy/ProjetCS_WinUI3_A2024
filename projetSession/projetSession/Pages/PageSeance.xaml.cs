@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using projetSession.Singletons;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,22 @@ namespace projetSession.Pages
         public PageSeance()
         {
             this.InitializeComponent();
+            lvSeances.ItemsSource = singletonBD.getInstance().getListeAdherent();
+        }
+
+        private void btn_supprimer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Edit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void tbx_recherche_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
