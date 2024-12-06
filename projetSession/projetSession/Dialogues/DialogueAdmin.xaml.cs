@@ -27,7 +27,7 @@ namespace projetSession
         public String Mdp { get; set; }
 
         bool fermer = false;
-        Boolean validation = true;
+        bool validation = true;
 
 
         public DialogueAdmin()
@@ -37,45 +37,63 @@ namespace projetSession
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            validation = true;
+
             Nom = tbx_user.Text;
             Mdp = pwd_user.Password;
+
+            
+
+            if (string.IsNullOrWhiteSpace(Nom))
+            {
+                errNom.Text = "Le nom d'utilisateur est requis";
+                validation = false;
+            }
+            else
+            {
+                errNom.Text = "";
+            }
+
+            if (string.IsNullOrWhiteSpace(Mdp))
+            {
+                errMdp.Text = "Le mot de passe est requis";
+                validation = false;
+            }
+            else
+            {
+                errMdp.Text = "";
+            }
+
+            if (!singletonBD.getInstance().estAdmin(Nom, Mdp) && !string.IsNullOrWhiteSpace(Mdp) && !string.IsNullOrWhiteSpace(Nom))
+            {
+                errConnexion.Text = "Erreur de nom d'utilisateur ou de mot de passe.";
+                validation = false;
+            }
+            else
+            {
+                errConnexion.Text = "";
+            }
+
+            if (singletonBD.getInstance().estAdmin(Nom, Mdp) && !string.IsNullOrWhiteSpace(Mdp) && !string.IsNullOrWhiteSpace(Nom))
+            {
+                validation = true;
+            }
         }
 
         private void ContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
         {
             if (args.Result == ContentDialogResult.Primary)
             {
-                validation = true;
-
-                if (string.IsNullOrWhiteSpace(Nom))
-                {
-                    errNom.Text = "Le nom d'utilisateur est requis";
-                    args.Cancel = true;
-                    validation = false;
-                }
-
-                if (string.IsNullOrWhiteSpace(Mdp)){
-                    errMdp.Text = "Le mot de passe est requis";
-                    args.Cancel = true;
-                    validation = false;
-                }
-                
-
-                if (!singletonBD.getInstance().estAdmin(Nom,Mdp) && !string.IsNullOrWhiteSpace(Mdp) && !string.IsNullOrWhiteSpace(Nom) )
-                {
-                    validation = true;
-                }
-
-
-
-                if (validation)
+                if (validation == true)
                 {
                     singletonBD.getInstance().connexionAdmin(Nom,Mdp);
-                    args.Cancel = false;
+                    
                 }
+                else
+                {
+                args.Cancel = true;
 
-
-                
+                }
             }
             else{
                 args.Cancel = false;
