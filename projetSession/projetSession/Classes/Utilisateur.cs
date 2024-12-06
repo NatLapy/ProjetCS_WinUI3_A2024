@@ -44,7 +44,7 @@ namespace projetSession.Classes
             this.prenom = prenom;
             this.adresse = adresse;
             this.dateNaissances = dateNaissances;
-            role = "adherent";
+            role = "Adherent";
         }
 
 

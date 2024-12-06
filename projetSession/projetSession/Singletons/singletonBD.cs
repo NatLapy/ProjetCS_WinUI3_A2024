@@ -289,7 +289,7 @@ namespace projetSession.Singletons
         }
 
         /* connexion d'un adherent avec le numéro d'identification */
-        public Utilisateur connexionAdherent(string idUser)
+        public void connexionAdherent(string idUser)
         {
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
@@ -321,7 +321,6 @@ namespace projetSession.Singletons
             r.Close();
             con.Close();
 
-            return SingletonUtilisateur.getInstance().User;
 
 
         }

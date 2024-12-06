@@ -45,7 +45,7 @@
             <NavigationViewItem x:Name="iStatistique" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <FontIcon Glyph="&#xE902;"/>
-                    <TextBlock>Liste des Commandes</TextBlock>
+                    <TextBlock>Statistiques</TextBlock>
                 </StackPanel>
             </NavigationViewItem>
         </NavigationView.MenuItems>

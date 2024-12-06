@@ -85,6 +85,7 @@
                                             BorderBrush="Green"
                                             BorderThickness="2"
                                             Margin="0 0 0 10"
+                                            Click="btn_seances_admin_Click"
                                             >
 
                                     <Button.Resources>

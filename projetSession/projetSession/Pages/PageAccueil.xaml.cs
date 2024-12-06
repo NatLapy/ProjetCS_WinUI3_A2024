@@ -132,6 +132,10 @@ namespace projetSession.Pages
                     {
                         item.Visibility = VisibilityAdmin;
                     }
+                    if (item.Name == "iStatistique")
+                    {
+                        item.Visibility = VisibilityAdmin;
+                    }
                     if (item.Name == "iConnecter")
                     {
                         navViewItem.Visibility = VisibilityAdmin;
@@ -249,6 +253,11 @@ namespace projetSession.Pages
                 }
 
             }
+        }
+
+        private void btn_seances_admin_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(PageSeance));
         }
     }
 }
