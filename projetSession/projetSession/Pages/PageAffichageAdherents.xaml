@@ -82,7 +82,6 @@
 
                                 <StackPanel Orientation="Horizontal">
                                     <SymbolIcon Symbol="Edit" Foreground="Blue" />
-
                                 </StackPanel>
 
                             </Button>
