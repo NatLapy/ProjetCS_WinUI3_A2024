@@ -84,8 +84,11 @@ namespace projetSession.Pages
 
             if (resultat == ContentDialogResult.Primary)
             {
+                if (SingletonUtilisateur.getInstance().User.Role == "Admin")
+                {
+                    Frame.Navigate(typeof(PageAccueil));
+                }
 
-                Frame.Navigate(typeof(PageAccueil));
             }
 
             else

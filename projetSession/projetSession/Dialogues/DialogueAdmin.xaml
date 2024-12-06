@@ -11,6 +11,7 @@
     >
 
     <StackPanel>
+        <TextBlock x:Name="errConnexion" Foreground="Red" FontSize="15"></TextBlock>
         <TextBox Foreground="White" Header="Entrez votre nom d'utilisateur" x:Name="tbx_user" Margin="5"/>
         <TextBlock x:Name="errNom" Foreground="Red"></TextBlock>
         <PasswordBox Header="Entrez votre mot de passe" Foreground="White" x:Name="pwd_user" Margin="5" />
