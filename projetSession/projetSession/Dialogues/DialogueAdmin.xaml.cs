@@ -5,6 +5,9 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI.Common;
+using projetSession.Pages;
+using projetSession.Singletons;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +27,8 @@ namespace projetSession
         public String Mdp { get; set; }
 
         bool fermer = false;
+        Boolean validation = true;
+
 
         public DialogueAdmin()
         {
@@ -32,7 +37,6 @@ namespace projetSession
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            
             Nom = tbx_user.Text;
             Mdp = pwd_user.Password;
         }
@@ -41,15 +45,37 @@ namespace projetSession
         {
             if (args.Result == ContentDialogResult.Primary)
             {
+                validation = true;
+
                 if (string.IsNullOrWhiteSpace(Nom))
                 {
-                    if (string.IsNullOrWhiteSpace(Mdp))
-                    {
-                        errMdp.Text = "Le mot de passe est requis";
-                    }
                     errNom.Text = "Le nom d'utilisateur est requis";
                     args.Cancel = true;
+                    validation = false;
                 }
+
+                if (string.IsNullOrWhiteSpace(Mdp)){
+                    errMdp.Text = "Le mot de passe est requis";
+                    args.Cancel = true;
+                    validation = false;
+                }
+                
+
+                if (!singletonBD.getInstance().estAdmin(Nom,Mdp) && !string.IsNullOrWhiteSpace(Mdp) && !string.IsNullOrWhiteSpace(Nom) )
+                {
+                    validation = true;
+                }
+
+
+
+                if (validation)
+                {
+                    singletonBD.getInstance().connexionAdmin(Nom,Mdp);
+                    args.Cancel = false;
+                }
+
+
+                
             }
             else{
                 args.Cancel = false;

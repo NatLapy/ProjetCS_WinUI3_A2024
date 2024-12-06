@@ -2,6 +2,7 @@
 using projetSession.Classes;
 using System;
 using System.Collections.ObjectModel;
+using Windows.System;
 
 namespace projetSession.Singletons
 {
@@ -445,16 +446,76 @@ namespace projetSession.Singletons
             return false;
         }
 
+        /*----------------------------------------------------------------Partie Admin------------------------------------------------------------*/
+
+        public bool estAdmin(string name, string password)
+        {
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"SELECT* FROM administrateurs WHERE nomUtilisateur = '{name}' AND motDePasse = '{password}';";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+            MySqlDataReader r = commande.ExecuteReader();
+
+            if (r.HasRows)
+            {
+                r.Close();
+                con.Close();
+                return true;
+            }
+            else
+            {
+                r.Close();
+                con.Close();
+                return false;
+            }
+
+            r.Close();
+            con.Close();
+
+            return false;
+        }
+
+
+        public void connexionAdmin(string name, string password)
+        {
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"SELECT* FROM administrateurs WHERE nomUtilisateur = '{name}' AND motDePasse = '{password}';";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+
+                int id = Convert.ToInt16(r["idAdmin"].ToString());
+
+                string nom = r["nomUtilisateur"].ToString();
+
+
+                string mdp = r["motDePasse"].ToString();
+
+                SingletonUtilisateur.getInstance().User = new Utilisateur(id,nom,mdp);
+            }
+
+            r.Close();
+            con.Close();
+        }
+
+
 
         /*----------------------------------------------------------------Partie Seances------------------------------------------------------------*/
 
 
-        //public ObservableCollection<Activites> getListeSeance()
-        //{
-        //    getActivites();
+        public ObservableCollection<Seances> getListeSeance()
+        {
+            getSeance();
 
-        //    return liste;
-        //}
+            return listeSeances;
+        }
 
         /*Afficher les Séances*/
 
