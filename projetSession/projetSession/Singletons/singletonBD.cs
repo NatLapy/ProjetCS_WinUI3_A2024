@@ -305,19 +305,24 @@ namespace projetSession.Singletons
             //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
             MySqlDataReader r = commande.ExecuteReader();
 
+            while (r.Read())
+            {
+                string noIdentification = r["noIdentification"].ToString();
 
-            string noIdentification = r["noIdentification"].ToString();
+                string nom = r["nom"].ToString();
 
-            string nom = r["nom"].ToString();
-
-            string prenom = r["prenom"].ToString();
+                string prenom = r["prenom"].ToString();
 
 
-            string adresse = r["adresse"].ToString();
+                string adresse = r["adresse"].ToString();
 
-            string dateNaissance = r["dateNaissance"].ToString();
+                string dateNaissance = r["dateNaissance"].ToString();
+                
+                SingletonUtilisateur.getInstance().User = new Utilisateur(noIdentification, nom, prenom, adresse, dateNaissance);
+            }
+            
 
-            SingletonUtilisateur.getInstance().User = new Utilisateur(noIdentification, nom, prenom, adresse, dateNaissance);
+            
 
             r.Close();
             con.Close();

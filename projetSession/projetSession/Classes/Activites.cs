@@ -41,6 +41,14 @@ namespace projetSession.Classes
             }
         }
 
+        public Visibility VisibilityAdherent
+        {
+            get
+            {
+                return SingletonUtilisateur.getInstance().User.Role == "Adherent" ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
         public int IdActivite
         {
             get

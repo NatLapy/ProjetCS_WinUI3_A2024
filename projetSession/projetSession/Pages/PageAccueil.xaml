@@ -69,10 +69,85 @@
                                 <Image Height="200" Width="200" Source="{ x:Bind UrlImage }"></Image>
                                 <TextBlock HorizontalAlignment="Center" Padding="80 30 80 0"  Text="{x:Bind Nom }" />
                                 <TextBlock HorizontalAlignment="Center" Padding="20" Text="{x:Bind s_PrixVente }" />
-                                <TextBlock HorizontalAlignment="Center" Visibility="{x:Bind VisibilityAdmin}" Padding="20" Text="{x:Bind s_CoutOrganisation }" />
+                                <TextBlock HorizontalAlignment="Center" Visibility="{x:Bind VisibilityAdmin, Mode=OneWay}" Padding="20" Text="{x:Bind s_CoutOrganisation }" />
 
+                                <Button
+                                            Visibility="{x:Bind VisibilityAdmin}"
+                                            x:Name="btn_seances_admin"
+                                            HorizontalAlignment="Center"
+                                            Background="Black" 
+                                            Foreground="White" 
+                                            FontSize="25" 
+                                            Width="60"
+                                            Height="50"
+                                            PointerEntered="BtnHover"
+                                            PointerExited="BtnSortie"
+                                            BorderBrush="Green"
+                                            BorderThickness="2"
+                                            Margin="0 0 0 10"
+                                            >
 
-                                <StackPanel Spacing="20" x:Name="stkBAdmin" HorizontalAlignment="Center" Visibility="{x:Bind VisibilityAdmin}"  Orientation="Horizontal">
+                                    <Button.Resources>
+                                        <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="DarkGreen" />
+                                        <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="LimeGreen"/>
+                                    </Button.Resources>
+                                    <StackPanel Orientation="Horizontal">
+                                        <SymbolIcon Symbol="View" Foreground="LawnGreen"/>
+
+                                    </StackPanel>
+
+                                </Button>
+                                
+                                <StackPanel Visibility="{x:Bind VisibilityAdherent, Mode=OneWay}" Padding="0 0 0 10"  Spacing="20" x:Name="stkBAdherent" HorizontalAlignment="Center"  Orientation="Horizontal">
+
+                                    <Button
+                                            x:Name="btn_seances_adherent"
+                                            HorizontalAlignment="Center"
+                                            Background="Black" 
+                                            Foreground="White" 
+                                            FontSize="25" 
+                                            Width="60"
+                                            Height="50"
+                                            PointerEntered="BtnHover"
+                                            PointerExited="BtnSortie"
+                                            BorderBrush="Green"
+                                            BorderThickness="2"
+                                            >
+
+                                        <Button.Resources>
+                                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="DarkGreen" />
+                                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="LimeGreen"/>
+                                        </Button.Resources>
+                                        <StackPanel Orientation="Horizontal">
+                                            <SymbolIcon Symbol="View" Foreground="LawnGreen"/>
+
+                                        </StackPanel>
+
+                                    </Button>
+                                    <Button 
+                                            x:Name="btn_Avis"
+                                            Background="Black" 
+                                            Foreground="White" 
+                                            FontSize="25" 
+                                            Width="60"
+                                            Height="50"
+                                            PointerEntered="BtnHover"
+                                            PointerExited="BtnSortie"
+                                            >
+
+                                            <Button.Resources>
+                                                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="DarkRed" />
+                                                <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Red"/>
+                                            </Button.Resources>
+                                            <StackPanel Orientation="Horizontal">
+                                                <SymbolIcon Symbol="LikeDislike" Foreground="Red"/>
+
+                                            </StackPanel>
+
+                                        </Button>
+                                    </StackPanel>
+
+                                <StackPanel Spacing="20" x:Name="stkBAdmin" HorizontalAlignment="Center" Visibility="{x:Bind VisibilityAdmin, Mode=OneWay}"  Orientation="Horizontal">
                                     <Button 
                                         x:Name="btn_supprimer"
                                         Background="Black" 

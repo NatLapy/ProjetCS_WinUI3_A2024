@@ -59,6 +59,7 @@ namespace projetSession.Pages
 
             if (validation)
             {
+                singletonBD.getInstance().connexionAdherent(idAdherent);
                 Frame.Navigate(typeof(PageAccueil));
             }
         }
