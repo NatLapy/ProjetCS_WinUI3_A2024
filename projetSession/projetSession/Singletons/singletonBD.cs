@@ -1,13 +1,7 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using projetSession.Classes;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace projetSession.Singletons
 {
@@ -317,19 +311,19 @@ namespace projetSession.Singletons
                 string adresse = r["adresse"].ToString();
 
                 string dateNaissance = r["dateNaissance"].ToString();
-                
+
                 SingletonUtilisateur.getInstance().User = new Utilisateur(noIdentification, nom, prenom, adresse, dateNaissance);
             }
-            
 
-            
+
+
 
             r.Close();
             con.Close();
 
             return SingletonUtilisateur.getInstance().User;
 
-            
+
         }
 
         /*Modifier un adhérent*/
