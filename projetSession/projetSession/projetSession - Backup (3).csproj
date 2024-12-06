@@ -12,15 +12,15 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Pages\AjouterActivite.xaml" />
+    <None Remove="AjouterActivite.xaml" />
     <None Remove="DialogueActivites.xaml" />
     <None Remove="DialogueAdmin.xaml" />
-    <None Remove="Pages\PageAccueil.xaml" />
-    <None Remove="Pages\PageAffichageAdherents.xaml" />
-    <None Remove="Pages\PageConnection.xaml" />
-    <None Remove="Pages\pageInscription.xaml" />
-    <None Remove="Pages\PageStatistique.xaml" />
-    <None Remove="Pages\PageUser.xaml" />
+    <None Remove="PageAccueil.xaml" />
+    <None Remove="PageAffichageAdherents.xaml" />
+    <None Remove="PageConnection.xaml" />
+    <None Remove="pageInscription.xaml" />
+    <None Remove="PageStatistique.xaml" />
+    <None Remove="PageUser.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,49 +49,52 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\PageAffichageAdherents.xaml">
+    <Page Update="PageAffichageAdherents.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\AjouterActivite.xaml">
+    <Page Update="AjouterActivite.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Dialogues\DialogueActivites.xaml">
+    <Page Update="DialogueActivites.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\pageInscription.xaml">
+    <Page Update="pageInscription.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\PageConnection.xaml">
+    <Page Update="PageConnection.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\PageUser.xaml">
+    <Page Update="PageUser.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Dialogues\DialogueAdmin.xaml">
+    <Page Update="DialogueAdmin.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\PageAccueil.xaml">
+    <Page Update="PageAccueil.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\PageStatistique.xaml">
+    <Page Update="PageStatistique.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dialogues\NewFolder\" />
   </ItemGroup>
 
   <!-- 

@@ -17,11 +17,13 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml.Media.Imaging;
 using MySql.Data.MySqlClient;
+using projetSession.Classes;
+using projetSession.Singletons;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace projetSession
+namespace projetSession.Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.

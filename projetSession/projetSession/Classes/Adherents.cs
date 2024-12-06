@@ -5,40 +5,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projetSession
+namespace projetSession.Classes
 {
     internal class Adherents : INotifyPropertyChanged
     {
-        String noIdentification = "";
-        String nom = "";
-        String prenom = "";
-        String adresse = "";
-        String dateNaissances = "";
-        int age = 0;
+        string noIdentification = "";
+        string nom = "";
+        string prenom = "";
+        string adresse = "";
+        string dateNaissances = "";
 
 
-        public Adherents(string noIdentification, string nom, string prenom, string adresse, string dateNaissances, int age)
+        public Adherents(string noIdentification, string nom, string prenom, string adresse, string dateNaissances)
         {
             this.noIdentification = noIdentification;
             this.nom = nom;
             this.prenom = prenom;
             this.adresse = adresse;
             this.dateNaissances = dateNaissances;
-            this.age = age;
         }
 
-        public Adherents( string nom, string prenom, string adresse, string dateNaissances)
+        public Adherents(string nom, string prenom, string adresse, string dateNaissances)
         {
-            
+
             this.nom = nom;
             this.prenom = prenom;
             this.adresse = adresse;
             this.dateNaissances = dateNaissances;
-            
+
         }
 
 
-        public String NoIdentification
+        public string NoIdentification
         {
             get
             {
@@ -53,7 +51,7 @@ namespace projetSession
             }
         }
 
-        public String Nom
+        public string Nom
         {
             get
             {
@@ -68,7 +66,7 @@ namespace projetSession
             }
         }
 
-        public String Prenom
+        public string Prenom
         {
             get
             {
@@ -84,7 +82,7 @@ namespace projetSession
         }
 
 
-        public String Adresse
+        public string Adresse
         {
             get
             {
@@ -99,7 +97,7 @@ namespace projetSession
             }
         }
 
-        public String DateNaissances
+        public string DateNaissances
         {
             get
             {
@@ -114,7 +112,7 @@ namespace projetSession
             }
         }
 
-       
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -125,7 +123,7 @@ namespace projetSession
 
         public override string ToString()
         {
-            return noIdentification + " " + nom + " " + prenom + " " + adresse + " " + dateNaissances + age;
+            return noIdentification + " " + nom + " " + prenom + " " + adresse + " " + dateNaissances;
         }
     }
 }

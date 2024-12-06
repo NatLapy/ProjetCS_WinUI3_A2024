@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projetSession
+namespace projetSession.Singletons
 {
     internal class SingletonSession
     {
@@ -17,7 +17,7 @@ namespace projetSession
         public SingletonSession()
         {
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq2;Uid=6269818;Pwd=6269818;");
-            
+
         }
 
         public static SingletonSession getInstance()
@@ -27,7 +27,7 @@ namespace projetSession
                 instance = new SingletonSession();
                 instance.Role = "nonConnecter";
             }
-                
+
 
             return instance;
         }

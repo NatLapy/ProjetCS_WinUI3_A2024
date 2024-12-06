@@ -1,11 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
+using projetSession.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projetSession
+namespace projetSession.Singletons
 {
     internal class SingletonUtilisateur
     {
@@ -25,7 +26,7 @@ namespace projetSession
                 instance = new SingletonUtilisateur();
                 instance.User = new Utilisateur();
             }
-                
+
 
             return instance;
         }
@@ -33,7 +34,8 @@ namespace projetSession
         // SECTION VERIFICATION ROLE
 
 
-        public Utilisateur User{
+        public Utilisateur User
+        {
             get;
 
             set;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projetSession
+namespace projetSession.Singletons
 {
     internal class SingletonHelper
     {

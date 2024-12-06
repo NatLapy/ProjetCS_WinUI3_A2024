@@ -16,21 +16,53 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using System.Data;
+using projetSession.Singletons;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace projetSession
+namespace projetSession.Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class PageConnection : Page
     {
+        
+        Boolean validation = true;
+
         public PageConnection()
         {
             this.InitializeComponent();
         }
+
+
+        private void btnConnection_Click(object sender, RoutedEventArgs e)
+        {
+            validation = true;
+            string idAdherent = tbx_idAdherent.Text;
+
+            if (string.IsNullOrWhiteSpace(idAdherent))
+            {
+                validation = false;
+                idAdherentErr.Text = "Veuillez entrez le numéro d'identification";
+            }
+            else
+            {
+                if (!singletonBD.getInstance().estAdherent(idAdherent)){
+                    validation = false;
+                    idAdherentErr.Text = "Aucun Adherent existe avec ce numéro d'identification";
+                }
+            }
+
+            
+
+            if (validation)
+            {
+                Frame.Navigate(typeof(PageAccueil));
+            }
+        }
+
 
         private async void lienAdmin_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
@@ -82,5 +114,6 @@ namespace projetSession
             this.ProtectedCursor = inputCurs;
         }
 
+        
     }
 }

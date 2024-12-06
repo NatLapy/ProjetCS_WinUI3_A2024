@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projetSession
+namespace projetSession.Classes
 {
     internal class Categories
     {
         int idCategorie = 0;
-        String nom = "";
+        string nom = "";
 
         public Categories(int idCategorie, string nom)
         {
@@ -17,7 +17,7 @@ namespace projetSession
             this.nom = nom;
         }
 
-        public String Nom
+        public string Nom
         {
             get
             {

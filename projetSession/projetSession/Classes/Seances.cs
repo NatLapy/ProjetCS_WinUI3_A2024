@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projetSession
+namespace projetSession.Classes
 {
     internal class Seances
     {
         int idSceances = 0;
-        String dateOrganisation = "";
+        string dateOrganisation = "";
         int nbPlaceDispo = 0;
         int idActivite = 0;
 
-        public Seances(int idSceances, string dateOrganisation , int nbPlaceDispo , int idActivite)
+        public Seances(int idSceances, string dateOrganisation, int nbPlaceDispo, int idActivite)
         {
             this.idSceances = idSceances;
             this.dateOrganisation = dateOrganisation;
@@ -36,7 +36,7 @@ namespace projetSession
             }
         }
 
-        public String DateOrganisation
+        public string DateOrganisation
         {
             get
             {
@@ -51,7 +51,7 @@ namespace projetSession
             }
         }
 
-       
+
         public int NbPlaceDispo
         {
             get

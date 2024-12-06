@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projetSession
+namespace projetSession.Classes
 {
-    internal class Inscriptions 
+    internal class Inscriptions
     {
-        String noIdentificationAdherent = "";
+        string noIdentificationAdherent = "";
         int idSceanceInscription = 0;
         int noteAppreciation = 0;
 
@@ -20,7 +20,7 @@ namespace projetSession
             this.noteAppreciation = noteAppreciation;
         }
 
-        public String NoIdentificationAdherent
+        public string NoIdentificationAdherent
         {
             get
             {

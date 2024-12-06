@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projetSession
+namespace projetSession.Classes
 {
     internal class Administrateurs : INotifyPropertyChanged
     {
         int idAdmin = 0;
-        String nomUtilisateur = "";
-        String motDePasse = "";
+        string nomUtilisateur = "";
+        string motDePasse = "";
 
         public Administrateurs(int idAdmin, string nomUtilisateur, string motDePasse)
         {
@@ -35,7 +35,7 @@ namespace projetSession
             }
         }
 
-        public String NomUtilisateur
+        public string NomUtilisateur
         {
             get
             {
@@ -50,7 +50,7 @@ namespace projetSession
             }
         }
 
-        public String MotDePasse
+        public string MotDePasse
         {
             get
             {
@@ -74,7 +74,7 @@ namespace projetSession
 
         public override string ToString()
         {
-            return idAdmin + " " + nomUtilisateur + " " + motDePasse;   
+            return idAdmin + " " + nomUtilisateur + " " + motDePasse;
         }
     }
 }

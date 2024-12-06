@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using MySql.Data.MySqlClient;
+using projetSession.Classes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projetSession
+namespace projetSession.Singletons
 {
     internal class singletonBD
     {
@@ -43,11 +44,11 @@ namespace projetSession
         public ObservableCollection<Activites> getListe()
         {
             getActivites();
-            
+
             return liste;
         }
 
-        
+
 
         public void getActivites()
         {
@@ -64,30 +65,30 @@ namespace projetSession
 
             while (r.Read())
             {
-                String s_idActivite = r["idActivite"].ToString();
+                string s_idActivite = r["idActivite"].ToString();
                 int idActivite = Convert.ToInt16(s_idActivite);
 
-                String nom = r["nom"].ToString();
+                string nom = r["nom"].ToString();
 
-                String s_coutOrganisation = r["coutOrganisation"].ToString();
+                string s_coutOrganisation = r["coutOrganisation"].ToString();
                 int coutOrganisation = Convert.ToInt16(s_coutOrganisation);
 
-                String s_prixVente = r["prixDeVente"].ToString();
+                string s_prixVente = r["prixDeVente"].ToString();
                 int prixVente = Convert.ToInt16(s_prixVente);
 
-              
-               
 
-                String s_idCategorie = r["idCategorie"].ToString();
+
+
+                string s_idCategorie = r["idCategorie"].ToString();
                 int idCategorie = Convert.ToInt16(s_idCategorie);
 
                 string s_urlImage = r["urlImage"].ToString();
 
-               
 
-                
 
-                Activites activite = new Activites(idActivite, nom, coutOrganisation , prixVente  , idCategorie, s_urlImage);
+
+
+                Activites activite = new Activites(idActivite, nom, coutOrganisation, prixVente, idCategorie, s_urlImage);
 
 
 
@@ -115,24 +116,24 @@ namespace projetSession
             while (r.Read())
             {
 
-                String s_idActivite = r["idActivite"].ToString();
+                string s_idActivite = r["idActivite"].ToString();
                 int idActivite = Convert.ToInt16(s_idActivite);
 
-                String nom = r["nom"].ToString();
+                string nom = r["nom"].ToString();
 
-                String s_coutOrganisation = r["coutOrganisation"].ToString();
+                string s_coutOrganisation = r["coutOrganisation"].ToString();
                 int coutOrganisation = Convert.ToInt16(s_coutOrganisation);
 
-                String s_prixVente = r["prixDeVente"].ToString();
+                string s_prixVente = r["prixDeVente"].ToString();
                 int prixVente = Convert.ToInt16(s_prixVente);
 
 
-                String s_idCategorie = r["idCategorie"].ToString();
+                string s_idCategorie = r["idCategorie"].ToString();
                 int idCategorie = Convert.ToInt16(s_idCategorie);
 
                 string s_urlImage = r["urlImage"].ToString();
 
-                Activites activite = new Activites(idActivite, nom, coutOrganisation, prixVente, idCategorie,s_urlImage);
+                Activites activite = new Activites(idActivite, nom, coutOrganisation, prixVente, idCategorie, s_urlImage);
 
 
 
@@ -145,7 +146,7 @@ namespace projetSession
 
         /*supprimer un activité*/
 
-        public void supprimerActivites(String nom)
+        public void supprimerActivites(string nom)
         {
             try
             {
@@ -172,7 +173,7 @@ namespace projetSession
 
         /*modifier un activité*/
 
-        public void modifierActivites(int _idActivite, String _nom, int _coutOrganisation, int _prixDeVente, int _idAdmin, int _idCategorie)
+        public void modifierActivites(int _idActivite, string _nom, int _coutOrganisation, int _prixDeVente, int _idAdmin, int _idCategorie)
         {
             try
             {
@@ -202,7 +203,7 @@ namespace projetSession
 
         /*ajouter un activité*/
 
-        public void addActivites( String _nom, double _coutOrganisation, double _prixDeVente, int _idCategorie, string _urlImage)
+        public void addActivites(string _nom, double _coutOrganisation, double _prixDeVente, int _idCategorie, string _urlImage)
         {
 
             try
@@ -251,6 +252,7 @@ namespace projetSession
             return listeAdherents;
         }
 
+        /* Get TOUT les adherents */
         public void getAdherents()
         {
             listeAdherents.Clear();
@@ -266,20 +268,20 @@ namespace projetSession
 
             while (r.Read())
             {
-               
-
-                String nom = r["nom"].ToString();
-
-                String prenom = r["prenom"].ToString();
 
 
-                String adresse = r["adresse"].ToString();
+                string nom = r["nom"].ToString();
 
-                String dateNaissance = r["dateNaissance"].ToString();
+                string prenom = r["prenom"].ToString();
 
-               
 
-                Adherents adherents = new Adherents(nom,prenom,adresse,dateNaissance);
+                string adresse = r["adresse"].ToString();
+
+                string dateNaissance = r["dateNaissance"].ToString();
+
+
+
+                Adherents adherents = new Adherents(nom, prenom, adresse, dateNaissance);
 
 
 
@@ -290,9 +292,42 @@ namespace projetSession
             con.Close();
         }
 
+        /* connexion d'un adherent avec le numéro d'identification */
+        public Utilisateur connexionAdherent(string idUser)
+        {
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"SELECT * FROM adherents WHERE noIdentification = '{idUser}'";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+            MySqlDataReader r = commande.ExecuteReader();
+
+
+            string noIdentification = r["noIdentification"].ToString();
+
+            string nom = r["nom"].ToString();
+
+            string prenom = r["prenom"].ToString();
+
+
+            string adresse = r["adresse"].ToString();
+
+            string dateNaissance = r["dateNaissance"].ToString();
+
+            SingletonUtilisateur.getInstance().User = new Utilisateur(noIdentification, nom, prenom, adresse, dateNaissance);
+
+            r.Close();
+            con.Close();
+
+            return SingletonUtilisateur.getInstance().User;
+
+            
+        }
+
         /*Modifier un adhérent*/
 
-        public void modifierAdherents(String _noIdentification, String _nom, String _prenom, String _adresse, String _dateNaissance)
+        public void modifierAdherents(string _noIdentification, string _nom, string _prenom, string _adresse, string _dateNaissance)
         {
             try
             {
@@ -322,7 +357,7 @@ namespace projetSession
 
         /*ajouter un adhérent*/
 
-        public void addAdherents( String _nom, String _prenom, String _adresse, String _dateNaissance)
+        public void addAdherents(string _nom, string _prenom, string _adresse, string _dateNaissance)
         {
 
             try
@@ -334,7 +369,7 @@ namespace projetSession
                 commande.Parameters.AddWithValue("@prenom", _prenom);
                 commande.Parameters.AddWithValue("@adresse", _adresse);
                 commande.Parameters.AddWithValue("@dateNaissance", _dateNaissance);
-                
+
 
 
                 con.Open();
@@ -352,10 +387,10 @@ namespace projetSession
 
         /*Supprimer un adhérent*/
 
-        public void supprimerAdherents(String nom)
+        public void supprimerAdherents(string nom)
         {
 
-            
+
 
             try
             {
@@ -380,13 +415,43 @@ namespace projetSession
             }
         }
 
+        /*Trouver si un adhérent existe avec le numéro d'identification*/
+        public bool estAdherent(string idUser)
+        {
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"SELECT * FROM adherents WHERE noIdentification = '{idUser}'";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+            MySqlDataReader r = commande.ExecuteReader();
+
+            if (r.HasRows)
+            {
+                r.Close();
+                con.Close();
+                return true;
+            }
+            else
+            {
+                r.Close();
+                con.Close();
+                return false;
+            }
+
+            r.Close();
+            con.Close();
+
+            return false;
+        }
+
 
         /*----------------------------------------------------------------Partie Seances------------------------------------------------------------*/
 
 
         /*Ajouter une séances*/
 
-        public void addSeances(int _idSceances, String _dateOrganisation, int _nbPlaceDispo, int _idActivite)
+        public void addSeances(int _idSceances, string _dateOrganisation, int _nbPlaceDispo, int _idActivite)
         {
 
             try
@@ -398,7 +463,7 @@ namespace projetSession
                 commande.Parameters.AddWithValue("@dateOrganisation", _dateOrganisation);
                 commande.Parameters.AddWithValue("@nbPlaceDispo", _nbPlaceDispo);
                 commande.Parameters.AddWithValue("@idActivite", _idActivite);
-                
+
 
 
 
@@ -416,7 +481,7 @@ namespace projetSession
         }
 
         /*Modifier une séances*/
-        public void modifierSeances(int _idSceances, String _dateOrganisation, int _nbPlaceDispo, int _idActivite)
+        public void modifierSeances(int _idSceances, string _dateOrganisation, int _nbPlaceDispo, int _idActivite)
         {
             try
             {
@@ -428,7 +493,7 @@ namespace projetSession
                 commande.Parameters.AddWithValue("dateOrganisation", _dateOrganisation);
                 commande.Parameters.AddWithValue("nbPlaceDispo", _nbPlaceDispo);
                 commande.Parameters.AddWithValue("idActivite", _idActivite);
-               
+
 
                 con.Open();
                 commande.Prepare();
@@ -447,7 +512,7 @@ namespace projetSession
 
         /*Supprimer une séances*/
 
-        public void supprimerSeance(String nom)
+        public void supprimerSeance(string nom)
         {
             try
             {
@@ -495,10 +560,10 @@ namespace projetSession
 
             while (r.Read())
             {
-                String s_idActivite = r["idCategorie"].ToString();
+                string s_idActivite = r["idCategorie"].ToString();
                 int idCategorie = Convert.ToInt16(s_idActivite);
 
-                String nom = r["nom"].ToString();
+                string nom = r["nom"].ToString();
 
                 Categories categorie = new Categories(idCategorie, nom);
 

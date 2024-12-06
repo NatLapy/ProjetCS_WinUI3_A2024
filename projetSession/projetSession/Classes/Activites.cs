@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using projetSession.Singletons;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,27 +8,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projetSession
+namespace projetSession.Classes
 {
     internal class Activites : INotifyPropertyChanged
     {
         int idActivite = 0;
-        String nom = "";
+        string nom = "";
         double coutOrganisation = 0;
         double prixVente = 0;
-        
+
         int idCategorie = 0;
 
         string urlImage = "";
 
-        public Activites(int idActivite, string nom, double coutOrganisation, double prixVente  , int idCategorie, string urlImage)
+        public Activites(int idActivite, string nom, double coutOrganisation, double prixVente, int idCategorie, string urlImage)
         {
             this.idActivite = idActivite;
             this.nom = nom;
             this.coutOrganisation = coutOrganisation;
             this.prixVente = prixVente;
             this.idCategorie = idCategorie;
-            this.UrlImage = urlImage;
+            UrlImage = urlImage;
         }
 
 
@@ -55,7 +56,7 @@ namespace projetSession
             }
         }
 
-        public String Nom
+        public string Nom
         {
             get
             {
@@ -84,6 +85,14 @@ namespace projetSession
 
             }
         }
+        
+        public string s_CoutOrganisation
+        {
+            get
+            {
+                return coutOrganisation.ToString("0.00$");
+            }
+        }
 
 
         public double PrixVente
@@ -109,7 +118,7 @@ namespace projetSession
             }
         }
 
-       
+
 
 
         public int IdCategorie
