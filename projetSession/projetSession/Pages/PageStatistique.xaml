@@ -8,7 +8,61 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <ScrollViewer>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
 
-    </Grid>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10">
+                <TextBlock FontSize="20" >Nombre total d'adhérents:</TextBlock>
+                <TextBlock x:Name="tb_nbTotalAdherent" FontSize="25" >10</TextBlock>    
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10">
+                <TextBlock FontSize="20"  Grid.Row="1">Nombre total d'activité</TextBlock>
+                <TextBlock x:Name="tb_nbTotalActivite" FontSize="25" >10</TextBlock>
+            
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Center" x:Name="stk_nbAdherentParActivite" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" >
+                
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="10">
+                <TextBlock FontSize="20"  Grid.Row="3">La moyenne des notes pour chacune des activités</TextBlock>
+                <TextBlock FontSize="25" >10</TextBlock>
+            </StackPanel>        
+        
+            <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="10">
+                <TextBlock FontSize="20"  Grid.Row="4">custom stat 1</TextBlock>
+                <TextBlock FontSize="25" >10</TextBlock>
+            </StackPanel>        
+        
+            <StackPanel Grid.Row="5" Orientation="Horizontal" Spacing="10">
+                <TextBlock FontSize="20"  Grid.Row="5">custom stat 2</TextBlock>
+                <TextBlock FontSize="25" >10</TextBlock>
+            </StackPanel>        
+        
+            <StackPanel Grid.Row="6" Orientation="Horizontal" Spacing="10">
+                <TextBlock FontSize="20"  Grid.Row="6">custom stat 3</TextBlock>
+                <TextBlock FontSize="25">10</TextBlock>
+            </StackPanel>        
+        
+        
+
+
+
+        
+        
+        
+
+        </Grid>
+    </ScrollViewer>
 </Page>
