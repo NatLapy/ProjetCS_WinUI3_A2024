@@ -41,15 +41,17 @@ namespace projetSession.Pages
 
             moyenneNoteParActivite();
 
+            nombreActiviteParCategorie();
+
         }
 
-        public void moyenneNoteParActivite()
+        public void nombreActiviteParCategorie()
         {
-            string[] nomActivites = singletonBD.getInstance().getActiviteNom();
-            int[] idActivites = singletonBD.getInstance().getActiviteId();
-            int totalActivite = singletonBD.getInstance().getListe().Count;
+            string[] nomCategorie = singletonBD.getInstance().getCategorieNom();
+            int[] idCategorie = singletonBD.getInstance().getCategorieId();
+            int totalCategorie = singletonBD.getInstance().getCategoriesListe().Count;
 
-            for (int i = 0; i < (totalActivite - 1); i++)
+            for (int i = 0; i < (totalCategorie - 1); i++)
             {
                 StackPanel stk = new StackPanel();
                 TextBlock textBlock = new TextBlock();
@@ -59,11 +61,11 @@ namespace projetSession.Pages
                 stk.BorderBrush = new SolidColorBrush(Colors.Red);
                 stk.Padding = new Thickness(20);
 
-                textBlock.Text = nomActivites[i].ToString();
+                textBlock.Text = nomCategorie[i].ToString();
                 textBlock.FontSize = 15;
                 textBlock.HorizontalAlignment = HorizontalAlignment.Center;
 
-                nombre.Text = singletonBD.getInstance().getMoyenneParActivite(idActivites[i]).ToString();
+                nombre.Text = singletonBD.getInstance().getNbActiviteParCategorie(idCategorie[i]).ToString() + " Activités";
 
 
                 nombre.FontSize = 15;
@@ -72,7 +74,42 @@ namespace projetSession.Pages
 
                 stk.Children.Add(textBlock);
                 stk.Children.Add(nombre);
-                stk_nbAdherentParActivite.Children.Add(stk);
+                stk_nbActiviteParCategorie.Children.Add(stk);
+
+            }
+        }
+
+        public void moyenneNoteParActivite()
+        {
+            string[] nomActivites2 = singletonBD.getInstance().getActiviteNom();
+            int[] idActivites2 = singletonBD.getInstance().getActiviteId();
+            int totalActivite2 = singletonBD.getInstance().getListe().Count;
+
+            for (int i = 0; i < (totalActivite2 - 1); i++)
+            {
+                StackPanel stk = new StackPanel();
+                TextBlock textBlock = new TextBlock();
+                TextBlock nombre = new TextBlock();
+
+                stk.HorizontalAlignment = HorizontalAlignment.Stretch;
+                stk.BorderThickness = new Thickness(4.00);
+                stk.BorderBrush = new SolidColorBrush(Colors.Red);
+                stk.Padding = new Thickness(20);
+
+                textBlock.Text = nomActivites2[i].ToString();
+                textBlock.FontSize = 15;
+                textBlock.HorizontalAlignment = HorizontalAlignment.Center;
+
+                nombre.Text = singletonBD.getInstance().getMoyenneParActivite(idActivites2[i]).ToString() + " Étoiles";
+
+
+                nombre.FontSize = 15;
+                nombre.HorizontalAlignment = HorizontalAlignment.Center;
+
+
+                stk.Children.Add(textBlock);
+                stk.Children.Add(nombre);
+                stk_moyenneParActivite.Children.Add(stk);
 
             }
         }

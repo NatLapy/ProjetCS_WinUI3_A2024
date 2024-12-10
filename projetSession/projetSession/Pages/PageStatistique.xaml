@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <ScrollViewer>
-        <Grid Margin="20">
+        <Grid Margin="20" RowSpacing="30">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -31,37 +31,41 @@
             
             </StackPanel>
 
-            <StackPanel Grid.Row="2" >
+            <StackPanel Grid.Row="2" Spacing="10" >
+                <TextBlock FontSize="20">Nombre d'adhérents par activités</TextBlock>
                 <ScrollViewer  HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible">
                     <StackPanel VerticalAlignment="Center" x:Name="stk_nbAdherentParActivite" Orientation="Horizontal">
                 
                     </StackPanel>    
                 </ScrollViewer>    
             </StackPanel>
-            
-            
 
-            <ListView>
-                
-            </ListView>
-
-            <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="10">
-                <TextBlock FontSize="20"  Grid.Row="3">La moyenne des notes pour chacune des activités</TextBlock>
-                <TextBlock FontSize="25" >10</TextBlock>
-            </StackPanel>        
+            <StackPanel Grid.Row="3" Spacing="10" >
+                <TextBlock FontSize="20">Moyenne des notes par activités</TextBlock>
+                <ScrollViewer  HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible">
+                    <StackPanel VerticalAlignment="Center" x:Name="stk_moyenneParActivite" Orientation="Horizontal">
+                    </StackPanel>    
+                </ScrollViewer>    
+            </StackPanel>
+            
+               
         
-            <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="10">
-                <TextBlock FontSize="20"  Grid.Row="4">custom stat 1</TextBlock>
-                <TextBlock FontSize="25" >10</TextBlock>
+            <StackPanel Grid.Row="4" Spacing="10">
+                <TextBlock FontSize="20"  Grid.Row="4">Nombre d'activité par catégorie</TextBlock>
+                <ScrollViewer  HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible">
+                    <StackPanel VerticalAlignment="Center" x:Name="stk_nbActiviteParCategorie" Orientation="Horizontal">
+                    </StackPanel>
+                </ScrollViewer>
             </StackPanel>        
         
             <StackPanel Grid.Row="5" Orientation="Horizontal" Spacing="10">
-                <TextBlock FontSize="20"  Grid.Row="5">custom stat 2</TextBlock>
+                <TextBlock FontSize="20"  Grid.Row="5">nombre total de place disponible par activités</TextBlock>
                 <TextBlock FontSize="25" >10</TextBlock>
+                
             </StackPanel>        
         
             <StackPanel Grid.Row="6" Orientation="Horizontal" Spacing="10">
-                <TextBlock FontSize="20"  Grid.Row="6">custom stat 3</TextBlock>
+                <TextBlock FontSize="20"  Grid.Row="6">inscription des séances selon l'adhérents</TextBlock>
                 <TextBlock FontSize="25">10</TextBlock>
             </StackPanel>        
         

@@ -281,7 +281,7 @@ namespace projetSession.Singletons
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
             //commande.CommandText = "SELECT nom FROM inscription INNER JOIN seances s on inscription.idSeance = s.idSeances INNER JOIN activites a on s.idActivite = a.idActivite GROUP BY s.idActivite ORDER BY s.idActivite;";
-            commande.CommandText = "SELECT nom FROM activites;";
+            commande.CommandText = "SELECT nom FROM activites order by idActivite;";
             con.Open();
 
             MySqlDataReader reader = commande.ExecuteReader();
@@ -305,7 +305,7 @@ namespace projetSession.Singletons
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
             //commande.CommandText = "SELECT nom FROM inscription INNER JOIN seances s on inscription.idSeance = s.idSeances INNER JOIN activites a on s.idActivite = a.idActivite GROUP BY s.idActivite ORDER BY s.idActivite;";
-            commande.CommandText = "SELECT idActivite FROM activites;";
+            commande.CommandText = "SELECT idActivite FROM activites order by idActivite;";
             con.Open();
 
             MySqlDataReader reader = commande.ExecuteReader();
@@ -334,7 +334,17 @@ namespace projetSession.Singletons
 
                 con.Open();
                 commande.Prepare();
-                double i = (double)commande.ExecuteScalar();
+                double i;
+
+                if (commande.ExecuteScalar() is not null)
+                {
+                    i = (double)commande.ExecuteScalar();
+                }
+                else
+                {
+                    i = 0;
+                }
+                
 
                 con.Close();
                 return i;
@@ -342,11 +352,14 @@ namespace projetSession.Singletons
             catch (Exception ex)
             {
                 if (con.State == System.Data.ConnectionState.Open)
+                {
                     con.Close();
+                }
+
+                con.Close();
                 return -1;
             }
         }
-
 
         //----------------------------------------------------------------Parti Adherents------------------------------------------------------------------/
 
@@ -823,6 +836,79 @@ namespace projetSession.Singletons
             getCategories();
 
             return listeCategories;
+        }
+
+        public int getNbActiviteParCategorie(int id)
+        {
+            int counter = 0;
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            //commande.CommandText = "SELECT nom FROM inscription INNER JOIN seances s on inscription.idSeance = s.idSeances INNER JOIN activites a on s.idActivite = a.idActivite GROUP BY s.idActivite ORDER BY s.idActivite;";
+            commande.CommandText = $"SELECT COUNT(*) AS nbActivite FROM activites INNER JOIN categories c on activites.idCategorie = c.idCategorie WHERE c.idCategorie = {id} GROUP BY c.idCategorie ORDER BY c.idCategorie;";
+            con.Open();
+
+            MySqlDataReader reader = commande.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                counter = reader.GetInt32(0);
+            }
+
+            reader.Close();
+            con.Close();
+
+            return counter;
+
+        }
+
+
+        public string[] getCategorieNom()
+        {
+            List<string> listeNom = new List<string>();
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            //commande.CommandText = "SELECT nom FROM inscription INNER JOIN seances s on inscription.idSeance = s.idSeances INNER JOIN activites a on s.idActivite = a.idActivite GROUP BY s.idActivite ORDER BY s.idActivite;";
+            commande.CommandText = "SELECT nom FROM categories order by idCategorie;";
+            con.Open();
+
+            MySqlDataReader reader = commande.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                listeNom.Add(reader[0].ToString());
+            }
+
+            reader.Close();
+            con.Close();
+
+            return listeNom.ToArray();
+        }
+
+        public int[] getCategorieId()
+        {
+            List<int> listeId = new List<int>();
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            //commande.CommandText = "SELECT nom FROM inscription INNER JOIN seances s on inscription.idSeance = s.idSeances INNER JOIN activites a on s.idActivite = a.idActivite GROUP BY s.idActivite ORDER BY s.idActivite;";
+            commande.CommandText = "SELECT idCategorie FROM categories order by idCategorie;";
+            con.Open();
+
+            MySqlDataReader reader = commande.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                listeId.Add(reader.GetInt32(0));
+            }
+
+            reader.Close();
+            con.Close();
+
+            return listeId.ToArray();
         }
 
 
