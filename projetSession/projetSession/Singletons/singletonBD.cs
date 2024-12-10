@@ -246,14 +246,12 @@ namespace projetSession.Singletons
             }
         }
 
-        public int[] getCountAdherentsParCategorie()
+        public int getCountAdherentsActivite(int id)
         {
-            List<int> listeCountActivite = new List<int>();
-
-
+            int counter = 0;
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
-            commande.CommandText = "SELECT COUNT(noIdentificationAdherent) FROM inscription INNER JOIN seances s on inscription.idSeance = s.idSeances GROUP BY idActivite ORDER BY s.idActivite;;";
+            commande.CommandText = $"SELECT COUNT(*) FROM inscription INNER JOIN seances s on inscription.idSeance = s.idSeances WHERE idActivite = {id};";
             con.Open();
 
             //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update , 
@@ -263,8 +261,7 @@ namespace projetSession.Singletons
 
             while (reader.Read())
             {
-
-                listeCountActivite.Add(reader.GetInt32(0));
+                counter = reader.GetInt32(0);
             }
 
 
@@ -273,8 +270,8 @@ namespace projetSession.Singletons
 
             reader.Close();
             con.Close();
+            return counter;
 
-            return listeCountActivite.ToArray();
         }
 
         public string[] getActiviteNom()
@@ -299,6 +296,30 @@ namespace projetSession.Singletons
             con.Close();
 
             return listeNom.ToArray();
+        }
+
+        public int[] getActiviteId()
+        {
+            List<int> listeId = new List<int>();
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            //commande.CommandText = "SELECT nom FROM inscription INNER JOIN seances s on inscription.idSeance = s.idSeances INNER JOIN activites a on s.idActivite = a.idActivite GROUP BY s.idActivite ORDER BY s.idActivite;";
+            commande.CommandText = "SELECT idActivite FROM activites;";
+            con.Open();
+
+            MySqlDataReader reader = commande.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                listeId.Add(reader.GetInt32(0));
+            }
+
+            reader.Close();
+            con.Close();
+
+            return listeId.ToArray();
         }
 
 
