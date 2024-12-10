@@ -51,6 +51,8 @@ namespace projetSession.Singletons
             return liste;
         }
 
+        public ObservableCollection<Adherents> Adherents { get { return listeAdherents; } }
+
 
 
         public void getActivites()
@@ -708,7 +710,31 @@ namespace projetSession.Singletons
         }
 
 
+        public void ajouterAdherentsSeance( string  _noIdentificationAdherent, int _idSeances)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_ajouterAdherentsSeance");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
 
+                commande.Parameters.AddWithValue("noIdentificationAdherent", _noIdentificationAdherent);
+                commande.Parameters.AddWithValue("idSeances", _idSeances);
+              
+
+
+                con.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
 
 
 

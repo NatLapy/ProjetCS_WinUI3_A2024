@@ -9,12 +9,20 @@ namespace projetSession.Classes
 {
     internal class Adherents : INotifyPropertyChanged
     {
-        string noIdentification = "";
-        string nom = "";
-        string prenom = "";
-        string adresse = "";
-        string dateNaissances = "";
+        string noIdentification;
+        string nom;
+        string prenom;
+        string adresse;
+        string dateNaissances;
 
+        public Adherents()
+        {
+            noIdentification = "";
+            nom = "";
+            prenom = "";
+            adresse = "";
+            dateNaissances = "";
+        }
 
         public Adherents(string noIdentification, string nom, string prenom, string adresse, string dateNaissances)
         {
@@ -123,7 +131,7 @@ namespace projetSession.Classes
 
         public override string ToString()
         {
-            return noIdentification + " " + nom + " " + prenom + " " + adresse + " " + dateNaissances;
+            return prenom + " " +  nom ;
         }
     }
 }

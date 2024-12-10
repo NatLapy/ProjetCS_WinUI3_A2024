@@ -13,6 +13,16 @@ namespace projetSession.Classes
         int idSceanceInscription = 0;
         int noteAppreciation = 0;
 
+
+
+        public Inscriptions()
+        {
+            NoIdentificationAdherent= null;
+            IdSceanceInscription= 0;
+            NoteAppreciation = 0;
+        }
+
+
         public Inscriptions(string noIdentificationAdherent, int idSceanceInscription, int noteAppreciation)
         {
             this.noIdentificationAdherent = noIdentificationAdherent;
