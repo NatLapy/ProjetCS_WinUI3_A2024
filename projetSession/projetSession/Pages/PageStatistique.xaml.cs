@@ -37,49 +37,53 @@ namespace projetSession.Pages
 
             ObservableCollection<Activites> listeActivite = singletonBD.getInstance().getListe();
 
-            if(listeActivite is not null)
+            nbAdherentParActivite();
+
+            moyenneNoteParActivite();
+
+        }
+
+        public void moyenneNoteParActivite()
+        {
+
+        }
+
+
+
+        public void nbAdherentParActivite()
+        {
+            string[] nomActivites = singletonBD.getInstance().getActiviteNom();
+            int[] idActivites = singletonBD.getInstance().getActiviteId();
+            int totalActivite = singletonBD.getInstance().getListe().Count;
+
+            for (int i = 0; i < (totalActivite - 1); i++)
             {
+                StackPanel stk = new StackPanel();
+                TextBlock textBlock = new TextBlock();
+                TextBlock nombre = new TextBlock();
+                stk.HorizontalAlignment = HorizontalAlignment.Stretch;
+                stk.BorderThickness = new Thickness(4.00);
+                stk.BorderBrush = new SolidColorBrush(Colors.Red);
+                stk.Padding = new Thickness(20);
+
+                textBlock.Text = nomActivites[i].ToString();
+                textBlock.FontSize = 15;
+                textBlock.HorizontalAlignment = HorizontalAlignment.Center;
+
+                nombre.Text = singletonBD.getInstance().getCountAdherentsActivite(idActivites[i]).ToString() + " Adherents";
 
 
-
-                //exercice basket a compléter
-
-
-                string[] nomActivites = singletonBD.getInstance().getActiviteNom();
-                int[] idActivites = singletonBD.getInstance().getActiviteId();
+                nombre.FontSize = 15;
+                nombre.HorizontalAlignment = HorizontalAlignment.Center;
 
 
-                int totalActivite = singletonBD.getInstance().getListe().Count;
+                stk.Children.Add(textBlock);
+                stk.Children.Add(nombre);
+                stk_nbAdherentParActivite.Children.Add(stk);
 
-                for (int i = 0; i < (totalActivite - 1) ; i++)
-                {
-                    StackPanel stk = new StackPanel();
-                    TextBlock textBlock = new TextBlock();
-                    TextBlock nombre = new TextBlock();
-                    stk.HorizontalAlignment = HorizontalAlignment.Stretch;
-                    stk.BorderThickness = new Thickness(4.00);
-                    stk.BorderBrush = new SolidColorBrush(Colors.Red);
-                    stk.Padding = new Thickness(20);
-
-                    textBlock.Text = nomActivites[i].ToString();
-                    textBlock.FontSize = 15;
-                    textBlock.HorizontalAlignment = HorizontalAlignment.Center;
-
-                    nombre.Text = singletonBD.getInstance().getCountAdherentsActivite(idActivites[i]).ToString() + " Adherents";
-
-
-                    nombre.FontSize = 15;
-                    nombre.HorizontalAlignment = HorizontalAlignment.Center;
-
-
-                    stk.Children.Add(textBlock);
-                    stk.Children.Add(nombre);
-                    stk_nbAdherentParActivite.Children.Add(stk);
-
-                }
-
-                
             }
         }
+
+
     }
 }
