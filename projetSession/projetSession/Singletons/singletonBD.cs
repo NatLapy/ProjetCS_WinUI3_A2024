@@ -1,7 +1,13 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.UI.Xaml.Controls.Primitives;
+using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Tls.Crypto;
 using projetSession.Classes;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Windows.System;
 
 namespace projetSession.Singletons
@@ -236,6 +242,61 @@ namespace projetSession.Singletons
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
             }
+        }
+
+        public int[] getCountAdherentsParCategorie()
+        {
+            List<int> listeCountActivite = new List<int>();
+
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "SELECT COUNT(noIdentificationAdherent) FROM inscription INNER JOIN seances s on inscription.idSeance = s.idSeances GROUP BY idActivite ORDER BY s.idActivite;;";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update , 
+
+            MySqlDataReader reader = commande.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+
+                listeCountActivite.Add(reader.GetInt32(0));
+            }
+
+
+
+            //place où utiliser le code après la query
+
+            reader.Close();
+            con.Close();
+
+            return listeCountActivite.ToArray();
+        }
+
+        public string[] getActiviteNom()
+        {
+            List<string> listeNom = new List<string>();
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            //commande.CommandText = "SELECT nom FROM inscription INNER JOIN seances s on inscription.idSeance = s.idSeances INNER JOIN activites a on s.idActivite = a.idActivite GROUP BY s.idActivite ORDER BY s.idActivite;";
+            commande.CommandText = "SELECT nom FROM activites;";
+            con.Open();
+
+            MySqlDataReader reader = commande.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                listeNom.Add(reader[0].ToString());
+            }
+
+            reader.Close();
+            con.Close();
+
+            return listeNom.ToArray();
         }
 
 
