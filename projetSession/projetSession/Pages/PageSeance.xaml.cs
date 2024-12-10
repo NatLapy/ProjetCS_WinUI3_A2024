@@ -33,6 +33,8 @@ namespace projetSession.Pages
 
             this.InitializeComponent();
             lvSeances.ItemsSource = singletonBD.getInstance().getListeAdherent();
+            ObservableCollection<Adherents> listeAdherents = singletonBD.getInstance().getListeAdherent();
+
         }
 
         private async void btn_supprimer_Click(object sender, RoutedEventArgs e)
@@ -63,10 +65,83 @@ namespace projetSession.Pages
             }
         }
 
-        private void btn_Edit_Click(object sender, RoutedEventArgs e)
+        private async void btn_Edit_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = sender as Button;
+            Seances a = btn.DataContext as Seances;
+
+            lvSeances.SelectedItem = a;
+
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "inscription adhérent";
+            dialog.PrimaryButtonText = "Inscrire";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            //dialog.Content = $"Voulez vous supprimer le joueur: '{a.Prenom}' '{a.Nom}'  ?";
+            AutoSuggestBox autoSuggestBox = new AutoSuggestBox();
+            autoSuggestBox.TextChanged += AutoSuggestBox_TextChanged;
+
+            //ComboBox comboBox = new ComboBox();
+            //comboBox.Items.Add("River Lions de Niagara");
+            //comboBox.Items.Add("Chicago bulls");
+            //comboBox.Items.Add("Memphis Grizzlies");
+            //comboBox.Items.Add("Lakers");
+            //comboBox.Items.Add("Brooklyn Nets");
+            //comboBox.Items.Add("Atlanta Hawks");
+            //comboBox.Header = "Choisir l'adherent";
+            //comboBox.SelectedIndex = 0;
+            //dialog.Content = comboBox as ComboBox;
+
+            dialog.Content = autoSuggestBox;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+                //singletonBD.getInstance().modifierNomEquipeJoueur(a.Matricule, comboBox.SelectedValue as string);
+                // singletonBD.getInstance().modifierNomEquipeJoueur(a.Matricule, comboBox.SelectedValue as string);
+
+            }
+
+            else
+            {
+                lvSeances.SelectedItem = null;
+            }
+        }
+
+
+        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            AutoSuggestBox autoSuggestBox = sender as AutoSuggestBox;
+
+            if (autoSuggestBox.Text == "")
+            {
+                autoSuggestBox.ItemsSource = null;
+                return;
+            }
+            singletonBD.getInstance().recherche(autoSuggestBox.Text);
+            ObservableCollection<Seances> suggestions = singletonBD.getInstance().Equipes;
+
+            if (suggestions.Count == 0)
+                return;
+
+            autoSuggestBox.ItemsSource = suggestions;
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void tbx_recherche_TextChanged(object sender, TextChangedEventArgs e)
         {
