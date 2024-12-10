@@ -45,7 +45,36 @@ namespace projetSession.Pages
 
         public void moyenneNoteParActivite()
         {
+            string[] nomActivites = singletonBD.getInstance().getActiviteNom();
+            int[] idActivites = singletonBD.getInstance().getActiviteId();
+            int totalActivite = singletonBD.getInstance().getListe().Count;
 
+            for (int i = 0; i < (totalActivite - 1); i++)
+            {
+                StackPanel stk = new StackPanel();
+                TextBlock textBlock = new TextBlock();
+                TextBlock nombre = new TextBlock();
+                stk.HorizontalAlignment = HorizontalAlignment.Stretch;
+                stk.BorderThickness = new Thickness(4.00);
+                stk.BorderBrush = new SolidColorBrush(Colors.Red);
+                stk.Padding = new Thickness(20);
+
+                textBlock.Text = nomActivites[i].ToString();
+                textBlock.FontSize = 15;
+                textBlock.HorizontalAlignment = HorizontalAlignment.Center;
+
+                nombre.Text = singletonBD.getInstance().getMoyenneParActivite(idActivites[i]).ToString();
+
+
+                nombre.FontSize = 15;
+                nombre.HorizontalAlignment = HorizontalAlignment.Center;
+
+
+                stk.Children.Add(textBlock);
+                stk.Children.Add(nombre);
+                stk_nbAdherentParActivite.Children.Add(stk);
+
+            }
         }
 
 

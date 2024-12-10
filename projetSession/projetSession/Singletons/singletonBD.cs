@@ -322,6 +322,31 @@ namespace projetSession.Singletons
             return listeId.ToArray();
         }
 
+        public double getMoyenneParActivite(int id)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("moyenneActivite");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("id",id );
+
+                con.Open();
+                commande.Prepare();
+                double i = (double)commande.ExecuteScalar();
+
+                con.Close();
+                return i;
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+                return -1;
+            }
+        }
+
 
         //----------------------------------------------------------------Parti Adherents------------------------------------------------------------------/
 
