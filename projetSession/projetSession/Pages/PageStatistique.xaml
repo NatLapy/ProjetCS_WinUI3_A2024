@@ -31,9 +31,19 @@
             
             </StackPanel>
 
-            <StackPanel VerticalAlignment="Center" x:Name="stk_nbAdherentParActivite" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <StackPanel Grid.Row="2" >
+                <ScrollViewer  HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible">
+                    <StackPanel VerticalAlignment="Center" x:Name="stk_nbAdherentParActivite" Orientation="Horizontal">
                 
+                    </StackPanel>    
+                </ScrollViewer>    
             </StackPanel>
+            
+            
+
+            <ListView>
+                
+            </ListView>
 
             <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="10">
                 <TextBlock FontSize="20"  Grid.Row="3">La moyenne des notes pour chacune des activités</TextBlock>

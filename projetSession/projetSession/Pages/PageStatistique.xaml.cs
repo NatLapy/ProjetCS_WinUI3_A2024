@@ -44,13 +44,12 @@ namespace projetSession.Pages
 
                 //exercice basket a compléter
 
-                int[] countAdherentParActivite = singletonBD.getInstance().getCountAdherentsParCategorie();
 
                 string[] nomActivites = singletonBD.getInstance().getActiviteNom();
+                int[] idActivites = singletonBD.getInstance().getActiviteId();
 
 
                 int totalActivite = singletonBD.getInstance().getListe().Count;
-                ObservableCollection < Activites > test = singletonBD.getInstance().getListe();
 
                 for (int i = 0; i < (totalActivite - 1) ; i++)
                 {
@@ -63,19 +62,13 @@ namespace projetSession.Pages
                     stk.Padding = new Thickness(20);
 
                     textBlock.Text = nomActivites[i].ToString();
-                    textBlock.FontSize = 25;
+                    textBlock.FontSize = 15;
                     textBlock.HorizontalAlignment = HorizontalAlignment.Center;
 
-                    if(countAdherentParActivite.Length <= i)
-                    {
-                        nombre.Text = "0 Adherents";
-                    }
-                    else
-                    {
-                        nombre.Text = countAdherentParActivite[i].ToString() + " Adherents";
-                    }
-                    
-                    nombre.FontSize = 20;
+                    nombre.Text = singletonBD.getInstance().getCountAdherentsActivite(idActivites[i]).ToString() + " Adherents";
+
+
+                    nombre.FontSize = 15;
                     nombre.HorizontalAlignment = HorizontalAlignment.Center;
 
 
