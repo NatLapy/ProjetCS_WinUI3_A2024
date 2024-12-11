@@ -111,6 +111,8 @@
                         <TextBlock Padding="20 10">Note appreciation :</TextBlock>
                         
                         <TextBlock x:Name="tb_note" Loaded="tb_note_Loaded" Padding="0 6"  Margin="5,5,5,10"/>
+
+                        <RatingControl x:Name="rc_note" Loaded="rc_note_Loaded" Visibility="Collapsed" Tapped="rc_note_Tapped"  Caption="Entrez la note d'appréciation"/>
                     </StackPanel>
 
                 </DataTemplate>

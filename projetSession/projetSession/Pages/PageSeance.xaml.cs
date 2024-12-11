@@ -234,6 +234,7 @@ namespace projetSession.Pages
                 else
                 {
                     textBlock.Text = "Pas de notes fait encore";
+                    
                 }
             }
             else
@@ -241,6 +242,29 @@ namespace projetSession.Pages
                 textBlock.Visibility = Visibility.Collapsed;
             }
 
+        }
+
+        private void rc_note_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void rc_note_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            RatingControl ratingControl = sender as RatingControl;
+            Seances seance = ratingControl.DataContext as Seances;
+
+            bool estInscris = singletonBD.getInstance().estInscris(SingletonUtilisateur.getInstance().User.NomUtilisateur, seance.IdSceances);
+
+            if (estInscris == true && singletonBD.getInstance().aNoter(SingletonUtilisateur.getInstance().User.NomUtilisateur, seance.IdSceances) == false)
+            {
+                ratingControl.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ratingControl.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
