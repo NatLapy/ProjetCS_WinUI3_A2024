@@ -49,15 +49,33 @@
         <ListView x:Name="lvSeances" Grid.Row="1" Margin="50">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="classes:Seances">
-                    <StackPanel Orientation="Vertical"
+                    <StackPanel Orientation="Horizontal"
                       Margin="5" HorizontalAlignment="Stretch">
 
                         <TextBlock Text="{x:Bind DateOrganisation }" Margin="5,5,5,10"/>
                         <TextBlock Text="{x:Bind NbPlaceDispo }" Margin="5,5,5,10"/>
-                       
 
 
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Visibility="{x:Bind VisibilityAdherent}">
+                            <Button 
+                                x:Name="btn_add_adherent"
+                                Background="Black" 
+                                Foreground="White" 
+                                FontSize="10" 
+                                Click="btn_add_adherent_Click"
+                                Loaded="btn_add_adherent_Loaded"
+                                PointerEntered="BtnHover"
+                                PointerExited="BtnSortie"
+                                 >
+
+
+                                <StackPanel Orientation="Horizontal">
+                                    <SymbolIcon Symbol="Add" Foreground="LimeGreen" />
+                                </StackPanel>
+                            </Button>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{x:Bind VisibilityAdmin}">
                             <Button 
                                  x:Name="btn_supprimer"
                                  Background="Black" 

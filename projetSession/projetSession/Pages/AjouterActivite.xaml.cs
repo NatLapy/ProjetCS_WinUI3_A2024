@@ -181,9 +181,17 @@ namespace projetSession.Pages
 
         private void tbx_urlImage_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(tbx_urlImage.Text) && new Uri(tbx_urlImage.Text) is not null)
+            if (!string.IsNullOrWhiteSpace(tbx_urlImage.Text) && new Uri(tbx_urlImage.Text, UriKind.RelativeOrAbsolute) is not null && Uri.IsWellFormedUriString(tbx_urlImage.Text,UriKind.Relative))
             {
-                imageActivite.Source = new BitmapImage(new Uri(tbx_urlImage.Text));
+                try
+                {
+                    imageActivite.Source = new BitmapImage(new Uri(tbx_urlImage.Text));
+                }
+                catch (Exception ex)
+                {
+
+                }
+                
             }
             
         }

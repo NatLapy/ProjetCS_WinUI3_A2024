@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml;
+using projetSession.Singletons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +22,26 @@ namespace projetSession.Classes
             this.nbPlaceDispo = nbPlaceDispo;
             this.idActivite = idActivite;
         }
+
+        public Visibility VisibilityAdmin
+        {
+            get
+            {
+                return SingletonUtilisateur.getInstance().User.Role == "Admin" ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        public Visibility VisibilityAdherent
+        {
+            get
+            {
+                return SingletonUtilisateur.getInstance().User.Role == "Adherent" ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        
+
+
 
         public int IdSceances
         {

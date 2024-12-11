@@ -20,6 +20,7 @@ namespace projetSession.Singletons
         ObservableCollection<Adherents> listeAdherents;
         ObservableCollection<Categories> listeCategories;
         ObservableCollection<Seances> listeSeances;
+        ObservableCollection<Seances> listeSeancesAdherent;
         static singletonBD instance = null;
 
 
@@ -29,6 +30,7 @@ namespace projetSession.Singletons
             listeAdherents = new ObservableCollection<Adherents>();
             listeCategories = new ObservableCollection<Categories>();
             listeSeances = new ObservableCollection<Seances>();
+            listeSeancesAdherent = new ObservableCollection<Seances>();
             //Role = "nonConnecter";
             //con est déclarer plus haut comme variable globale. et est initialiser ici dans le constructeur
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq2;Uid=6269818;Pwd=6269818;");
@@ -361,6 +363,25 @@ namespace projetSession.Singletons
             }
         }
 
+        public double getNbPlaceParActivite(int id)
+        {
+            double counter= 0;
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"SELECT SUM(nbPlaceDispo) FROM seances WHERE idActivite={id} GROUP BY idActivite;";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update , 
+            
+            if(commande.ExecuteScalar() is not null)
+            {
+                counter = Convert.ToDouble((decimal)commande.ExecuteScalar());
+            }
+
+            con.Close();
+            return counter;
+        }
+
         //----------------------------------------------------------------Parti Adherents------------------------------------------------------------------/
 
 
@@ -388,6 +409,8 @@ namespace projetSession.Singletons
             while (r.Read())
             {
 
+                string idAdherent = r["noIdentification"].ToString();
+
 
                 string nom = r["nom"].ToString();
 
@@ -400,7 +423,7 @@ namespace projetSession.Singletons
 
 
 
-                Adherents adherents = new Adherents(nom, prenom, adresse, dateNaissance);
+                Adherents adherents = new Adherents(idAdherent,nom, prenom, adresse, dateNaissance);
 
 
 
@@ -562,11 +585,68 @@ namespace projetSession.Singletons
                 return false;
             }
 
+        }
+
+        public void rechercheAdherent(string v)
+        {
+            listeAdherents.Clear();
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"Select * from adherents where nom like  '%{v}%' OR prenom like '%{v}%'";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+
+                string noIdentification = r["noIdentification"].ToString();
+
+                string nom = r["nom"].ToString();
+
+                string prenom = r["prenom"].ToString();
+
+                string adresse = r["adresse"].ToString();
+
+                string dateNaissance = r["dateNaissance"].ToString();
+
+                Adherents adherent = new Adherents(noIdentification, nom, prenom, adresse, dateNaissance);
+
+
+
+                listeAdherents.Add(adherent);
+            }
+
             r.Close();
             con.Close();
-
-            return false;
         }
+
+        public bool estInscris(string idAd, int idSe)
+        {
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"SELECT COUNT(*) FROM inscription where idSeance = {idSe} and noIdentificationAdherent = '{idAd}';";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+            MySqlDataReader r = commande.ExecuteReader();
+
+            if (r.HasRows)
+            {
+                r.Close();
+                con.Close();
+                return true;
+            }
+            else
+            {
+                r.Close();
+                con.Close();
+                return false;
+            }
+        }
+
 
         /*----------------------------------------------------------------Partie Admin------------------------------------------------------------*/
 
@@ -592,11 +672,6 @@ namespace projetSession.Singletons
                 con.Close();
                 return false;
             }
-
-            r.Close();
-            con.Close();
-
-            return false;
         }
 
 
@@ -674,6 +749,53 @@ namespace projetSession.Singletons
 
 
                 listeSeances.Add(seance);
+            }
+
+            r.Close();
+            con.Close();
+        }
+
+
+        public ObservableCollection<Seances> getListeSeanceAdherent(int v, string ad)
+        {
+            getSeanceAdherent( v, ad);
+
+            return listeSeancesAdherent;
+        }
+
+        public void getSeanceAdherent(int v, string ad)
+        {
+            listeSeancesAdherent.Clear();
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"SELECT* FROM seances INNER JOIN inscription i on seances.idSeances = i.idSeance WHERE idActivite= {v} AND noIdentificationAdherent = '{ad}';";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+            MySqlDataReader r = commande.ExecuteReader();
+
+
+            while (r.Read())
+            {
+
+
+                int idSeances = Convert.ToInt16(r["idSeances"].ToString());
+
+                string dateOrganisation = r["dateOrganisation"].ToString();
+
+
+                int nbPlaceDispo = Convert.ToInt16(r["nbPlaceDispo"].ToString());
+
+                int idActivite = Convert.ToInt16(r["nbPlaceDispo"].ToString());
+
+
+
+                Seances seance = new Seances(idSeances, dateOrganisation, nbPlaceDispo, idActivite);
+
+
+
+                listeSeancesAdherent.Add(seance);
             }
 
             r.Close();
@@ -773,16 +895,17 @@ namespace projetSession.Singletons
         {
             try
             {
-                MySqlCommand commande = new MySqlCommand("p_ajouterAdherentsSeance");
+                MySqlCommand commande = new MySqlCommand("p_ajouterInscription");
                 commande.Connection = con;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
 
-                commande.Parameters.AddWithValue("noIdentificationAdherent", _noIdentificationAdherent);
-                commande.Parameters.AddWithValue("idSeances", _idSeances);
+                commande.Parameters.AddWithValue("_noidentificationAdherents", _noIdentificationAdherent);
+                commande.Parameters.AddWithValue("_idSeances", _idSeances);
               
 
 
                 con.Open();
+
                 commande.Prepare();
                 int i = commande.ExecuteNonQuery();
 
@@ -790,8 +913,7 @@ namespace projetSession.Singletons
             }
             catch (Exception ex)
             {
-                if (con.State == System.Data.ConnectionState.Open)
-                    con.Close();
+                con.Close();
             }
         }
 
@@ -802,7 +924,7 @@ namespace projetSession.Singletons
 
         public void getCategories()
         {
-            liste.Clear();
+            listeCategories.Clear();
 
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;

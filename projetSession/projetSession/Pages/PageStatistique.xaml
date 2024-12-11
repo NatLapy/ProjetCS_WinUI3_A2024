@@ -5,6 +5,7 @@
     xmlns:local="using:projetSession"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:classes="using:projetSession.Classes"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -58,15 +59,36 @@
                 </ScrollViewer>
             </StackPanel>        
         
-            <StackPanel Grid.Row="5" Orientation="Horizontal" Spacing="10">
+            <StackPanel Grid.Row="5" Spacing="10">
                 <TextBlock FontSize="20"  Grid.Row="5">nombre total de place disponible par activités</TextBlock>
-                <TextBlock FontSize="25" >10</TextBlock>
-                
+                <ScrollViewer  HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible">
+                    <StackPanel VerticalAlignment="Center" x:Name="stk_nbPlaceParActivite" Orientation="Horizontal">
+                    </StackPanel>
+                </ScrollViewer>
+
             </StackPanel>        
         
-            <StackPanel Grid.Row="6" Orientation="Horizontal" Spacing="10">
+            <StackPanel Grid.Row="6" Spacing="10">
                 <TextBlock FontSize="20"  Grid.Row="6">inscription des séances selon l'adhérents</TextBlock>
-                <TextBlock FontSize="25">10</TextBlock>
+                <StackPanel Orientation="Horizontal" Spacing="20">
+                    <ComboBox x:Name="cbx_adherent" ItemsSource="{x:Bind listeAdherent}" SelectedValuePath="NoIdentification" ></ComboBox>
+                    <ComboBox x:Name="cbx_Activite" ItemsSource="{x:Bind listeActivite}" DisplayMemberPath="Nom" SelectedValuePath="IdActivite" ></ComboBox>
+                </StackPanel>
+                <Button x:Name="btnChercherSeance" Click="btnChercherSeance_Click">Chercher</Button>
+                <StackPanel VerticalAlignment="Center" x:Name="stk_seanceSelonAdherents" Orientation="Horizontal">
+                    <ListView x:Name="lvSeances" Grid.Row="1" Margin="50">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="classes:Seances">
+                                <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Stretch">
+
+                                    <TextBlock Text="{x:Bind DateOrganisation }" Margin="5,5,5,10"/>
+                                    <TextBlock Text="{x:Bind NbPlaceDispo }" Margin="5,5,5,10"/>
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
             </StackPanel>        
         
         

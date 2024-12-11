@@ -39,7 +39,7 @@ namespace projetSession.Classes
 
         public Utilisateur(string noIdentification, string nom, string prenom, string adresse, string dateNaissances)
         {
-            nomUtilisateur = noIdentification;
+            this.nomUtilisateur = noIdentification;
             this.nom = nom;
             this.prenom = prenom;
             this.adresse = adresse;

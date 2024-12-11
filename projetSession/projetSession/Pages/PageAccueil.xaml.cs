@@ -34,6 +34,12 @@ namespace projetSession.Pages
         {
             this.InitializeComponent();
             lv_Activites.ItemsSource = singletonBD.getInstance().getListe();
+            if (SingletonUtilisateur.getInstance().User.Role != "nonConnecter")
+            {
+                title.Text = "Acceuil - " + SingletonUtilisateur.getInstance().User.NomUtilisateur;
+            }
+            else title.Text = "Accueil";
+            
             //lv_Adherents.ItemsSource = singletonBD.getInstance().getListeAdherents();
         }
 
@@ -100,8 +106,18 @@ namespace projetSession.Pages
         public Visibility VisibilityAdmin
         {
             get
-            {
+            {   
+                
                 return SingletonUtilisateur.getInstance().User.Role == "Admin" ? Visibility.Visible : Visibility.Collapsed;
+                
+            }
+        }
+
+        public Visibility VisibilityAdherent
+        {
+            get
+            {
+                return SingletonUtilisateur.getInstance().User.Role == "Adherent" ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
@@ -109,6 +125,7 @@ namespace projetSession.Pages
         {
             if (e.Parameter is not null)
             {
+                title.Text = "Accueil";
                 SingletonUtilisateur.getInstance().User.Role = "nonConnecter";
             }
 
@@ -132,7 +149,7 @@ namespace projetSession.Pages
                     {
                         item.Visibility = VisibilityAdmin;
                     }
-                    if (item.Name == "iStatistique")
+                    if (item.Name == "iPageStatistique")
                     {
                         item.Visibility = VisibilityAdmin;
                     }
@@ -140,6 +157,8 @@ namespace projetSession.Pages
                     {
                         navViewItem.Visibility = VisibilityAdmin;
                         item.Visibility = navViewItem.Visibility;
+                        
+                        
                     }
                     if (item.Name == "iDeconnection")
                     {
@@ -155,11 +174,30 @@ namespace projetSession.Pages
                     NavigationViewItem navViewItem = (NavigationViewItem)item;
                     if (item.Name == "iConnecter")
                     {
-                        item.Visibility = SingletonUtilisateur.getInstance().User.Role == "Admin" ? Visibility.Collapsed : Visibility.Visible;
+                        if (SingletonUtilisateur.getInstance().User.Role == "Admin")
+                        {
+                            item.Visibility = SingletonUtilisateur.getInstance().User.Role == "Admin" ? Visibility.Collapsed : Visibility.Visible;
+                        }
+                        else if (SingletonUtilisateur.getInstance().User.Role == "Adherent")
+                        {
+                            item.Visibility = SingletonUtilisateur.getInstance().User.Role == "Adherent" ? Visibility.Collapsed : Visibility.Visible;
+                        }
+
+                        else item.Visibility = Visibility.Visible;
+                        
                     }
                     if (item.Name == "iDeconnection")
                     {
-                        item.Visibility = VisibilityAdmin;
+
+                        if (SingletonUtilisateur.getInstance().User.Role == "Admin")
+                        {
+                            item.Visibility = VisibilityAdmin;
+                        }
+                        else if (SingletonUtilisateur.getInstance().User.Role == "Adherent")
+                        {
+                            item.Visibility = VisibilityAdherent;
+                        }
+                        else item.Visibility = Visibility.Collapsed;
                     }
                 }
 

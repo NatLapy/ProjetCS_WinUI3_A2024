@@ -28,7 +28,7 @@ namespace projetSession.Classes
             this.coutOrganisation = coutOrganisation;
             this.prixVente = prixVente;
             this.idCategorie = idCategorie;
-            UrlImage = urlImage;
+            this.urlImage = urlImage;
         }
 
 

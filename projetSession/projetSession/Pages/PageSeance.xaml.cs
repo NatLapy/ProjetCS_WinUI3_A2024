@@ -1,3 +1,4 @@
+using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -106,7 +107,8 @@ namespace projetSession.Pages
 
             if (resultat == ContentDialogResult.Primary)
             {
-                singletonBD.getInstance().ajouterAdherentsSeance(test.NoIdentification,3);
+                string noIdentification = test.NoIdentification.ToUpper();
+                singletonBD.getInstance().ajouterAdherentsSeance(noIdentification,a.IdSceances);
                 // singletonBD.getInstance().modifierNomEquipeJoueur(a.Matricule, comboBox.SelectedValue as string);
 
             }
@@ -131,7 +133,7 @@ namespace projetSession.Pages
                 autoSuggestBox.ItemsSource = null;
                 return;
             }
-            singletonBD.getInstance().recherche(autoSuggestBox.Text);
+            singletonBD.getInstance().rechercheAdherent(autoSuggestBox.Text);
             ObservableCollection<Adherents> suggestions = singletonBD.getInstance().Adherents;
 
             if (suggestions.Count == 0)
@@ -140,18 +142,6 @@ namespace projetSession.Pages
             autoSuggestBox.ItemsSource = suggestions;
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         private void tbx_recherche_TextChanged(object sender, TextChangedEventArgs e)
@@ -173,6 +163,56 @@ namespace projetSession.Pages
 
 
             }
+        }
+
+        private void btn_add_adherent_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Seances seance = btn.DataContext as Seances;
+
+            singletonBD.getInstance().ajouterAdherentsSeance(SingletonUtilisateur.getInstance().User.NomUtilisateur.ToUpper(), seance.IdSceances);
+
+            Frame.Navigate(typeof(PageSeance));
+
+        }
+
+        private void btn_add_adherent_Loaded(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Seances seance = btn.DataContext as Seances;
+
+            bool estInscris = singletonBD.getInstance().estInscris(SingletonUtilisateur.getInstance().User.NomUtilisateur.ToUpper(), seance.IdSceances);
+
+            if (estInscris == true)
+            {
+                btn.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                btn.Visibility = Visibility.Visible;
+            }
+
+            
+            
+        }
+
+
+        private void BtnHover(object sender, PointerRoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            var cursor1 = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 0);
+            var cursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 0);
+            InputCursor inputCurs = InputCursor.CreateFromCoreCursor(cursor);
+            this.ProtectedCursor = inputCurs;
+
+        }
+
+        private void BtnSortie(object sender, PointerRoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            var cursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
+            InputCursor inputCurs = InputCursor.CreateFromCoreCursor(cursor);
+            this.ProtectedCursor = inputCurs;
         }
     }
 }

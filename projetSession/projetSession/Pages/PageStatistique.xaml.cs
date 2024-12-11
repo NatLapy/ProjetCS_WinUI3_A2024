@@ -27,6 +27,8 @@ namespace projetSession.Pages
     /// </summary>
     public sealed partial class PageStatistique : Page
     {
+        ObservableCollection<Adherents> listeAdherent = singletonBD.getInstance().getListeAdherent();
+        ObservableCollection<Activites> listeActivite = singletonBD.getInstance().getListe();
         public PageStatistique()
         {
             this.InitializeComponent();
@@ -43,6 +45,44 @@ namespace projetSession.Pages
 
             nombreActiviteParCategorie();
 
+            nombrePlaceDispoParActivite();
+
+
+
+        }
+
+        public void nombrePlaceDispoParActivite()
+        {
+            string[] nomActivites3 = singletonBD.getInstance().getActiviteNom();
+            int[] idActivites3 = singletonBD.getInstance().getActiviteId();
+            int totalActivite3 = singletonBD.getInstance().getListe().Count;
+
+            for (int i = 0; i < (totalActivite3 - 1); i++)
+            {
+                StackPanel stk = new StackPanel();
+                TextBlock textBlock = new TextBlock();
+                TextBlock nombre = new TextBlock();
+                stk.HorizontalAlignment = HorizontalAlignment.Stretch;
+                stk.BorderThickness = new Thickness(4.00);
+                stk.BorderBrush = new SolidColorBrush(Colors.Red);
+                stk.Padding = new Thickness(20);
+
+                textBlock.Text = nomActivites3[i].ToString();
+                textBlock.FontSize = 15;
+                textBlock.HorizontalAlignment = HorizontalAlignment.Center;
+
+                nombre.Text = singletonBD.getInstance().getNbPlaceParActivite(idActivites3[i]).ToString() + " Places";
+
+
+                nombre.FontSize = 15;
+                nombre.HorizontalAlignment = HorizontalAlignment.Center;
+
+
+                stk.Children.Add(textBlock);
+                stk.Children.Add(nombre);
+                stk_nbPlaceParActivite.Children.Add(stk);
+
+            }
         }
 
         public void nombreActiviteParCategorie()
@@ -150,6 +190,14 @@ namespace projetSession.Pages
             }
         }
 
-
+        private void btnChercherSeance_Click(object sender, RoutedEventArgs e)
+        {
+            if(cbx_Activite.SelectedItem is not null && cbx_adherent.SelectedItem is not null)
+            {
+                int idActivite = (int)cbx_Activite.SelectedValue;
+                string idAdherent = cbx_adherent.SelectedValue as string;
+                lvSeances.ItemsSource = singletonBD.getInstance().getListeSeanceAdherent(idActivite,idAdherent);
+            }
+        }
     }
 }

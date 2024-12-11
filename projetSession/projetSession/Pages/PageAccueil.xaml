@@ -24,7 +24,7 @@
 
 
         <Grid Background="Black" x:Name="stkpnl">
-            <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" >Activités</TextBlock>
+            <TextBlock x:Name="title" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" >Accueil</TextBlock>
 
 
             <!--<AutoSuggestBox x:Name="autoSuggestBox" QueryIcon="Find"  Width="350" Height="35"  TextChanged="autoSuggestBox_TextChanged"/>-->
