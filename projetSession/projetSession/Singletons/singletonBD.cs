@@ -697,12 +697,38 @@ namespace projetSession.Singletons
         }
 
 
+        public void ajouterNote(string idAd, int idSe, double note)
+        {
 
 
 
-        /*----------------------------------------------------------------Partie Admin------------------------------------------------------------*/
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = $"Update inscription SET noteAppreciation = {note} WHERE idSeance = {idSe} AND noIdentificationAdherent = '{idAd}';";
 
-        public bool estAdmin(string name, string password)
+                con.Open();
+                int i = commande.ExecuteNonQuery();
+
+                con.Close();
+
+                if (i == 1)
+                {
+                    getSeance(idSe);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
+
+
+            /*----------------------------------------------------------------Partie Admin------------------------------------------------------------*/
+
+            public bool estAdmin(string name, string password)
         {
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;

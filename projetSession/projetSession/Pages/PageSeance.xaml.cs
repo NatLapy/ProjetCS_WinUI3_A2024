@@ -244,8 +244,27 @@ namespace projetSession.Pages
 
         }
 
-        private void rc_note_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void rc_note_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            RatingControl ratingControl = sender as RatingControl;
+            Seances seance = ratingControl.DataContext as Seances;
+
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Note d'appréciation";
+            dialog.PrimaryButtonText = "Confirmer";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = "Voulez vous noter cette séance?";
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+                singletonBD.getInstance().ajouterNote(SingletonUtilisateur.getInstance().User.NomUtilisateur, seance.IdSceances, ratingControl.Value);
+                Frame.Navigate(typeof(PageAccueil));            
+            }
+
 
         }
 
