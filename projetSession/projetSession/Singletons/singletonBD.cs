@@ -627,7 +627,7 @@ namespace projetSession.Singletons
         {
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
-            commande.CommandText = $"SELECT COUNT(*) FROM inscription where idSeance = {idSe} and noIdentificationAdherent = '{idAd}';";
+            commande.CommandText = $"SELECT* FROM inscription where idSeance = {idSe} and noIdentificationAdherent = '{idAd}';";
             con.Open();
 
             //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 

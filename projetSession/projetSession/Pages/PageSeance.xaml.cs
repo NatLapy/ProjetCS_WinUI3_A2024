@@ -170,10 +170,10 @@ namespace projetSession.Pages
             Button btn = sender as Button;
             Seances seance = btn.DataContext as Seances;
 
-            singletonBD.getInstance().ajouterAdherentsSeance(SingletonUtilisateur.getInstance().User.NomUtilisateur.ToUpper(), seance.IdSceances);
+            singletonBD.getInstance().ajouterAdherentsSeance(SingletonUtilisateur.getInstance().User.NomUtilisateur, seance.IdSceances);
 
-            Frame.Navigate(typeof(PageSeance));
-
+            btn.Visibility = Visibility.Collapsed;
+            Frame.Navigate(typeof(PageAccueil));
         }
 
         private void btn_add_adherent_Loaded(object sender, RoutedEventArgs e)
@@ -181,7 +181,7 @@ namespace projetSession.Pages
             Button btn = sender as Button;
             Seances seance = btn.DataContext as Seances;
 
-            bool estInscris = singletonBD.getInstance().estInscris(SingletonUtilisateur.getInstance().User.NomUtilisateur.ToUpper(), seance.IdSceances);
+            bool estInscris = singletonBD.getInstance().estInscris(SingletonUtilisateur.getInstance().User.NomUtilisateur, seance.IdSceances);
 
             if (estInscris == true)
             {
@@ -209,10 +209,14 @@ namespace projetSession.Pages
 
         private void BtnSortie(object sender, PointerRoutedEventArgs e)
         {
-            Button btn = sender as Button;
-            var cursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
-            InputCursor inputCurs = InputCursor.CreateFromCoreCursor(cursor);
-            this.ProtectedCursor = inputCurs;
+            if(sender is not null && e is not null)
+            {
+                Button btn = sender as Button;
+                var cursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
+                InputCursor inputCurs = InputCursor.CreateFromCoreCursor(cursor);
+                this.ProtectedCursor = inputCurs;
+            }
+            
         }
     }
 }
