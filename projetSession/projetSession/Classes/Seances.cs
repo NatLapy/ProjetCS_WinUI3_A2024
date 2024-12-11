@@ -33,6 +33,14 @@ namespace projetSession.Classes
             this.noteAppreciation = noteAppreciation;
         }
 
+        public Visibility VisibilityInscription
+        {
+            get
+            {
+                return SingletonUtilisateur.getInstance().User.Role == "Admin" ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
         public Visibility VisibilityAdmin
         {
             get

@@ -191,9 +191,6 @@ namespace projetSession.Pages
             {
                 btn.Visibility = Visibility.Visible;
             }
-
-            
-            
         }
 
 
@@ -217,6 +214,33 @@ namespace projetSession.Pages
                 this.ProtectedCursor = inputCurs;
             }
             
+        }
+
+        private void tb_note_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextBlock textBlock = sender as TextBlock;
+            Seances seance = textBlock.DataContext as Seances;
+
+            bool estInscris = singletonBD.getInstance().estInscris(SingletonUtilisateur.getInstance().User.NomUtilisateur, seance.IdSceances);
+
+            if (estInscris == true)
+            {
+                textBlock.Visibility = Visibility.Visible;
+
+                if (singletonBD.getInstance().aNoter(SingletonUtilisateur.getInstance().User.NomUtilisateur, seance.IdSceances) == true)
+                {
+                    textBlock.Text = singletonBD.getInstance().getNoteAppreciation(SingletonUtilisateur.getInstance().User.NomUtilisateur, seance.IdSceances).ToString();
+                }
+                else
+                {
+                    textBlock.Text = "Pas de notes fait encore";
+                }
+            }
+            else
+            {
+                textBlock.Visibility = Visibility.Collapsed;
+            }
+
         }
     }
 }

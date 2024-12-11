@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls.Primitives;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using Org.BouncyCastle.Tls.Crypto;
 using projetSession.Classes;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text.RegularExpressions;
 using Windows.System;
 
@@ -646,6 +648,56 @@ namespace projetSession.Singletons
                 return false;
             }
         }
+        
+        public bool aNoter(string idAd, int idSe)
+        {
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"SELECT* FROM inscription WHERE idSeance = {idSe} AND noIdentificationAdherent = '{idAd}' AND noteAppreciation IS NOT NULL;";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+            MySqlDataReader r = commande.ExecuteReader();
+
+
+            if (r.HasRows)
+            {
+                r.Close();
+                con.Close();
+                return true;
+            }
+            else
+            {
+                r.Close();
+                con.Close();
+                return false;
+            }
+        }
+        
+        public double getNoteAppreciation(string idAd, int idSe)
+        {
+            double noteInscription= 0;
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"SELECT* FROM inscription where idSeance = {idSe} and noIdentificationAdherent = '{idAd}' and noteAppreciation IS NOT NULL;";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+
+
+            //noteInscription = (double )commande.ExecuteScalar();
+
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read()){
+                noteInscription = Convert.ToDouble(r["noteAppreciation"].ToString());
+            }
+            con.Close();
+            return noteInscription;
+        }
+
+
+
 
 
         /*----------------------------------------------------------------Partie Admin------------------------------------------------------------*/
