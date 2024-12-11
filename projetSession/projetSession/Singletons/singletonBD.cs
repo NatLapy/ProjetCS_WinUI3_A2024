@@ -714,6 +714,13 @@ namespace projetSession.Singletons
             return listeSeances;
         }
 
+        public ObservableCollection<Seances> getListeVraiSeance()
+        {
+            getVraiSeance();
+
+            return listeSeances;
+        }
+
         /*Afficher les Séances*/
 
         public void getSeance(int v)
@@ -745,6 +752,45 @@ namespace projetSession.Singletons
 
 
                 Seances seance = new Seances(idSeances, dateOrganisation, nbPlaceDispo, idActivite);
+
+
+
+                listeSeances.Add(seance);
+            }
+
+            r.Close();
+            con.Close();
+        }
+
+        public void getVraiSeance()
+        {
+            listeSeances.Clear();
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"SELECT * FROM Seances ";
+            con.Open();
+
+            //reader est utiliser pour les select //---// Scalar pour les fonction comme count et nonQuery pour les modify , update create , 
+            MySqlDataReader r = commande.ExecuteReader();
+
+
+            while (r.Read())
+            {
+
+
+                int idSeances = Convert.ToInt16(r["idSeances"].ToString());
+
+                string dateOrganisation = r["dateOrganisation"].ToString();
+
+
+                int nbPlaceDispo = Convert.ToInt16(r["nbPlaceDispo"].ToString());
+
+                int idActivite = Convert.ToInt16(r["idActivite"].ToString());
+
+                int noteAppreciation = Convert.ToInt16(r["noteAppreciation"].ToString());
+
+                Seances seance = new Seances(idSeances, dateOrganisation, nbPlaceDispo, idActivite , noteAppreciation);
 
 
 

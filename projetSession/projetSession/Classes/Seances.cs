@@ -14,6 +14,7 @@ namespace projetSession.Classes
         string dateOrganisation = "";
         int nbPlaceDispo = 0;
         int idActivite = 0;
+        int noteAppreciation = 0;
 
         public Seances(int idSceances, string dateOrganisation, int nbPlaceDispo, int idActivite)
         {
@@ -21,6 +22,15 @@ namespace projetSession.Classes
             this.dateOrganisation = dateOrganisation;
             this.nbPlaceDispo = nbPlaceDispo;
             this.idActivite = idActivite;
+        }
+
+        public Seances(int idSceances, string dateOrganisation, int nbPlaceDispo, int idActivite , int noteAppreciation)
+        {
+            this.idSceances = idSceances;
+            this.dateOrganisation = dateOrganisation;
+            this.nbPlaceDispo = nbPlaceDispo;
+            this.idActivite = idActivite;
+            this.noteAppreciation = noteAppreciation;
         }
 
         public Visibility VisibilityAdmin
@@ -99,6 +109,21 @@ namespace projetSession.Classes
             set
             {
                 idActivite = value;
+
+
+            }
+        }
+
+        public int NoteAppreciation
+        {
+            get
+            {
+                return noteAppreciation;
+            }
+
+            set
+            {
+                noteAppreciation = value;
 
 
             }
